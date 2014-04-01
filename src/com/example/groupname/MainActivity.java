@@ -11,12 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 
-	//Hejhopp etsting testing
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,12 +29,7 @@ public class MainActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-        
-//		TextView helloText = (TextView) findViewById(R.string.hello_world);
-//		Animation fadeIn = AnimationUtils.loadAnimation(this,R.animator.animation1);
-//		helloText.startAnimation(fadeIn);
 
-		
 	}
 
 	@Override
@@ -54,6 +52,40 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		if (hasFocus) {
+
+			ImageView helloText = (ImageView) findViewById(R.id.imageView1);
+			Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this,
+					R.animator.animation1);
+			helloText.startAnimation(fadeIn);
+			
+		    TranslateAnimation tAnim1 = new TranslateAnimation(-400, 0, 0, 0);
+		    tAnim1.setInterpolator(new BounceInterpolator());
+		    tAnim1.setDuration(2200);
+		    TranslateAnimation tAnim2 = new TranslateAnimation(-400, 0, 0, 0);
+		    tAnim2.setInterpolator(new BounceInterpolator());
+		    tAnim2.setDuration(2200);
+		    tAnim2.setStartOffset(500);
+		    TranslateAnimation tAnim3 = new TranslateAnimation(-400, 0, 0, 0);
+		    tAnim3.setInterpolator(new BounceInterpolator());
+		    tAnim3.setDuration(2200);
+		    tAnim3.setStartOffset(1000);
+		 
+		    Button beginButton = (Button) findViewById(R.id.button1);
+		    beginButton.startAnimation(tAnim1);
+		   
+		    Button scoreButton = (Button) findViewById(R.id.button2);
+		    scoreButton.startAnimation(tAnim2);
+		  
+		    Button aboutButton = (Button) findViewById(R.id.button3);
+		    aboutButton.startAnimation(tAnim3);
+
+
+		}
+	}
+
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -67,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_main, container,
 					false);
-			
+
 			return rootView;
 		}
 	}
