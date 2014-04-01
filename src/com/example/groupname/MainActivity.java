@@ -3,6 +3,8 @@ package com.example.groupname;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -51,7 +53,21 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+    
+	public void datt_sound() {
+    try {
+        MediaPlayer m = new MediaPlayer();
+        AssetFileDescriptor descriptor = getAssets().openFd("datt.mp3");
+        m.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
+        descriptor.close();
 
+        m.prepare();
+        m.setVolume(1f, 1f);
+        m.start();
+    } catch (Exception e) {
+    }
+}
+	
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		if (hasFocus) {
@@ -81,8 +97,8 @@ public class MainActivity extends ActionBarActivity {
 		  
 		    Button aboutButton = (Button) findViewById(R.id.button3);
 		    aboutButton.startAnimation(tAnim3);
-
-
+		    
+		    datt_sound();
 		}
 	}
 
