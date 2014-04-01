@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -23,6 +26,12 @@ public class MainActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+        
+//		TextView helloText = (TextView) findViewById(R.string.hello_world);
+//		Animation fadeIn = AnimationUtils.loadAnimation(this,R.animator.animation1);
+//		helloText.startAnimation(fadeIn);
+
+		
 	}
 
 	@Override
@@ -58,6 +67,7 @@ public class MainActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_main, container,
 					false);
+			
 			return rootView;
 		}
 	}
