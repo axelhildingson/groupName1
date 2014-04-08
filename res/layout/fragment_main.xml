@@ -24,7 +24,8 @@
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="97dp"
-        android:text="Begin" />
+        android:text="Begin"
+        android:onClick="BeginGame" />
 
     <Button
         android:id="@+id/button2"
