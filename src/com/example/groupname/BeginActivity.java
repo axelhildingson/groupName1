@@ -3,6 +3,7 @@ package com.example.groupname;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -59,6 +60,11 @@ public class BeginActivity extends ActionBarActivity {
 					container, false);
 			return rootView;
 		}
+	}
+	
+	public void startGameWithDatt(View view) {
+		Intent intent = new Intent(this, DattActivity.class);
+		startActivity(intent);
 	}
 
 }
