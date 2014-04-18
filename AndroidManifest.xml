@@ -5,6 +5,7 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.NFC" />
+    
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -57,6 +58,15 @@
 
                 <data android:mimeType="application/com.example.groupname.datt" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.groupname.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.groupname.MovementsActivity"
+            android:label="@string/title_activity_movements"
+            android:parentActivityName="com.example.groupname.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.groupname.MainActivity" />

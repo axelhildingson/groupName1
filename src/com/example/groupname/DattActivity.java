@@ -56,6 +56,8 @@ OnNdefPushCompleteCallback{
         mNfcAdapter.setNdefPushMessageCallback(this, this);
         // Register callback to listen for message-sent success
         mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
+        
+        
 	}
 
 	@Override

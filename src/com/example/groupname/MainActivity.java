@@ -39,6 +39,12 @@ public class MainActivity extends ActionBarActivity {
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
 		public void onSensorChanged(SensorEvent se) {
+			
+			// Case1
+			// case2
+			// case3
+			
+			
 			float x = se.values[0];
 			float y = se.values[1];
 			float z = se.values[2];
@@ -48,7 +54,11 @@ public class MainActivity extends ActionBarActivity {
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 			
 			
-			 if (mAccel > 13) { Toast toast = Toast.makeText(getApplicationContext(), "Device has shaken.", Toast.LENGTH_LONG); toast.show(); }		
+			 if (mAccel > 13) {
+				 Toast toast = Toast.makeText(getApplicationContext(), "Device has shaken.", Toast.LENGTH_LONG); toast.show();
+				 mSensorManager.unregisterListener(this);
+				 doMovements();
+			 }		
 		}
 
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -130,6 +140,12 @@ public class MainActivity extends ActionBarActivity {
 		// EditText editText = (EditText) findViewById(R.id.edit_message);
 		// String message = editText.getText().toString();
 		// intent.putExtra(EXTRA_MESSAGE, message);
+		startActivity(intent);
+	}
+	
+	public void doMovements() {
+		
+		Intent intent = new Intent(this, MovementsActivity.class);
 		startActivity(intent);
 	}
 

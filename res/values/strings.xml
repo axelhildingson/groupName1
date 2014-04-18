@@ -7,5 +7,6 @@
     <string name="title_activity_begin">BeginActivity</string>
     <string name="title_activity_datt">DattActivity</string>
     <string name="title_activity_receive_datt">ReceiveDattActivity</string>
+    <string name="title_activity_movements">MovementsActivity</string>
 
 </resources>
