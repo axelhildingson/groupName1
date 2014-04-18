@@ -73,34 +73,10 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		if (hasFocus) {
-
-			ImageView helloText = (ImageView) findViewById(R.id.imageView1);
-			Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this,
-					R.animator.animation1);
-			helloText.startAnimation(fadeIn);
 			
-		    TranslateAnimation tAnim1 = new TranslateAnimation(-400, 0, 0, 0);
-		    tAnim1.setInterpolator(new BounceInterpolator());
-		    tAnim1.setDuration(2200);
-		    TranslateAnimation tAnim2 = new TranslateAnimation(-400, 0, 0, 0);
-		    tAnim2.setInterpolator(new BounceInterpolator());
-		    tAnim2.setDuration(2200);
-		    tAnim2.setStartOffset(500);
-		    TranslateAnimation tAnim3 = new TranslateAnimation(-400, 0, 0, 0);
-		    tAnim3.setInterpolator(new BounceInterpolator());
-		    tAnim3.setDuration(2200);
-		    tAnim3.setStartOffset(1000);
-		 
-		    Button beginButton = (Button) findViewById(R.id.button1);
-		    beginButton.startAnimation(tAnim1);
-		   
-		    Button scoreButton = (Button) findViewById(R.id.button2);
-		    scoreButton.startAnimation(tAnim2);
-		  
-		    Button aboutButton = (Button) findViewById(R.id.button3);
-		    aboutButton.startAnimation(tAnim3);
-		    
-		    datt_sound();
+			//Generera citat
+
+
 		}
 	}
 	
@@ -125,7 +101,43 @@ public class MainActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_main, container,
 					false);
-
+			
+			ImageView helloText = (ImageView) rootView.findViewById(R.id.imageView1);
+			Animation fadeIn = AnimationUtils.loadAnimation(getActivity(),
+					R.animator.animation1);
+			helloText.startAnimation(fadeIn);
+			Animation fadeIn2 = AnimationUtils.loadAnimation(getActivity(),
+					R.animator.animation2);
+			Animation fadeIn3 = AnimationUtils.loadAnimation(getActivity(),
+					R.animator.animation3);
+			Animation fadeIn4 = AnimationUtils.loadAnimation(getActivity(),
+					R.animator.animation4);
+			
+//		    TranslateAnimation tAnim1 = new TranslateAnimation(-800, 0, 0, 0);
+//		    tAnim1.setInterpolator(new BounceInterpolator());
+//		    tAnim1.setDuration(1800);
+//		    tAnim1.setStartOffset(250);
+//		    TranslateAnimation tAnim2 = new TranslateAnimation(-800, 0, 0, 0);
+//		    tAnim2.setInterpolator(new BounceInterpolator());
+//		    tAnim2.setDuration(2200);
+//		    tAnim2.setStartOffset(500);
+//		    TranslateAnimation tAnim3 = new TranslateAnimation(-800, 0, 0, 0);
+//		    tAnim3.setInterpolator(new BounceInterpolator());
+//		    tAnim3.setDuration(1500);
+//		    tAnim3.setStartOffset(1500);
+		 
+		    Button beginButton = (Button) rootView.findViewById(R.id.button1);
+		    beginButton.startAnimation(fadeIn3);
+		    
+		   
+		    Button scoreButton = (Button) rootView.findViewById(R.id.button2);
+		    scoreButton.startAnimation(fadeIn2);
+		  
+		    Button aboutButton = (Button) rootView.findViewById(R.id.button3);
+		    aboutButton.startAnimation(fadeIn4);
+		    
+//		    datt_sound();
+			
 			return rootView;
 		}
 	}

@@ -104,7 +104,7 @@ OnNdefPushCompleteCallback{
                 "Beam Time: " + time.format("%H:%M:%S"));
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { createMimeRecord(
-                        "application/com.example.android.beamtest", text.getBytes())
+                        "application/com.example.groupname.datt", text.getBytes())
          /**
           * The Android Application Record (AAR) is commented out. When a device
           * receives a push with an AAR in it, the application specified in the AAR

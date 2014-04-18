@@ -20,6 +20,7 @@ public final class R {
         public static final int animation1=0x7f050000;
         public static final int animation2=0x7f050001;
         public static final int animation3=0x7f050002;
+        public static final int animation4=0x7f050003;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1082,9 +1083,21 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int datt_logo=0x7f020057;
-        public static final int ic_launcher=0x7f020058;
-        public static final int my_icon=0x7f020059;
+        public static final int about_button=0x7f020057;
+        public static final int begin_button=0x7f020058;
+        public static final int button_about=0x7f020059;
+        public static final int button_about_clicked=0x7f02005a;
+        public static final int button_about_focus=0x7f02005b;
+        public static final int button_begin=0x7f02005c;
+        public static final int button_begin_clicked=0x7f02005d;
+        public static final int button_begin_focus=0x7f02005e;
+        public static final int button_score=0x7f02005f;
+        public static final int button_score_clicked=0x7f020060;
+        public static final int button_score_focus=0x7f020061;
+        public static final int datt_logo=0x7f020062;
+        public static final int ic_launcher=0x7f020063;
+        public static final int my_icon=0x7f020064;
+        public static final int score_button=0x7f020065;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1210,15 +1223,18 @@ containing a value of this type.
         public static final int activity_begin=0x7f030018;
         public static final int activity_datt=0x7f030019;
         public static final int activity_main=0x7f03001a;
-        public static final int fragment_begin=0x7f03001b;
-        public static final int fragment_datt=0x7f03001c;
-        public static final int fragment_main=0x7f03001d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int activity_receive_datt=0x7f03001b;
+        public static final int fragment_begin=0x7f03001c;
+        public static final int fragment_datt=0x7f03001d;
+        public static final int fragment_main=0x7f03001e;
+        public static final int fragment_receive_datt=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
     }
     public static final class menu {
         public static final int begin=0x7f0d0000;
         public static final int datt=0x7f0d0001;
         public static final int main=0x7f0d0002;
+        public static final int receive_datt=0x7f0d0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1266,6 +1282,7 @@ containing a value of this type.
         public static final int hello_world=0x7f0b000e;
         public static final int title_activity_begin=0x7f0b0010;
         public static final int title_activity_datt=0x7f0b0011;
+        public static final int title_activity_receive_datt=0x7f0b0012;
     }
     public static final class style {
         /** 
