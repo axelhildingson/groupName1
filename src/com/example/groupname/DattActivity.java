@@ -32,7 +32,7 @@ import android.nfc.NfcEvent;
 
 public class DattActivity extends ActionBarActivity implements CreateNdefMessageCallback,
 OnNdefPushCompleteCallback{
-	TextView mInfoText;
+
 	private NfcAdapter mNfcAdapter;
 	private static final int MESSAGE_SENT = 1;
 
@@ -42,7 +42,7 @@ OnNdefPushCompleteCallback{
 		setContentView(R.layout.activity_datt);
 
 		
-		mInfoText = (TextView) findViewById(R.id.textView);
+
         // Check for available NFC Adapter
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (savedInstanceState == null) {
@@ -50,8 +50,7 @@ OnNdefPushCompleteCallback{
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
         if (mNfcAdapter == null) {
-            mInfoText = (TextView) findViewById(R.id.textView);
-            mInfoText.setText("NFC is not available on this device.");
+
         }
         // Register callback to set NDEF message
         mNfcAdapter.setNdefPushMessageCallback(this, this);
@@ -143,32 +142,6 @@ OnNdefPushCompleteCallback{
             }
         }
     };
-    
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Check to see that the Activity started due to an Android Beam
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
-            processIntent(getIntent());
-        }
-    }
-    
-    /**
-     * Parses the NDEF Message from the intent and prints to the TextView
-     */
-    void processIntent(Intent intent) {
-        Parcelable[] rawMsgs = intent.getParcelableArrayExtra(
-                NfcAdapter.EXTRA_NDEF_MESSAGES);
-        // only one message sent during the beam
-        NdefMessage msg = (NdefMessage) rawMsgs[0];
-        // record 0 contains the MIME type, record 1 is the AAR, if present
-        mInfoText.setText(new String(msg.getRecords()[0].getPayload()));
-    }
 
-	@Override
-    public void onNewIntent(Intent intent) {
-        // onResume gets called after this to handle the intent
-        setIntent(intent);
-    }
 
 }

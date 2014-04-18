@@ -30,6 +30,9 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this); 
+		adapter.setNdefPushMessage(null, this, this);
 	}
 
 	@Override
