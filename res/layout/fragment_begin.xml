@@ -17,7 +17,8 @@
         android:layout_marginBottom="56dp"
         android:layout_marginLeft="67dp"
         android:layout_toRightOf="@+id/button1"
-        android:text="EJ DATT" />
+        android:text="EJ DATT" 
+        android:onClick="startGameWithoutDatt"/>
 
     <Button
         android:id="@+id/button1"

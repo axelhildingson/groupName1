@@ -5,7 +5,6 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.NFC" />
-    
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -38,7 +37,7 @@
                 android:value="com.example.myfirstapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.groupname.DattActivity"
+            android:name="com.example.groupname.SendDattActivity"
             android:label="@string/title_activity_datt"
             android:parentActivityName="com.example.groupname.MainActivity"
             android:screenOrientation="portrait" >
@@ -70,6 +69,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.groupname.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.groupname.HaveDattActivity"
+            android:label="@string/title_activity_have_datt" >
+        </activity>
+        <activity
+            android:name="com.example.groupname.PlayerlistActivity"
+            android:label="@string/title_activity_playerlist" >
+        </activity>
+        <activity
+            android:name="com.example.groupname.HaveNotDattActivity"
+            android:label="@string/title_activity_have_not_datt" >
         </activity>
     </application>
 

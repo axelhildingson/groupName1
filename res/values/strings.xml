@@ -8,5 +8,8 @@
     <string name="title_activity_datt">DattActivity</string>
     <string name="title_activity_receive_datt">ReceiveDattActivity</string>
     <string name="title_activity_movements">MovementsActivity</string>
+    <string name="title_activity_have_datt">HaveDattActivity</string>
+    <string name="title_activity_playerlist">PlayerlistActivity</string>
+    <string name="title_activity_have_not_datt">HaveNotDattActivity</string>
 
 </resources>

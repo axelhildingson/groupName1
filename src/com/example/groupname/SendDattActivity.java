@@ -30,7 +30,7 @@ import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
 import android.nfc.NfcEvent;
 
-public class DattActivity extends ActionBarActivity implements CreateNdefMessageCallback,
+public class SendDattActivity extends ActionBarActivity implements CreateNdefMessageCallback,
 OnNdefPushCompleteCallback{
 
 	private NfcAdapter mNfcAdapter;

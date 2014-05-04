@@ -11,9 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.os.Build;
 
 public class BeginActivity extends ActionBarActivity {
+	public boolean msgDATT = true;
+	
 	//Hej hälsar Mean-Ergodic
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +70,18 @@ public class BeginActivity extends ActionBarActivity {
 	}
 	
 	public void startGameWithDatt(View view) {
-		Intent intent = new Intent(this, DattActivity.class);
+		// USER HAS DATT
+		Intent intent = new Intent(this, PlayerlistActivity.class);
+		//EditText editText = (EditText) findViewById(R.id.edit_message);
+		//String message = editText.getText().toString();
+		intent.putExtra("msgDATT", msgDATT);
 		startActivity(intent);
 	}
-
+	public void startGameWithoutDatt(View view) {
+		//USER HAS NOT THE DATT
+		Intent intent = new Intent(this, PlayerlistActivity.class);
+		msgDATT = false;
+		intent.putExtra("msgDATT", msgDATT);
+		startActivity(intent);
+	}
 }

@@ -65,7 +65,7 @@ public class MovementsActivity extends Activity {
 	
 	private void shakeSuccess() {
 		mSensorManager.unregisterListener(mSensorListener);
-		Intent intent = new Intent(this, DattActivity.class);
+		Intent intent = new Intent(this, SendDattActivity.class);
 		startActivity(intent);
 	}
 	@Override
