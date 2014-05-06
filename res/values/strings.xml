@@ -13,5 +13,6 @@
     <string name="title_activity_have_not_datt">HaveNotDattActivity</string>
     <string name="title_activity_challange_have_datt">ChallangeHaveDattActivity</string>
     <string name="title_activity_challange_have_not_datt">ChallangeHaveNotDattActivity</string>
+    <string name="title_activity_first">.Datt</string>
 
 </resources>

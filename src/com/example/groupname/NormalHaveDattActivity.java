@@ -60,5 +60,12 @@ public class NormalHaveDattActivity extends Activity {
 			return rootView;
 		}
 	}
+	
+//	@Override
+//	public void onBackPressed()
+//	{
+//
+//	   // super.onBackPressed(); // Comment this super call to avoid calling finish()
+//	}
 
 }
