@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
-public class HaveNotDattActivity extends Activity {
+public class NormalHaveNotDattActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

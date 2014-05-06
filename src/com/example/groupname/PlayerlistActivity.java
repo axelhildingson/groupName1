@@ -15,6 +15,7 @@ import android.os.Build;
 public class PlayerlistActivity extends Activity {
 
 	public boolean HasDatt = true;
+	public String gameType = "normal";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class PlayerlistActivity extends Activity {
 		
 		//Check if user has the Datt or not
 		HasDatt = getIntent().getExtras().getBoolean("msgDATT");
+		gameType = getIntent().getExtras().getString("gameType");
 		
 		setContentView(R.layout.activity_playerlist);
 
@@ -70,13 +72,25 @@ public class PlayerlistActivity extends Activity {
 	public void startGameButton(View view) {
 		if(HasDatt){
 			// User has Datt
-			Intent intent = new Intent(this, HaveDattActivity.class);
-			startActivity(intent);
+			if(gameType == "normal"){
+				Intent intent = new Intent(this, NormalHaveDattActivity.class);
+				startActivity(intent);
+			}
+			else{
+				Intent intent = new Intent(this, ChallangeHaveDattActivity.class);
+				startActivity(intent);
+			}
 		}
 		else {
 			// User has not the Datt
-			Intent intent = new Intent(this, HaveNotDattActivity.class);
-			startActivity(intent);
+			if(gameType == "normal"){
+				Intent intent = new Intent(this, NormalHaveNotDattActivity.class);
+				startActivity(intent);
+			}
+			else{
+				Intent intent = new Intent(this, ChallangeHaveNotDattActivity.class);
+				startActivity(intent);
+			}
 		}
 	}
 

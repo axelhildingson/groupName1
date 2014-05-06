@@ -12,10 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.os.Build;
 
 public class BeginActivity extends ActionBarActivity {
 	public boolean msgDATT = true;
+	public String gameType = "normal";
 	
 	//Hej hälsar Mean-Ergodic
 	@Override
@@ -51,7 +53,23 @@ public class BeginActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	public void onRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+	    
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.Challange:
+	            if (checked)
+	                gameType = "challange";
+	            break;
+	        case R.id.Normal:
+	            if (checked)
+	                gameType = "normal";
+	            break;
+	    }
+	}
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -81,6 +99,7 @@ public class BeginActivity extends ActionBarActivity {
 		//USER HAS NOT THE DATT
 		Intent intent = new Intent(this, PlayerlistActivity.class);
 		msgDATT = false;
+		intent.putExtra("gameType", gameType);
 		intent.putExtra("msgDATT", msgDATT);
 		startActivity(intent);
 	}

@@ -17,8 +17,8 @@
         android:layout_marginBottom="56dp"
         android:layout_marginLeft="67dp"
         android:layout_toRightOf="@+id/button1"
-        android:text="EJ DATT" 
-        android:onClick="startGameWithoutDatt"/>
+        android:onClick="startGameWithoutDatt"
+        android:text="EJ DATT" />
 
     <Button
         android:id="@+id/button1"
@@ -29,34 +29,41 @@
         android:layout_alignBottom="@+id/button2"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="44dp"
-        android:text="DATT"
-        android:onClick="startGameWithDatt" />
-
-    <Button
-        android:id="@+id/button3"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/button1"
-        android:layout_marginTop="41dp"
-        android:text="EJ TID " />
-
-    <Button
-        android:id="@+id/button4"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignTop="@+id/button3"
-        android:text="TID" />
+        android:onClick="startGameWithDatt"
+        android:text="DATT" />
 
     <TimePicker
         android:id="@+id/timePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button4"
-        android:layout_below="@+id/button3"
-        android:layout_marginTop="34dp" />
+        android:layout_alignRight="@+id/button2"
+        android:layout_centerVertical="true" />
+    
+    <RadioGroup
+        android:id="@+id/gameType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+ 
+    </RadioGroup>
+
+    <RadioButton
+        android:id="@+id/Challange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/timePicker1"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="32dp"
+        android:text="Challange" 
+        android:onClick="onRadioButtonClicked"/>
+
+    <RadioButton
+        android:id="@+id/Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Challange"
+        android:layout_alignLeft="@+id/Challange"
+        android:text="Normal" 
+        android:onClick="onRadioButtonClicked"/>
 
 </RelativeLayout>

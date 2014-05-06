@@ -71,7 +71,7 @@
                 android:value="com.example.groupname.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.groupname.HaveDattActivity"
+            android:name="com.example.groupname.NormalHaveDattActivity"
             android:label="@string/title_activity_have_datt" >
         </activity>
         <activity
@@ -79,8 +79,16 @@
             android:label="@string/title_activity_playerlist" >
         </activity>
         <activity
-            android:name="com.example.groupname.HaveNotDattActivity"
+            android:name="com.example.groupname.NormalHaveNotDattActivity"
             android:label="@string/title_activity_have_not_datt" >
+        </activity>
+        <activity
+            android:name="com.example.groupname.ChallangeHaveDattActivity"
+            android:label="@string/title_activity_challange_have_datt" >
+        </activity>
+        <activity
+            android:name="com.example.groupname.ChallangeHaveNotDattActivity"
+            android:label="@string/title_activity_challange_have_not_datt" >
         </activity>
     </application>
 
