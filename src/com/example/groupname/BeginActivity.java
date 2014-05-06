@@ -89,18 +89,24 @@ public class BeginActivity extends ActionBarActivity {
 	
 	public void startGameWithDatt(View view) {
 		// USER HAS DATT
-		Intent intent = new Intent(this, PlayerlistActivity.class);
-		//EditText editText = (EditText) findViewById(R.id.edit_message);
-		//String message = editText.getText().toString();
-		intent.putExtra("msgDATT", msgDATT);
-		startActivity(intent);
+		if(gameType == "normal"){
+			Intent intent = new Intent(this, NormalHaveDattActivity.class);
+			startActivity(intent);
+		}
+		else{
+			Intent intent = new Intent(this, ChallangeHaveDattActivity.class);
+			startActivity(intent);
+		}
 	}
 	public void startGameWithoutDatt(View view) {
 		//USER HAS NOT THE DATT
-		Intent intent = new Intent(this, PlayerlistActivity.class);
-		msgDATT = false;
-		intent.putExtra("gameType", gameType);
-		intent.putExtra("msgDATT", msgDATT);
-		startActivity(intent);
+		if(gameType == "normal"){
+			Intent intent = new Intent(this, NormalHaveNotDattActivity.class);
+			startActivity(intent);
+		}
+		else{
+			Intent intent = new Intent(this, ChallangeHaveNotDattActivity.class);
+			startActivity(intent);
+		}
 	}
 }
