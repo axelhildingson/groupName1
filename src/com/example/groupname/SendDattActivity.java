@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
@@ -101,11 +102,35 @@ OnNdefPushCompleteCallback{
 	public NdefMessage createNdefMessage(NfcEvent event) {
         Time time = new Time();
         time.setToNow();
-        String text = ("Beam me up!\n\n" +
-                "Beam Time: " + time.format("%H:%M:%S"));
+        
+        
+        
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+
+		boolean gameStarted = settings.getBoolean("gameStarted", false);
+		boolean gameModeNormal = settings.getBoolean("gameModeNormal", false);
+		boolean gameModeChallenge = settings.getBoolean("gameModeChallenge", false);
+		boolean hasDatt = settings.getBoolean("hasDatt", false);
+		
+		String msgContent = "0";
+		
+		if(!gameStarted){
+            Toast.makeText(getApplicationContext(), "Game not started, something is wrong", Toast.LENGTH_LONG).show();
+            return null;
+		}
+		
+		if(gameModeNormal){			
+			msgContent = "normalModeDatt";			
+		}else if(gameModeChallenge && hasDatt){
+			msgContent = "challengeModeDatt";
+		}else if(gameModeChallenge && !hasDatt){			
+			msgContent = "challengeModeNotDatt";			
+		}      
+        
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { createMimeRecord(
-                        "application/com.example.groupname.datt", text.getBytes())
+                        "application/com.example.groupname.datt", msgContent.getBytes())
          /**
           * The Android Application Record (AAR) is commented out. When a device
           * receives a push with an AAR in it, the application specified in the AAR
@@ -114,7 +139,6 @@ OnNdefPushCompleteCallback{
           * activity starts when receiving a beamed message. For now, this code
           * uses the tag dispatch system.
           */
-          //,NdefRecord.createApplicationRecord("com.example.android.beam")
         });
         return msg;
 	}

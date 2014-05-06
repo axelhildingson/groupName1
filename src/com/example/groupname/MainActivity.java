@@ -31,45 +31,6 @@ import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 
-	private SensorManager mSensorManager;
-	private float mAccel; // acceleration apart from gravity
-	private float mAccelCurrent; // current acceleration including gravity
-	private float mAccelLast; // last acceleration including gravity
-
-	private final SensorEventListener mSensorListener = new SensorEventListener() {
-
-		public void onSensorChanged(SensorEvent se) {
-			
-			// Case1
-			// case2
-			// case3
-			
-			
-			float x = se.values[0];
-			float y = se.values[1];
-			float z = se.values[2];
-			mAccelLast = mAccelCurrent;
-			mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
-			float delta = mAccelCurrent - mAccelLast;
-			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
-			
-			
-			 if (mAccel > 13) {
-				 Toast toast = Toast.makeText(getApplicationContext(), "Device has shaken.", Toast.LENGTH_LONG); toast.show();
-				 mSensorManager.unregisterListener(this);
-				 doMovements();
-			 }		
-		}
-
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-			
-			
-			
-			
-			
-		}
-	};
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,12 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
-		
-	    mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-	    mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-	    mAccel = 0.00f;
-	    mAccelCurrent = SensorManager.GRAVITY_EARTH;
-	    mAccelLast = SensorManager.GRAVITY_EARTH;
+
 
 	}
 
@@ -139,24 +95,8 @@ public class MainActivity extends ActionBarActivity {
 		Intent intent = new Intent(this, BeginActivity.class);
 		startActivity(intent);
 	}
-	
-	public void doMovements() {
-		
-		Intent intent = new Intent(this, MovementsActivity.class);
-		startActivity(intent);
-	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-	}
 
-	@Override
-	protected void onPause() {
-		mSensorManager.unregisterListener(mSensorListener);
-		super.onPause();
-	}
 
 	/**
 	 * A placeholder fragment containing a simple view.
@@ -184,22 +124,6 @@ public class MainActivity extends ActionBarActivity {
 			Animation fadeIn4 = AnimationUtils.loadAnimation(getActivity(),
 					R.animator.animation4);
 
-			// TranslateAnimation tAnim1 = new TranslateAnimation(-800, 0, 0,
-			// 0);
-			// tAnim1.setInterpolator(new BounceInterpolator());
-			// tAnim1.setDuration(1800);
-			// tAnim1.setStartOffset(250);
-			// TranslateAnimation tAnim2 = new TranslateAnimation(-800, 0, 0,
-			// 0);
-			// tAnim2.setInterpolator(new BounceInterpolator());
-			// tAnim2.setDuration(2200);
-			// tAnim2.setStartOffset(500);
-			// TranslateAnimation tAnim3 = new TranslateAnimation(-800, 0, 0,
-			// 0);
-			// tAnim3.setInterpolator(new BounceInterpolator());
-			// tAnim3.setDuration(1500);
-			// tAnim3.setStartOffset(1500);
-
 			Button beginButton = (Button) rootView.findViewById(R.id.button1);
 			beginButton.startAnimation(fadeIn3);
 
@@ -209,7 +133,8 @@ public class MainActivity extends ActionBarActivity {
 			Button aboutButton = (Button) rootView.findViewById(R.id.button3);
 			aboutButton.startAnimation(fadeIn4);
 
-			// datt_sound();
+			 MainActivity activity = (MainActivity) getActivity();
+			 activity.datt_sound();
 
 			return rootView;
 		}
