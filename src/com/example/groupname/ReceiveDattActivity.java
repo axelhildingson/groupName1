@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
@@ -30,8 +31,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
-		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this); 
+
+		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
 	}
 
@@ -71,27 +72,116 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-	
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Check to see that the Activity started due to an Android Beam
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
-            processIntent(getIntent());
-        }
-    }
-    
-    /**
-     * Parses the NDEF Message from the intent and prints to the TextView
-     */
-    void processIntent(Intent intent) {
-        Parcelable[] rawMsgs = intent.getParcelableArrayExtra(
-                NfcAdapter.EXTRA_NDEF_MESSAGES);
-        // only one message sent during the beam
-        NdefMessage msg = (NdefMessage) rawMsgs[0];
-        // record 0 contains the MIME type, record 1 is the AAR, if present
-        //mInfoText.setText(new String(msg.getRecords()[0].getPayload()));
-        Toast.makeText(getApplicationContext(), new String(msg.getRecords()[0].getPayload()), Toast.LENGTH_LONG).show();
-    }
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		// Check to see that the Activity started due to an Android Beam
+		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
+			processIntent(getIntent());
+		}
+	}
+
+	/**
+	 * Parses the NDEF Message from the intent and prints to the TextView
+	 */
+	void processIntent(Intent intent) {
+
+		Parcelable[] rawMsgs = intent
+				.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+		// only one message sent during the beam
+		NdefMessage msg = (NdefMessage) rawMsgs[0];
+
+		String msgContent = new String(msg.getRecords()[0].getPayload());
+
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+		boolean hasDatt;
+		boolean gameStarted;
+		boolean gameModeNormal;
+		boolean gameModeChallenge;
+
+		switch (msgContent) {
+		case "0":
+			Toast.makeText(getApplicationContext(),
+					"Weird! 0! Something is wrong", Toast.LENGTH_LONG).show();
+
+			break;
+		case "normalModeDatt":
+
+			// Hämta och kolla om nuvarande spelinställnningar överenstämmer med
+			// NFC-meddelandet
+
+			gameStarted = settings.getBoolean("gameStarted", false);
+			gameModeNormal = settings.getBoolean("gameModeNormal", false);
+			gameModeChallenge = settings.getBoolean("gameModeChallenge", false);
+			hasDatt = settings.getBoolean("hasDatt", false);
+
+			if (!gameStarted) {
+				Toast.makeText(getApplicationContext(),
+						"No game currently onGoing!", Toast.LENGTH_LONG).show();
+				intent = new Intent(this, MainActivity.class);
+
+			} else if (gameModeNormal && hasDatt) {
+				Toast.makeText(getApplicationContext(),
+						"You already have the DATT?!", Toast.LENGTH_LONG)
+						.show();
+				intent = new Intent(this, NormalHaveDattActivity.class);
+
+			} else if (gameModeChallenge && hasDatt) {
+				Toast.makeText(
+						getApplicationContext(),
+						"You are playing a different GAME-SETUP from your friend!",
+						Toast.LENGTH_LONG).show();
+				intent = new Intent(this, ChallangeHaveDattActivity.class);
+			} else if (gameModeChallenge && !hasDatt) {
+				Toast.makeText(
+						getApplicationContext(),
+						"You are playing a different GAME-SETUP from your friend!",
+						Toast.LENGTH_LONG).show();
+				intent = new Intent(this, ChallangeHaveNotDattActivity.class);
+
+			} else {
+
+				hasDatt = true;
+
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putBoolean("hasDatt", hasDatt);
+				editor.commit();
+
+				intent = new Intent(this, NormalHaveDattActivity.class);
+				Toast.makeText(
+						getApplicationContext(),
+						"You got the DATT in normal mode, YOU SUCK!  (que song)",
+						Toast.LENGTH_LONG).show();
+
+			}
+
+			startActivity(intent);
+
+			break;
+		case "challengeModeDatt":
+
+			// Hämta och kolla om nuvarande spelinställnningar överenstämmer med
+			// NFC-meddelandet
+
+			break;
+		case "challengeModeNotDatt":
+
+			// KLATSCH!
+
+			break;
+		default:
+
+			Toast.makeText(
+					getApplicationContext(),
+					"Something is wrong... Received string: "
+							+ new String(msg.getRecords()[0].getPayload()),
+					Toast.LENGTH_LONG).show();
+			break;
+
+		}
+
+	}
 
 }

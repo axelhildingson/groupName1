@@ -3,6 +3,9 @@ package com.example.groupname;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,6 +25,9 @@ public class NormalHaveNotDattActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+		adapter.setNdefPushMessage(null, this, this);
 	}
 
 	@Override
@@ -59,6 +65,25 @@ public class NormalHaveNotDattActivity extends Activity {
 					container, false);
 			return rootView;
 		}
+	}
+
+	public void abortGame(View view) {
+		boolean gameStarted = false;
+		boolean gameModeNormal = false;
+		boolean gameModeChallenge = false;
+		boolean hasDatt = false;
+
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("gameStarted", gameStarted);
+		editor.putBoolean("gameModeNormal", gameModeNormal);
+		editor.putBoolean("gameModeChallenge", gameModeChallenge);
+		editor.putBoolean("hasDatt", hasDatt);
+		editor.commit();
+
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 
 }

@@ -9,8 +9,18 @@
     tools:context="com.example.groupname.HaveNotDattActivity$PlaceholderFragment" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="@string/normal_mode_you__dont_have_datt" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_marginBottom="28dp"
+        android:text="Abort Game" 
+        android:onClick="abortGame" />
 </RelativeLayout>

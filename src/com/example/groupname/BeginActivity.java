@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,8 +19,8 @@ import android.os.Build;
 public class BeginActivity extends ActionBarActivity {
 	public boolean msgDATT = true;
 	public String gameType = "normal";
-	
-	//Hej hälsar Mean-Ergodic
+
+	// Hej hälsar Mean-Ergodic
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,8 +30,8 @@ public class BeginActivity extends ActionBarActivity {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
-		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this); 
+
+		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
 	}
 
@@ -53,23 +54,24 @@ public class BeginActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void onRadioButtonClicked(View view) {
-	    // Is the button now checked?
-	    boolean checked = ((RadioButton) view).isChecked();
-	    
-	    // Check which radio button was clicked
-	    switch(view.getId()) {
-	        case R.id.Challange:
-	            if (checked)
-	                gameType = "challange";
-	            break;
-	        case R.id.Normal:
-	            if (checked)
-	                gameType = "normal";
-	            break;
-	    }
+		// Is the button now checked?
+		boolean checked = ((RadioButton) view).isChecked();
+
+		// Check which radio button was clicked
+		switch (view.getId()) {
+		case R.id.Challange:
+			if (checked)
+				gameType = "challange";
+			break;
+		case R.id.Normal:
+			if (checked)
+				gameType = "normal";
+			break;
+		}
 	}
+
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -86,25 +88,84 @@ public class BeginActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-	
+
 	public void startGameWithDatt(View view) {
 		// USER HAS DATT
-		if(gameType == "normal"){
+		if (gameType == "normal") {
+
+			boolean gameStarted = true;
+			boolean gameModeNormal = true;
+			boolean gameModeChallenge = false;
+			boolean hasDatt = true;
+
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("gameStarted", gameStarted);
+			editor.putBoolean("gameModeNormal", gameModeNormal);
+			editor.putBoolean("gameModeChallenge", gameModeChallenge);
+			editor.putBoolean("hasDatt", hasDatt);
+			editor.commit();
+
 			Intent intent = new Intent(this, NormalHaveDattActivity.class);
 			startActivity(intent);
-		}
-		else{
+		} else {
+
+			boolean gameStarted = true;
+			boolean gameModeNormal = false;
+			boolean gameModeChallenge = true;
+			boolean hasDatt = true;
+
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("gameStarted", gameStarted);
+			editor.putBoolean("gameModeNormal", gameModeNormal);
+			editor.putBoolean("gameModeChallenge", gameModeChallenge);
+			editor.putBoolean("hasDatt", hasDatt);
+			editor.commit();
+
 			Intent intent = new Intent(this, ChallangeHaveDattActivity.class);
 			startActivity(intent);
 		}
 	}
+
 	public void startGameWithoutDatt(View view) {
-		//USER HAS NOT THE DATT
-		if(gameType == "normal"){
+		// USER HAS NOT THE DATT
+		if (gameType == "normal") {
+
+			boolean gameStarted = true;
+			boolean gameModeNormal = true;
+			boolean gameModeChallenge = false;
+			boolean hasDatt = false;
+
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("gameStarted", gameStarted);
+			editor.putBoolean("gameModeNormal", gameModeNormal);
+			editor.putBoolean("gameModeChallenge", gameModeChallenge);
+			editor.putBoolean("hasDatt", hasDatt);
+			editor.commit();
+
 			Intent intent = new Intent(this, NormalHaveNotDattActivity.class);
 			startActivity(intent);
-		}
-		else{
+		} else {
+
+			boolean gameStarted = true;
+			boolean gameModeNormal = false;
+			boolean gameModeChallenge = true;
+			boolean hasDatt = false;
+
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("gameStarted", gameStarted);
+			editor.putBoolean("gameModeNormal", gameModeNormal);
+			editor.putBoolean("gameModeChallenge", gameModeChallenge);
+			editor.putBoolean("hasDatt", hasDatt);
+			editor.commit();
+
 			Intent intent = new Intent(this, ChallangeHaveNotDattActivity.class);
 			startActivity(intent);
 		}
