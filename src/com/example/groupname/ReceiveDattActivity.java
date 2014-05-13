@@ -126,21 +126,14 @@ public class ReceiveDattActivity extends ActionBarActivity {
 				Toast.makeText(getApplicationContext(),
 						"You already have the DATT?!", Toast.LENGTH_LONG)
 						.show();
-				intent = new Intent(this, NormalHaveDattActivity.class);
+				intent = new Intent(this, HaveAntidoteActivity.class);
 
 			} else if (gameModeChallenge && hasDatt) {
 				Toast.makeText(
 						getApplicationContext(),
 						"You are playing a different GAME-SETUP from your friend!",
 						Toast.LENGTH_LONG).show();
-				intent = new Intent(this, ChallangeHaveDattActivity.class);
-			} else if (gameModeChallenge && !hasDatt) {
-				Toast.makeText(
-						getApplicationContext(),
-						"You are playing a different GAME-SETUP from your friend!",
-						Toast.LENGTH_LONG).show();
-				intent = new Intent(this, ChallangeHaveNotDattActivity.class);
-
+				intent = new Intent(this, HaveVirusActivity.class);
 			} else {
 
 				hasDatt = true;
@@ -149,7 +142,7 @@ public class ReceiveDattActivity extends ActionBarActivity {
 				editor.putBoolean("hasDatt", hasDatt);
 				editor.commit();
 
-				intent = new Intent(this, NormalHaveDattActivity.class);
+				intent = new Intent(this, HaveAntidoteActivity.class);
 				Toast.makeText(
 						getApplicationContext(),
 						"You got the DATT in normal mode, YOU SUCK!  (que song)",

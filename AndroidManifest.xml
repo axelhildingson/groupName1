@@ -67,24 +67,20 @@
                 android:value="com.example.groupname.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.groupname.NormalHaveDattActivity"
-            android:label="@string/title_activity_have_datt" >
+            android:name="com.example.groupname.HaveAntidoteActivity"
+            android:label="activity_have_antidote" >
         </activity>
         <activity
             android:name="com.example.groupname.PlayerlistActivity"
             android:label="@string/title_activity_playerlist" >
         </activity>
         <activity
-            android:name="com.example.groupname.NormalHaveNotDattActivity"
-            android:label="@string/title_activity_have_not_datt" >
+            android:name="com.example.groupname.HaveNormalActivity"
+            android:label="activity_have_normal" >
         </activity>
         <activity
-            android:name="com.example.groupname.ChallangeHaveDattActivity"
-            android:label="@string/title_activity_challange_have_datt" >
-        </activity>
-        <activity
-            android:name="com.example.groupname.ChallangeHaveNotDattActivity"
-            android:label="@string/title_activity_challange_have_not_datt" >
+            android:name="com.example.groupname.HaveVirusActivity"
+            android:label="activity__have_virus" >
         </activity>
         <activity
             android:name="com.example.groupname.FirstActivity"

@@ -14,12 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
-public class NormalHaveNotDattActivity extends Activity {
+public class HaveVirusActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_have_not_datt);
+		setContentView(R.layout.activity_have_virus);
 
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -34,7 +34,7 @@ public class NormalHaveNotDattActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.have_not_datt, menu);
+		getMenuInflater().inflate(R.menu.challange_have_datt, menu);
 		return true;
 	}
 
@@ -61,13 +61,13 @@ public class NormalHaveNotDattActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_have_not_datt,
-					container, false);
+			View rootView = inflater.inflate(
+					R.layout.fragment_have_virus, container, false);
 			return rootView;
 		}
 	}
-
-	public void abortGame(View view) {
+	
+	public void abortGame(View view){
 		boolean gameStarted = false;
 		boolean gameModeNormal = false;
 		boolean gameModeChallenge = false;
@@ -85,5 +85,6 @@ public class NormalHaveNotDattActivity extends Activity {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
+	
 
 }

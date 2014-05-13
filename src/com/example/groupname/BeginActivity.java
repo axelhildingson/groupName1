@@ -54,27 +54,6 @@ public class BeginActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	public void onRadioButtonClicked(View view) {
-		// Is the button now checked?
-		boolean checked = ((RadioButton) view).isChecked();
-
-		// Check which radio button was clicked
-		switch (view.getId()) {
-		case R.id.Challange:
-			if (checked)
-				gameType = "challange";
-			break;
-		case R.id.Normal:
-			if (checked)
-				gameType = "normal";
-			break;
-		}
-	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
 	public static class PlaceholderFragment extends Fragment {
 
 		public PlaceholderFragment() {
@@ -89,85 +68,66 @@ public class BeginActivity extends ActionBarActivity {
 		}
 	}
 
-	public void startGameWithDatt(View view) {
+	public void startGameNormal(View view) {
 		// USER HAS DATT
-		if (gameType == "normal") {
-
 			boolean gameStarted = true;
-			boolean gameModeNormal = true;
-			boolean gameModeChallenge = false;
-			boolean hasDatt = true;
+			boolean gameNormal = true;
+			boolean gameVirus = false;
+			boolean hasAntidote = false;
 
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean("gameStarted", gameStarted);
-			editor.putBoolean("gameModeNormal", gameModeNormal);
-			editor.putBoolean("gameModeChallenge", gameModeChallenge);
-			editor.putBoolean("hasDatt", hasDatt);
+			editor.putBoolean("gameNormal", gameNormal);
+			editor.putBoolean("gameVirus", gameVirus);
+			editor.putBoolean("hasAntidote", hasAntidote);
 			editor.commit();
 
-			Intent intent = new Intent(this, NormalHaveDattActivity.class);
+			Intent intent = new Intent(this, HaveNormalActivity.class);
 			startActivity(intent);
-		} else {
-
-			boolean gameStarted = true;
-			boolean gameModeNormal = false;
-			boolean gameModeChallenge = true;
-			boolean hasDatt = true;
-
-			SharedPreferences settings = getSharedPreferences(
-					FirstActivity.prefName, 0);
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean("gameStarted", gameStarted);
-			editor.putBoolean("gameModeNormal", gameModeNormal);
-			editor.putBoolean("gameModeChallenge", gameModeChallenge);
-			editor.putBoolean("hasDatt", hasDatt);
-			editor.commit();
-
-			Intent intent = new Intent(this, ChallangeHaveDattActivity.class);
-			startActivity(intent);
-		}
+		
 	}
 
-	public void startGameWithoutDatt(View view) {
+	public void startGameVirus(View view) {
 		// USER HAS NOT THE DATT
-		if (gameType == "normal") {
 
-			boolean gameStarted = true;
-			boolean gameModeNormal = true;
-			boolean gameModeChallenge = false;
-			boolean hasDatt = false;
+		boolean gameStarted = true;
+		boolean gameNormal = false;
+		boolean gameVirus = true;
+		boolean hasAntidote = false;
 
-			SharedPreferences settings = getSharedPreferences(
-					FirstActivity.prefName, 0);
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean("gameStarted", gameStarted);
-			editor.putBoolean("gameModeNormal", gameModeNormal);
-			editor.putBoolean("gameModeChallenge", gameModeChallenge);
-			editor.putBoolean("hasDatt", hasDatt);
-			editor.commit();
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("gameStarted", gameStarted);
+		editor.putBoolean("gameNormal", gameNormal);
+		editor.putBoolean("gameVirus", gameVirus);
+		editor.putBoolean("hasAntidote", hasAntidote);
+		editor.commit();
 
-			Intent intent = new Intent(this, NormalHaveNotDattActivity.class);
-			startActivity(intent);
-		} else {
+		Intent intent = new Intent(this, HaveVirusActivity.class);
+		startActivity(intent);
+	}
+	
+	public void startGameAntidote(View view) {
+		// USER HAS NOT THE DATT
 
-			boolean gameStarted = true;
-			boolean gameModeNormal = false;
-			boolean gameModeChallenge = true;
-			boolean hasDatt = false;
+		boolean gameStarted = true;
+		boolean gameNormal = false;
+		boolean gameVirus = false;
+		boolean hasAntidote = true;
 
-			SharedPreferences settings = getSharedPreferences(
-					FirstActivity.prefName, 0);
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean("gameStarted", gameStarted);
-			editor.putBoolean("gameModeNormal", gameModeNormal);
-			editor.putBoolean("gameModeChallenge", gameModeChallenge);
-			editor.putBoolean("hasDatt", hasDatt);
-			editor.commit();
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("gameStarted", gameStarted);
+		editor.putBoolean("gameNormal", gameNormal);
+		editor.putBoolean("gameVirus", gameVirus);
+		editor.putBoolean("hasAntidote", hasAntidote);
+		editor.commit();
 
-			Intent intent = new Intent(this, ChallangeHaveNotDattActivity.class);
-			startActivity(intent);
-		}
+		Intent intent = new Intent(this, HaveAntidoteActivity.class);
+		startActivity(intent);
 	}
 }
