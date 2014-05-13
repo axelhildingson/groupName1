@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.os.Build;
 
-public class NormalHaveDattActivity extends Activity {
+public class HaveAntidoteActivity extends Activity {
 
 	private SensorManager mSensorManager;
 	private float mAccel; // acceleration apart from gravity
@@ -66,7 +66,7 @@ public class NormalHaveDattActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_have_datt);
+		setContentView(R.layout.activity_have_antidote);
 
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -129,7 +129,7 @@ public class NormalHaveDattActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_have_datt,
+			View rootView = inflater.inflate(R.layout.fragment_have_antidote,
 					container, false);
 			return rootView;
 		}
