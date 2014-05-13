@@ -70,17 +70,16 @@ public class ChallangeHaveNotDattActivity extends Activity {
 
 	public void abortGame(View view) {
 		boolean gameStarted = false;
-		boolean gameModeNormal = false;
-		boolean gameModeChallenge = false;
-		boolean hasDatt = false;
+		boolean hasVirus = false;
+		boolean hasAntidote = false;
+
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean("gameStarted", gameStarted);
-		editor.putBoolean("gameModeNormal", gameModeNormal);
-		editor.putBoolean("gameModeChallenge", gameModeChallenge);
-		editor.putBoolean("hasDatt", hasDatt);
+		editor.putBoolean("hasVirus", hasVirus);
+		editor.putBoolean("hasAntidote", hasAntidote);
 		editor.commit();
 
 		Intent intent = new Intent(this, MainActivity.class);

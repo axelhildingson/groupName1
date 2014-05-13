@@ -11,9 +11,8 @@ public class FirstActivity extends Activity {
 	public final static String prefName = "dattenPref";
 
 	private boolean gameStarted;
-	private boolean gameModeNormal;
-	private boolean gameModeChallenge;
-	private boolean hasDatt;
+	private boolean hasVirus;
+	private boolean hasAntidote;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,27 +24,22 @@ public class FirstActivity extends Activity {
 				FirstActivity.prefName, 0);
 
 		gameStarted = settings.getBoolean("gameStarted", false);
-		gameModeNormal = settings.getBoolean("gameModeNormal", false);
-		gameModeChallenge = settings.getBoolean("gameModeChallenge", false);
-		hasDatt = settings.getBoolean("hasDatt", false);
+		hasVirus = settings.getBoolean("hasVirus", false);
+		hasAntidote = settings.getBoolean("hasAntidote", false);
 
 		if (!gameStarted) {
 			intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
 			finish();
-		} else if (gameModeNormal && hasDatt) {
+		} else if (hasVirus) {
 			intent = new Intent(this, NormalHaveDattActivity.class);
 			startActivity(intent);
 			finish();
-		} else if (gameModeNormal && !hasDatt) {
-			intent = new Intent(this, NormalHaveNotDattActivity.class);
-			startActivity(intent);
-			finish();
-		} else if (gameModeChallenge && hasDatt) {
+		} else if (hasAntidote) {
 			intent = new Intent(this, ChallangeHaveDattActivity.class);
 			startActivity(intent);
 			finish();
-		} else if (gameModeChallenge && !hasDatt) {
+		} else {
 			intent = new Intent(this, ChallangeHaveNotDattActivity.class);
 			startActivity(intent);
 			finish();
