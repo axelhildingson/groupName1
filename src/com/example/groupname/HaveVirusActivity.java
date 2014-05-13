@@ -3,8 +3,13 @@ package com.example.groupname;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +21,42 @@ import android.os.Build;
 
 public class HaveVirusActivity extends Activity {
 
+	private SensorManager mSensorManager;
+	private float mAccel; // acceleration apart from gravity
+	private float mAccelCurrent; // current acceleration including gravity
+	private float mAccelLast; // last acceleration including gravity
+	private final SensorEventListener mSensorListener = new SensorEventListener() {
+
+		public void onSensorChanged(SensorEvent se) {
+
+			// Case1
+			// case2
+			// case3
+
+			float x = se.values[0];
+			float y = se.values[1];
+			float z = se.values[2];
+			mAccelLast = mAccelCurrent;
+			mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
+			float delta = mAccelCurrent - mAccelLast;
+			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
+
+			if (mAccel > 13) {
+				mSensorManager.unregisterListener(this);
+				goToSend();
+			}
+		}
+
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+		}
+	};
+
+	public void goToSend() {
+		Intent intent = new Intent(this, MovementsActivity.class);
+		startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,6 +66,13 @@ public class HaveVirusActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		mSensorManager.registerListener(mSensorListener,
+				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
+		mAccel = 0.00f;
+		mAccelCurrent = SensorManager.GRAVITY_EARTH;
+		mAccelLast = SensorManager.GRAVITY_EARTH;
 		
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
@@ -63,27 +111,43 @@ public class HaveVirusActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(
 					R.layout.fragment_have_virus, container, false);
+			
+			
 			return rootView;
 		}
 	}
 	
-	public void abortGame(View view){
+	public void abortGame(View view) {
 		boolean gameStarted = false;
-		boolean gameModeNormal = false;
-		boolean gameModeChallenge = false;
-		boolean hasDatt = false;
+		boolean gameVirus = false;
+		boolean gameNormal = false;
+		boolean hasAntidote = false;
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean("gameStarted", gameStarted);
-		editor.putBoolean("gameModeNormal", gameModeNormal);
-		editor.putBoolean("gameModeChallenge", gameModeChallenge);
-		editor.putBoolean("hasDatt", hasDatt);
+		editor.putBoolean("gameVirus", gameVirus);
+		editor.putBoolean("gameNormal", gameNormal);
+		editor.putBoolean("hasAntidote", hasAntidote);
 		editor.commit();
 
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mSensorManager.registerListener(mSensorListener,
+				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
+	}
+
+	@Override
+	protected void onPause() {
+		mSensorManager.unregisterListener(mSensorListener);
+		super.onPause();
 	}
 	
 

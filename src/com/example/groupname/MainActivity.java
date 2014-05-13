@@ -70,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
 	public void datt_sound() {
 		try {
 			MediaPlayer m = new MediaPlayer();
-			AssetFileDescriptor descriptor = getAssets().openFd("datt.mp3");
+			AssetFileDescriptor descriptor = getAssets().openFd("viro_dot_dote.mp3");
 			m.setDataSource(descriptor.getFileDescriptor(),
 					descriptor.getStartOffset(), descriptor.getLength());
 			descriptor.close();
@@ -117,24 +117,21 @@ public class MainActivity extends ActionBarActivity {
 			Animation fadeIn = AnimationUtils.loadAnimation(getActivity(),
 					R.animator.animation1);
 			helloText.startAnimation(fadeIn);
-			Animation fadeIn2 = AnimationUtils.loadAnimation(getActivity(),
-					R.animator.animation2);
 			Animation fadeIn3 = AnimationUtils.loadAnimation(getActivity(),
 					R.animator.animation3);
-			Animation fadeIn4 = AnimationUtils.loadAnimation(getActivity(),
-					R.animator.animation4);
+
 
 			Button beginButton = (Button) rootView.findViewById(R.id.button1);
 			beginButton.startAnimation(fadeIn3);
 
-			Button scoreButton = (Button) rootView.findViewById(R.id.button2);
-			scoreButton.startAnimation(fadeIn2);
+//			Button scoreButton = (Button) rootView.findViewById(R.id.button2);
+//			scoreButton.startAnimation(fadeIn2);
+//
+//			Button aboutButton = (Button) rootView.findViewById(R.id.button3);
+//			aboutButton.startAnimation(fadeIn4);
 
-			Button aboutButton = (Button) rootView.findViewById(R.id.button3);
-			aboutButton.startAnimation(fadeIn4);
-
-			 MainActivity activity = (MainActivity) getActivity();
-			 activity.datt_sound();
+//			 MainActivity activity = (MainActivity) getActivity();			 
+//			 activity.datt_sound();
 
 			return rootView;
 		}

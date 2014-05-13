@@ -1094,13 +1094,21 @@ containing a value of this type.
         public static final int button_score=0x7f02005f;
         public static final int button_score_clicked=0x7f020060;
         public static final int button_score_focus=0x7f020061;
-        public static final int datt=0x7f020062;
-        public static final int datt_ball=0x7f020063;
-        public static final int datt_ball1=0x7f020064;
-        public static final int datt_logo=0x7f020065;
-        public static final int ic_launcher=0x7f020066;
-        public static final int my_icon=0x7f020067;
+        public static final int dote_icon=0x7f020062;
+        public static final int ic_action_name=0x7f020063;
+        public static final int ic_launcher=0x7f020064;
+        public static final int ic_stat_name=0x7f020065;
+        public static final int my_icon=0x7f020066;
+        public static final int neutral_icon=0x7f020067;
         public static final int score_button=0x7f020068;
+        public static final int test_tube_hi_1=0x7f020069;
+        public static final int testtube=0x7f02006a;
+        public static final int tube2=0x7f02006b;
+        public static final int tube22=0x7f02006c;
+        public static final int tube3=0x7f02006d;
+        public static final int tube33=0x7f02006e;
+        public static final int viro=0x7f02006f;
+        public static final int viro_icon=0x7f020070;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1114,7 +1122,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060044;
+        public static final int action_settings=0x7f060043;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1138,7 +1146,8 @@ containing a value of this type.
         public static final int icon=0x7f06002a;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060027;
-        public static final int imageView1=0x7f060043;
+        public static final int imageView1=0x7f060041;
+        public static final int imageView2=0x7f060042;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int middle=0x7f060012;
@@ -1165,8 +1174,6 @@ containing a value of this type.
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
-        public static final int textView=0x7f060041;
-        public static final int textView1=0x7f060042;
         public static final int title=0x7f06002b;
         public static final int top_action_bar=0x7f060020;
         public static final int up=0x7f060021;
@@ -1235,14 +1242,17 @@ containing a value of this type.
         public static final int activity_receive_datt=0x7f030021;
         public static final int fragment_begin=0x7f030022;
         public static final int fragment_datt=0x7f030023;
-        public static final int fragment_first=0x7f030024;
-        public static final int fragment_have_antidote=0x7f030025;
-        public static final int fragment_have_normal=0x7f030026;
-        public static final int fragment_have_virus=0x7f030027;
-        public static final int fragment_main=0x7f030028;
-        public static final int fragment_movements=0x7f030029;
-        public static final int fragment_receive_datt=0x7f03002a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002b;
+        public static final int fragment_datt2=0x7f030024;
+        public static final int fragment_first=0x7f030025;
+        public static final int fragment_have_antidote=0x7f030026;
+        public static final int fragment_have_normal=0x7f030027;
+        public static final int fragment_have_virus=0x7f030028;
+        public static final int fragment_main=0x7f030029;
+        public static final int fragment_movements=0x7f03002a;
+        public static final int fragment_movements2=0x7f03002b;
+        public static final int fragment_receive_datt=0x7f03002c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002d;
+        public static final int testfrag=0x7f03002e;
     }
     public static final class menu {
         public static final int begin=0x7f0d0000;
@@ -1301,19 +1311,11 @@ containing a value of this type.
         public static final int action_settings=0x7f0b000f;
         public static final int app_name=0x7f0b000d;
         public static final int hello_world=0x7f0b000e;
-        public static final int movements_string=0x7f0b001b;
-        public static final int normal_mode_you__dont_have_datt=0x7f0b001a;
-        public static final int normal_mode_you_have_datt=0x7f0b0019;
-        public static final int send_datt_text=0x7f0b001c;
         public static final int title_activity_begin=0x7f0b0010;
-        public static final int title_activity_challange_have_datt=0x7f0b0017;
-        public static final int title_activity_challange_have_not_datt=0x7f0b0018;
         public static final int title_activity_datt=0x7f0b0011;
-        public static final int title_activity_first=0x7f0b001d;
+        public static final int title_activity_first=0x7f0b0015;
         public static final int title_activity_have_datt=0x7f0b0014;
-        public static final int title_activity_have_not_datt=0x7f0b0016;
         public static final int title_activity_movements=0x7f0b0013;
-        public static final int title_activity_playerlist=0x7f0b0015;
         public static final int title_activity_receive_datt=0x7f0b0012;
     }
     public static final class style {

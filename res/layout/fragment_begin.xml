@@ -7,12 +7,11 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.groupname.BeginActivity$PlaceholderFragment" >
-    
+
     <RadioGroup
         android:id="@+id/gameType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
- 
     </RadioGroup>
 
     <Button
@@ -20,8 +19,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/gameType"
         android:onClick="startGameAntidote"
         android:text="Antidote" />
 
@@ -30,10 +29,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button3"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_marginLeft="32dp"
-        android:layout_toRightOf="@+id/button2"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/button3"
         android:onClick="startGameVirus"
         android:text="Virus" />
 
@@ -43,9 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button3"
-        android:layout_below="@+id/gameType"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="54dp"
+        android:layout_alignRight="@+id/button3"
+        android:layout_below="@+id/button1"
         android:onClick="startGameNormal"
         android:text="Normal" />
 

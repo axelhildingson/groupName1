@@ -21,7 +21,6 @@
             android:name="com.example.groupname.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
             android:name="com.example.groupname.BeginActivity"
@@ -61,32 +60,32 @@
         <activity
             android:name="com.example.groupname.MovementsActivity"
             android:label="@string/title_activity_movements"
-            android:parentActivityName="com.example.groupname.MainActivity" >
+            android:parentActivityName="com.example.groupname.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.groupname.MainActivity" />
         </activity>
         <activity
             android:name="com.example.groupname.HaveAntidoteActivity"
-            android:label="activity_have_antidote" >
-        </activity>
-        <activity
-            android:name="com.example.groupname.PlayerlistActivity"
-            android:label="@string/title_activity_playerlist" >
+            android:label=""
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.groupname.HaveNormalActivity"
-            android:label="activity_have_normal" >
+            android:label=""
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.groupname.HaveVirusActivity"
-            android:label="activity__have_virus" >
+            android:label=""
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.groupname.FirstActivity"
             android:label="@string/title_activity_first"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-                <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -44,9 +44,6 @@ public class HaveAntidoteActivity extends Activity {
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
 			if (mAccel > 13) {
-				Toast toast = Toast.makeText(getApplicationContext(),
-						"Device has shaken.", Toast.LENGTH_LONG);
-				toast.show();
 				mSensorManager.unregisterListener(this);
 				doMovements();
 			}

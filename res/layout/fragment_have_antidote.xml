@@ -8,20 +8,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.groupname.HaveDattActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/normal_mode_you_have_datt" />
-
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_marginBottom="24dp"
+        android:layout_alignParentRight="true"
+        android:onClick="abortGame"
         android:text="Abort Game"
-        android:onClick="abortGame" />
+        android:alpha="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="79dp"
+        android:src="@drawable/dote_icon" />
 
 </RelativeLayout>

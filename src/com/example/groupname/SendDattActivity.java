@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
@@ -21,6 +23,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
@@ -31,34 +36,37 @@ import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
 import android.nfc.NfcEvent;
 
-public class SendDattActivity extends ActionBarActivity implements CreateNdefMessageCallback,
-OnNdefPushCompleteCallback{
+public class SendDattActivity extends ActionBarActivity implements
+		CreateNdefMessageCallback, OnNdefPushCompleteCallback {
+
+	public final static String swithOptionVirus = "gameVirus";
+	public final static String swithOptionAntidote = "hasAntidote";
 
 	private NfcAdapter mNfcAdapter;
 	private static final int MESSAGE_SENT = 1;
+	private boolean gameStarted;
+	private boolean gameVirus;
+	private boolean hasAntidote;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_datt);
 
-		
-
-        // Check for available NFC Adapter
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (savedInstanceState == null) {
+		// Check for available NFC Adapter
+		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-        if (mNfcAdapter == null) {
+		if (mNfcAdapter == null) {
 
-        }
-        // Register callback to set NDEF message
-        mNfcAdapter.setNdefPushMessageCallback(this, this);
-        // Register callback to listen for message-sent success
-        mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
-        
-        
+		}
+		// Register callback to set NDEF message
+		mNfcAdapter.setNdefPushMessageCallback(this, this);
+		// Register callback to listen for message-sent success
+		mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
+
 	}
 
 	@Override
@@ -86,88 +94,155 @@ OnNdefPushCompleteCallback{
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		private boolean hasAntidote;
+
 		public PlaceholderFragment() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_datt, container,
-					false);
+
+			SendDattActivity activity = (SendDattActivity) getActivity();
+
+			SharedPreferences settings = activity.getSharedPreferences(
+					FirstActivity.prefName, 0);
+
+			hasAntidote = settings.getBoolean("hasAntidote", false);
+
+			View rootView = null;
+
+			if (hasAntidote) {
+				rootView = inflater.inflate(R.layout.fragment_datt,
+						container, false);
+			} else {
+
+				rootView = inflater.inflate(R.layout.fragment_datt2,
+						container, false);
+
+			}
+
+			ImageView fullAntidote = (ImageView) rootView
+					.findViewById(R.id.imageView1);
+
+			final ImageView halfAntidote = (ImageView) rootView
+					.findViewById(R.id.imageView2);
+
+			fullAntidote.setVisibility(View.GONE);
+
+			int mShortAnimationDuration = 3000;
+
+			fullAntidote.setAlpha(0f);
+			fullAntidote.setVisibility(View.VISIBLE);
+
+			fullAntidote.animate().alpha(1f)
+					.setDuration(mShortAnimationDuration).setListener(null);
+
+			halfAntidote.animate().alpha(0f)
+					.setDuration(mShortAnimationDuration)
+					.setListener(new AnimatorListenerAdapter() {
+						@Override
+						public void onAnimationEnd(Animator animation) {
+							halfAntidote.setVisibility(View.GONE);
+						}
+					});
+
 			return rootView;
 		}
 	}
 
 	@Override
 	public NdefMessage createNdefMessage(NfcEvent event) {
-        Time time = new Time();
-        time.setToNow();
-        
-        
-        
+		Time time = new Time();
+		time.setToNow();
+
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
 
-		boolean gameStarted = settings.getBoolean("gameStarted", false);
-		boolean gameModeNormal = settings.getBoolean("gameModeNormal", false);
-		boolean gameModeChallenge = settings.getBoolean("gameModeChallenge", false);
-		boolean hasDatt = settings.getBoolean("hasDatt", false);
-		
+		gameStarted = settings.getBoolean("gameStarted", false);
+		gameVirus = settings.getBoolean("gameVirus", false);
+		hasAntidote = settings.getBoolean("hasAntidote", false);
+
 		String msgContent = "0";
-		
-		if(!gameStarted){
-            Toast.makeText(getApplicationContext(), "Game not started, something is wrong", Toast.LENGTH_LONG).show();
-            return null;
+
+		if (!gameStarted) {
+			Toast.makeText(getApplicationContext(),
+					"Game not started, something is wrong", Toast.LENGTH_LONG)
+					.show();
+			return null;
 		}
-		
-		if(gameModeNormal){			
-			msgContent = "normalModeDatt";			
-		}else if(gameModeChallenge && hasDatt){
-			msgContent = "challengeModeDatt";
-		}else if(gameModeChallenge && !hasDatt){			
-			msgContent = "challengeModeNotDatt";			
-		}      
-        
-        NdefMessage msg = new NdefMessage(
-                new NdefRecord[] { createMimeRecord(
-                        "application/com.example.groupname.datt", msgContent.getBytes())
-         /**
-          * The Android Application Record (AAR) is commented out. When a device
-          * receives a push with an AAR in it, the application specified in the AAR
-          * is guaranteed to run. The AAR overrides the tag dispatch system.
-          * You can add it back in to guarantee that this
-          * activity starts when receiving a beamed message. For now, this code
-          * uses the tag dispatch system.
-          */
-        });
-        return msg;
+
+		if (gameVirus) {
+			msgContent = "gameVirus";
+		} else if (hasAntidote) {
+			msgContent = "hasAntidote";
+		}
+
+		NdefMessage msg = new NdefMessage(
+				new NdefRecord[] { createMimeRecord(
+						"application/com.example.groupname.datt",
+						msgContent.getBytes())
+				/**
+				 * The Android Application Record (AAR) is commented out. When a
+				 * device receives a push with an AAR in it, the application
+				 * specified in the AAR is guaranteed to run. The AAR overrides
+				 * the tag dispatch system. You can add it back in to guarantee
+				 * that this activity starts when receiving a beamed message.
+				 * For now, this code uses the tag dispatch system.
+				 */
+				});
+		return msg;
 	}
 
 	private NdefRecord createMimeRecord(String mimeType, byte[] payload) {
 		byte[] mimeBytes = mimeType.getBytes(Charset.forName("US-ASCII"));
-        NdefRecord mimeRecord = new NdefRecord(
-                NdefRecord.TNF_MIME_MEDIA, mimeBytes, new byte[0], payload);
-        return mimeRecord;
+		NdefRecord mimeRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA,
+				mimeBytes, new byte[0], payload);
+		return mimeRecord;
 	}
 
 	@Override
 	public void onNdefPushComplete(NfcEvent event) {
-        // A handler is needed to send messages to the activity when this
-        // callback occurs, because it happens from a binder thread
-        mHandler.obtainMessage(MESSAGE_SENT).sendToTarget();
+		// A handler is needed to send messages to the activity when this
+		// callback occurs, because it happens from a binder thread
+		mHandler.obtainMessage(MESSAGE_SENT).sendToTarget();
 	}
-	
-    /** This handler receives a message from onNdefPushComplete */
-    private final Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-            case MESSAGE_SENT:
-                Toast.makeText(getApplicationContext(), "Message sent!", Toast.LENGTH_LONG).show();
-                break;
-            }
-        }
-    };
 
+	/** This handler receives a message from onNdefPushComplete */
+	private final Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case MESSAGE_SENT:
+
+				goBack();
+				break;
+			}
+		}
+	};
+
+	private void goBack() {
+
+		if (gameVirus) {
+			Intent intent = new Intent(this, HaveVirusActivity.class);
+			startActivity(intent);
+		} else {
+
+			 SharedPreferences settings = getSharedPreferences(
+			 FirstActivity.prefName, 0);
+			 SharedPreferences.Editor editor = settings.edit();
+			 editor.putBoolean("hasAntidote", false);
+			 editor.commit();
+			 Intent intent = new Intent(this, HaveNormalActivity.class);
+			 startActivity(intent);
+			 
+			 Toast.makeText(getApplicationContext(), "You gave your antidote away! Now you're just some normal guy..",
+			 Toast.LENGTH_LONG).show();
+//
+//			Intent intent = new Intent(this, HaveAntidoteActivity.class);
+//			startActivity(intent);
+		}
+
+	}
 
 }

@@ -2,22 +2,14 @@
 <resources>
 
     <string name="app_name"></string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_begin">BeginActivity</string>
-    <string name="title_activity_datt">DattActivity</string>
-    <string name="title_activity_receive_datt">ReceiveDattActivity</string>
-    <string name="title_activity_movements">MovementsActivity</string>
-    <string name="title_activity_have_datt">HaveDattActivity</string>
-    <string name="title_activity_playerlist">PlayerlistActivity</string>
-    <string name="title_activity_have_not_datt">HaveNotDattActivity</string>
-    <string name="title_activity_challange_have_datt">ChallangeHaveDattActivity</string>
-    <string name="title_activity_challange_have_not_datt">ChallangeHaveNotDattActivity</string>
-    <string name="normal_mode_you_have_datt">Bad news, You have the DATT!\nDo the shake and give it to someone</string>
-    <string name="normal_mode_you__dont_have_datt">Good news, You don\'t have the DATT! \nBe wary of strange phones</string>
-    <string name="movements_string">Keep Shaking!</string>
-	<string name="send_datt_text">Quickly, give the DATT to someone!</string>
-	<string name="title_activity_first">.Datt</string>
+    <string name="hello_world"></string>
+    <string name="action_settings"></string>
+    <string name="title_activity_begin"></string>
+    <string name="title_activity_datt"></string>
+    <string name="title_activity_receive_datt"></string>
+    <string name="title_activity_movements"></string>
+    <string name="title_activity_have_datt"></string>
+	<string name="title_activity_first">Anti.Dote</string>
 
 	
 </resources>

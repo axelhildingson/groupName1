@@ -96,10 +96,11 @@ public class ReceiveDattActivity extends ActionBarActivity {
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
-		boolean hasDatt;
+		SharedPreferences.Editor editor = settings.edit();
+
 		boolean gameStarted;
-		boolean gameModeNormal;
-		boolean gameModeChallenge;
+		boolean gameVirus;
+		boolean hasAntidote;
 
 		switch (msgContent) {
 		case "0":
@@ -107,45 +108,42 @@ public class ReceiveDattActivity extends ActionBarActivity {
 					"Weird! 0! Something is wrong", Toast.LENGTH_LONG).show();
 
 			break;
-		case "normalModeDatt":
+		case SendDattActivity.swithOptionVirus:
 
-			// Hämta och kolla om nuvarande spelinställnningar överenstämmer med
-			// NFC-meddelandet
 
 			gameStarted = settings.getBoolean("gameStarted", false);
-			gameModeNormal = settings.getBoolean("gameModeNormal", false);
-			gameModeChallenge = settings.getBoolean("gameModeChallenge", false);
-			hasDatt = settings.getBoolean("hasDatt", false);
+			hasAntidote = settings.getBoolean("hasAntidote", false);
+			gameVirus = settings.getBoolean("gameVirus", false);
 
 			if (!gameStarted) {
 				Toast.makeText(getApplicationContext(),
-						"No game currently onGoing!", Toast.LENGTH_LONG).show();
+						"Begin the game first..", Toast.LENGTH_LONG).show();
 				intent = new Intent(this, MainActivity.class);
 
-			} else if (gameModeNormal && hasDatt) {
-				Toast.makeText(getApplicationContext(),
-						"You already have the DATT?!", Toast.LENGTH_LONG)
-						.show();
-				intent = new Intent(this, HaveAntidoteActivity.class);
-
-			} else if (gameModeChallenge && hasDatt) {
-				Toast.makeText(
-						getApplicationContext(),
-						"You are playing a different GAME-SETUP from your friend!",
+			} else if (gameVirus) {
+				Toast.makeText(getApplicationContext(), "You still feel very ill..",
 						Toast.LENGTH_LONG).show();
 				intent = new Intent(this, HaveVirusActivity.class);
-			} else {
 
-				hasDatt = true;
-
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putBoolean("hasDatt", hasDatt);
-				editor.commit();
-
-				intent = new Intent(this, HaveAntidoteActivity.class);
+			} else if (hasAntidote) {
 				Toast.makeText(
 						getApplicationContext(),
-						"You got the DATT in normal mode, YOU SUCK!  (que song)",
+						"You start coughing blood.. luckliy you have the antidote *SLURP*",
+						Toast.LENGTH_LONG).show();
+				
+				editor.putBoolean("hasAntidote", false);
+				editor.commit();
+
+				intent = new Intent(this, HaveNormalActivity.class);
+			} else {
+
+				editor.putBoolean("gameVirus", true);
+				editor.commit();
+
+				intent = new Intent(this, HaveVirusActivity.class);
+				Toast.makeText(
+						getApplicationContext(),
+						"You start coughing blood and your eyes are blood red. You feel the urge to spread your desease.. *urghhh*",
 						Toast.LENGTH_LONG).show();
 
 			}
@@ -153,15 +151,46 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			startActivity(intent);
 
 			break;
-		case "challengeModeDatt":
+		case SendDattActivity.swithOptionAntidote:
 
-			// Hämta och kolla om nuvarande spelinställnningar överenstämmer med
-			// NFC-meddelandet
+			gameStarted = settings.getBoolean("gameStarted", false);
+			hasAntidote = settings.getBoolean("hasAntidote", false);
+			gameVirus = settings.getBoolean("gameVirus", false);
 
-			break;
-		case "challengeModeNotDatt":
+			if (!gameStarted) {
+				Toast.makeText(getApplicationContext(),
+						"Begin the game first..", Toast.LENGTH_LONG).show();
+				intent = new Intent(this, MainActivity.class);
 
-			// KLATSCH!
+			} else if (gameVirus) {
+				Toast.makeText(getApplicationContext(),
+						"You start to feel much better!", Toast.LENGTH_LONG)
+						.show();
+
+				intent = new Intent(this, HaveNormalActivity.class);
+
+			} else if (hasAntidote) {
+				Toast.makeText(getApplicationContext(),
+						"You already have one of these.. so you throw it away",
+						Toast.LENGTH_LONG).show();
+
+				intent = new Intent(this, HaveAntidoteActivity.class);
+			} else {
+
+				hasAntidote = true;
+
+				editor.putBoolean("hasAntidote", hasAntidote);
+				editor.commit();
+
+				intent = new Intent(this, HaveAntidoteActivity.class);
+				Toast.makeText(
+						getApplicationContext(),
+						"Some nice guy gave you a antidote for the deadly virus! Oh joy!",
+						Toast.LENGTH_LONG).show();
+
+			}
+
+			startActivity(intent);
 
 			break;
 		default:
