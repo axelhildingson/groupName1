@@ -1098,17 +1098,21 @@ containing a value of this type.
         public static final int ic_action_name=0x7f020063;
         public static final int ic_launcher=0x7f020064;
         public static final int ic_stat_name=0x7f020065;
-        public static final int my_icon=0x7f020066;
-        public static final int neutral_icon=0x7f020067;
-        public static final int score_button=0x7f020068;
-        public static final int test_tube_hi_1=0x7f020069;
-        public static final int testtube=0x7f02006a;
-        public static final int tube2=0x7f02006b;
-        public static final int tube22=0x7f02006c;
-        public static final int tube3=0x7f02006d;
-        public static final int tube33=0x7f02006e;
-        public static final int viro=0x7f02006f;
-        public static final int viro_icon=0x7f020070;
+        public static final int icon_antidote=0x7f020066;
+        public static final int icon_neutral=0x7f020067;
+        public static final int icon_notification=0x7f020068;
+        public static final int icon_virus=0x7f020069;
+        public static final int my_icon=0x7f02006a;
+        public static final int neutral_icon=0x7f02006b;
+        public static final int score_button=0x7f02006c;
+        public static final int test_tube_hi_1=0x7f02006d;
+        public static final int testtube=0x7f02006e;
+        public static final int tube2=0x7f02006f;
+        public static final int tube22=0x7f020070;
+        public static final int tube3=0x7f020071;
+        public static final int tube33=0x7f020072;
+        public static final int viro=0x7f020073;
+        public static final int viro_icon=0x7f020074;
     }
     public static final class id {
         public static final int action_bar=0x7f06001c;
@@ -1122,7 +1126,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060043;
+        public static final int action_settings=0x7f060044;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1174,12 +1178,12 @@ containing a value of this type.
         public static final int split_action_bar=0x7f06001e;
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
+        public static final int timer1=0x7f060043;
         public static final int title=0x7f06002b;
         public static final int top_action_bar=0x7f060020;
         public static final int up=0x7f060021;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
-		public static int timer1;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within
