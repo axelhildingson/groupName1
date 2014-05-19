@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -76,7 +78,7 @@ public class HaveAntidoteActivity extends Activity {
 		mAccel = 0.00f;
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
-		
+
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
 	}
@@ -128,6 +130,13 @@ public class HaveAntidoteActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_have_antidote,
 					container, false);
+
+			ImageView img = (ImageView) rootView.findViewById(R.id.imageView1);
+			img.setBackgroundResource(R.animator.tubeanimation);
+			AnimationDrawable frameAnimation = (AnimationDrawable) img
+					.getBackground();
+			frameAnimation.start();
+
 			return rootView;
 		}
 	}

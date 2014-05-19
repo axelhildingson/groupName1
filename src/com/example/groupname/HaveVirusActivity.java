@@ -73,13 +73,13 @@ public class HaveVirusActivity extends Activity {
 		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
 		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
 		
-		//point counter
-		int point = settings.getInt("point" , point);
-		
-		String imgName = "R.drawable.tally_" + point +".png";
-		
-		ImageView img= (ImageView) findViewById(R.id.image);
-		img.setImageResource(imgName);
+//		//point counter
+//		int point = settings.getInt("point" , point);
+//		
+//		String imgName = "R.drawable.tally_" + point +".png";
+//		
+//		ImageView img= (ImageView) findViewById(R.id.image);
+//		img.setImageResource(imgName);
 
 		// movment shit
 		
