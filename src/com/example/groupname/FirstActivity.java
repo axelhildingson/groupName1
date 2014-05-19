@@ -46,11 +46,13 @@ public class FirstActivity extends Activity {
 			startActivity(intent);
 			finish();
 		} else if (gameVirus) {
-			if(virusTime >= time){
+			if(virusTime <= time){
 				//you are dead
 				gameStarted = false; 
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putBoolean("gameStarted", gameStarted);
+				intent = new Intent(this, MainActivity.class);
+				startActivity(intent);
 			}else{
 				intent = new Intent(this, HaveVirusActivity.class);
 				startActivity(intent);

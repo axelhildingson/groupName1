@@ -99,7 +99,7 @@ public class BeginActivity extends ActionBarActivity {
 
 		// get the time and adds the time for 48 h 
 		long virusTime= System.currentTimeMillis();
-		virusTime = virusTime + 172800000 ; 
+		virusTime = virusTime + 172800000;
 		
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
