@@ -26,14 +26,11 @@ public class MusicHandler {
 
 	public void load(String path, boolean looping) {
 		try {
-			mediaPlayer = new MediaPlayer().create(context, Uri.fromFile(new File(path)));
-
+			mediaPlayer = MediaPlayer.create(context, R.raw.virodotetheme);
 			mediaPlayer.setLooping(looping);
-			
-			Toast.makeText(context, "skaFunka", Toast.LENGTH_LONG).show();
+
 		} catch (Exception e) {
-			
-			Toast.makeText(context, "exception", Toast.LENGTH_LONG).show();
+
 		}
 	}
 
