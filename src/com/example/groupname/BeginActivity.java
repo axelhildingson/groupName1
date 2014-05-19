@@ -96,6 +96,7 @@ public class BeginActivity extends ActionBarActivity {
 		boolean gameNormal = false;
 		boolean gameVirus = true;
 		boolean hasAntidote = false;
+		int point = 0;
 
 		// get the time and adds the time for 48 h 
 		long virusTime= System.currentTimeMillis();
@@ -109,6 +110,7 @@ public class BeginActivity extends ActionBarActivity {
 		editor.putBoolean("gameVirus", gameVirus);
 		editor.putBoolean("hasAntidote", hasAntidote);
 		editor.putLong("virusTime" , virusTime);
+		editor.putInt("point" , point);
 		editor.commit();
 
 		Intent intent = new Intent(this, HaveVirusActivity.class);

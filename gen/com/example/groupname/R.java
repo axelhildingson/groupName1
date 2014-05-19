@@ -1010,14 +1010,19 @@ containing a value of this type.
         public static final int my_icon=0x7f02006b;
         public static final int neutral_icon=0x7f02006c;
         public static final int score_button=0x7f02006d;
-        public static final int test_tube_hi_1=0x7f02006e;
-        public static final int testtube=0x7f02006f;
-        public static final int tube2=0x7f020070;
-        public static final int tube22=0x7f020071;
-        public static final int tube3=0x7f020072;
-        public static final int tube33=0x7f020073;
-        public static final int viro=0x7f020074;
-        public static final int viro_icon=0x7f020075;
+        public static final int tally_1=0x7f02006e;
+        public static final int tally_2=0x7f02006f;
+        public static final int tally_3=0x7f020070;
+        public static final int tally_4=0x7f020071;
+        public static final int tally_5=0x7f020072;
+        public static final int test_tube_hi_1=0x7f020073;
+        public static final int testtube=0x7f020074;
+        public static final int tube2=0x7f020075;
+        public static final int tube22=0x7f020076;
+        public static final int tube3=0x7f020077;
+        public static final int tube33=0x7f020078;
+        public static final int viro=0x7f020079;
+        public static final int viro_icon=0x7f02007a;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;

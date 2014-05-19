@@ -231,27 +231,27 @@ public class SendDattActivity extends ActionBarActivity implements
 			virusTime = settings.getLong("virusTime" , virusTime);
 			virusTime = virusTime + 7200000;
 			
+			//adding point to user
+			int point = 0; 
+			point = settings.getInt("point" , point);
+			point = point +1;
+			
+			
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putLong("virusTime" , virusTime);
+			editor.putLong("point" , point);
 			editor.commit();
 			
 			Intent intent = new Intent(this, HaveVirusActivity.class);
 			startActivity(intent);
 		} else {
 
-			 SharedPreferences settings = getSharedPreferences(
-			 FirstActivity.prefName, 0);
+			SharedPreferences settings = getSharedPreferences(
+			FirstActivity.prefName, 0);
+			int point = 0; 
+			point = settings.getInt("point" , point);
+			point = point +1;
 			 
-			 /*
-			 SharedPreferences.Editor editor = settings.edit();
-			 editor.putBoolean("hasAntidote", false);
-			 editor.commit();
-			 Intent intent = new Intent(this, HaveNormalActivity.class);
-			 startActivity(intent);
-			 
-			 Toast.makeText(getApplicationContext(), "You gave your antidote away! Now you're just some normal guy..",
-			 Toast.LENGTH_LONG).show();
-			 */		
 			Intent intent = new Intent(this, HaveAntidoteActivity.class);
 			startActivity(intent);
 		}

@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
@@ -66,7 +67,22 @@ public class HaveVirusActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_virus);
+		
+		//virus timer 
+		this.virusTime=virusTime;
+		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
+		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
+		
+		//point counter
+		int point = settings.getInt("point" , point);
+		
+		String imgName = "R.drawable.tally_" + point +".png";
+		
+		ImageView img= (ImageView) findViewById(R.id.image);
+		img.setImageResource(imgName);
 
+		// movment shit
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -78,11 +94,6 @@ public class HaveVirusActivity extends Activity {
 		mAccel = 0.00f;
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
-		
-		this.virusTime=virusTime;
-		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
-		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
-		
 		
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
@@ -125,6 +136,7 @@ public class HaveVirusActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(
 					R.layout.fragment_have_virus, container, false);
+			
 			
 			
 			mTextField = (TextView) rootView.findViewById(R.id.timer1);
