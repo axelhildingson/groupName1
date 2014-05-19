@@ -224,12 +224,25 @@ public class SendDattActivity extends ActionBarActivity implements
 	private void goBack() {
 
 		if (gameVirus) {
+			//adding two hours to the countdown
+			Long virusTime = (long) 0 ;
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			virusTime = settings.getLong("virusTime" , virusTime);
+			virusTime = virusTime + 7200000;
+			
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putLong("virusTime" , virusTime);
+			editor.commit();
+			
 			Intent intent = new Intent(this, HaveVirusActivity.class);
 			startActivity(intent);
 		} else {
 
 			 SharedPreferences settings = getSharedPreferences(
 			 FirstActivity.prefName, 0);
+			 
+			 /*
 			 SharedPreferences.Editor editor = settings.edit();
 			 editor.putBoolean("hasAntidote", false);
 			 editor.commit();
@@ -238,9 +251,9 @@ public class SendDattActivity extends ActionBarActivity implements
 			 
 			 Toast.makeText(getApplicationContext(), "You gave your antidote away! Now you're just some normal guy..",
 			 Toast.LENGTH_LONG).show();
-//
-//			Intent intent = new Intent(this, HaveAntidoteActivity.class);
-//			startActivity(intent);
+			 */		
+			Intent intent = new Intent(this, HaveAntidoteActivity.class);
+			startActivity(intent);
 		}
 
 	}

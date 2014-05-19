@@ -131,13 +131,16 @@ public class ReceiveDattActivity extends ActionBarActivity {
 						"You start coughing blood.. luckliy you have the antidote *SLURP*",
 						Toast.LENGTH_LONG).show();
 				
-				editor.putBoolean("hasAntidote", false);
+				editor.putBoolean("hasAntidote", true);
 				editor.commit();
 
 				intent = new Intent(this, HaveNormalActivity.class);
 			} else {
-
-				editor.putBoolean("gameVirus", true);
+				
+				long virusTime= System.currentTimeMillis();
+				virusTime = virusTime + 172800000 ;
+				editor.putBoolean("gameVirus", true); 
+				editor.putLong("virusTime" , virusTime);
 				editor.commit();
 
 				intent = new Intent(this, HaveVirusActivity.class);

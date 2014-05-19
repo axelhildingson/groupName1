@@ -14,7 +14,7 @@ public class FirstActivity extends Activity {
 	private boolean gameNormal;
 	private boolean gameVirus;
 	private boolean hasAntidote;
-
+	private long virusTime;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,8 @@ public class FirstActivity extends Activity {
 		gameNormal = settings.getBoolean("gameNormal", false);
 		gameVirus = settings.getBoolean("gameVirus", false);
 		hasAntidote = settings.getBoolean("hasAntidote", false);
+		virusTime = settings.getLong("virusTime" , virusTime);
+		long time= System.currentTimeMillis();
 
 		if (!gameStarted) {
 			intent = new Intent(this, MainActivity.class);
@@ -44,9 +46,16 @@ public class FirstActivity extends Activity {
 			startActivity(intent);
 			finish();
 		} else if (gameVirus) {
-			intent = new Intent(this, HaveVirusActivity.class);
-			startActivity(intent);
-			finish();
+			if(virusTime >= time){
+				//you are dead
+				gameStarted = false; 
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putBoolean("gameStarted", gameStarted);
+			}else{
+				intent = new Intent(this, HaveVirusActivity.class);
+				startActivity(intent);
+				finish();
+			}
 		}
 
 	}

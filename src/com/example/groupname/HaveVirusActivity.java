@@ -12,11 +12,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.os.Build;
 
 public class HaveVirusActivity extends Activity {
@@ -25,6 +27,8 @@ public class HaveVirusActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
+	private TextView mTextField;
+	
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
 		public void onSensorChanged(SensorEvent se) {
@@ -76,6 +80,18 @@ public class HaveVirusActivity extends Activity {
 		
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
+		mTextField = (TextView) findViewById(R.id.timer1);
+		
+		new CountDownTimer(30000, 1000) {
+
+		     public void onTick(long millisUntilFinished) {
+		         mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+		     }
+
+		     public void onFinish() {
+		         mTextField.setText("done!");
+		     }
+		  }.start();
 	}
 
 	@Override
@@ -149,6 +165,5 @@ public class HaveVirusActivity extends Activity {
 		mSensorManager.unregisterListener(mSensorListener);
 		super.onPause();
 	}
-	
 
 }
