@@ -26,7 +26,10 @@ public class FirstActivity extends Activity {
 				FirstActivity.prefName, 0);
 		virusTime = 0;
 		gameStarted = settings.getBoolean("gameStarted", false);
-
+		
+		
+		virusTime = (long) 0;
+		
 		gameNormal = settings.getBoolean("gameNormal", false);
 		gameVirus = settings.getBoolean("gameVirus", false);
 		hasAntidote = settings.getBoolean("hasAntidote", false);

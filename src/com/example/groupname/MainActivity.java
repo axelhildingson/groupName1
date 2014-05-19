@@ -68,18 +68,11 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void datt_sound() {
-		try {
-			MediaPlayer m = new MediaPlayer();
-			AssetFileDescriptor descriptor = getAssets().openFd("viro_dot_dote.mp3");
-			m.setDataSource(descriptor.getFileDescriptor(),
-					descriptor.getStartOffset(), descriptor.getLength());
-			descriptor.close();
-
-			m.prepare();
-			m.setVolume(1f, 1f);
-			m.start();
-		} catch (Exception e) {
-		}
+	
+			MusicHandler m = new MusicHandler(this);
+			m.load("Virodote-theme_loop.mp3", true);
+			m.play(3);
+			
 	}
 
 	@Override
@@ -130,8 +123,8 @@ public class MainActivity extends ActionBarActivity {
 //			Button aboutButton = (Button) rootView.findViewById(R.id.button3);
 //			aboutButton.startAnimation(fadeIn4);
 
-//			 MainActivity activity = (MainActivity) getActivity();			 
-//			 activity.datt_sound();
+			 MainActivity activity = (MainActivity) getActivity();			 
+			 activity.datt_sound();
 
 			return rootView;
 		}
