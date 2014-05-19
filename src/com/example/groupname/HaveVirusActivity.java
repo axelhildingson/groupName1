@@ -27,7 +27,6 @@ public class HaveVirusActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
-	private TextView mTextField;
 	
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -80,18 +79,7 @@ public class HaveVirusActivity extends Activity {
 		
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
-		mTextField = (TextView) findViewById(R.id.timer1);
 		
-		new CountDownTimer(30000, 1000) {
-
-		     public void onTick(long millisUntilFinished) {
-		         mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-		     }
-
-		     public void onFinish() {
-		         mTextField.setText("done!");
-		     }
-		  }.start();
 	}
 
 	@Override
@@ -118,6 +106,8 @@ public class HaveVirusActivity extends Activity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
+		
+		private TextView mTextField;
 
 		public PlaceholderFragment() {
 		}
@@ -127,6 +117,25 @@ public class HaveVirusActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(
 					R.layout.fragment_have_virus, container, false);
+			
+			
+			mTextField = (TextView) rootView.findViewById(R.id.timer1);
+			
+			new CountDownTimer(30000, 1000) {
+
+			     public void onTick(long millisUntilFinished) {
+			    	 
+			    	 if((Object) millisUntilFinished == null){
+			    		 			    		 
+			    	 } else {
+			         mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+			    	 }
+			     }
+
+			     public void onFinish() {
+			         mTextField.setText("done!");
+			     }
+			  }.start();
 			
 			
 			return rootView;
