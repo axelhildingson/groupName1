@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class HaveVirusActivity extends Activity {
@@ -27,6 +28,7 @@ public class HaveVirusActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
+	public static long virusTime;
 	
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -77,8 +79,14 @@ public class HaveVirusActivity extends Activity {
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
 		
+		this.virusTime=virusTime;
+		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
+		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
+		
+		
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
+		
 		
 	}
 
@@ -108,7 +116,7 @@ public class HaveVirusActivity extends Activity {
 	public static class PlaceholderFragment extends Fragment {
 		
 		private TextView mTextField;
-
+		
 		public PlaceholderFragment() {
 		}
 
@@ -121,14 +129,14 @@ public class HaveVirusActivity extends Activity {
 			
 			mTextField = (TextView) rootView.findViewById(R.id.timer1);
 			
-			new CountDownTimer(30000, 1000) {
+			new CountDownTimer(virusTime, 1000) {
 
 			     public void onTick(long millisUntilFinished) {
 			    	 
 			    	 if((Object) millisUntilFinished == null){
 			    		 			    		 
 			    	 } else {
-			         mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+			         mTextField.setText("seconds until you are Dead: " + millisUntilFinished / 1000);
 			    	 }
 			     }
 
