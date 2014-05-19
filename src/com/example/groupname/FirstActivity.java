@@ -24,7 +24,7 @@ public class FirstActivity extends Activity {
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
-
+		virusTime = 0;
 		gameStarted = settings.getBoolean("gameStarted", false);
 		
 		
