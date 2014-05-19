@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 import android.os.Build;
 
 public class MovementsActivity extends Activity {
-	
+
 	private SensorManager mSensorManager;
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
@@ -30,12 +31,11 @@ public class MovementsActivity extends Activity {
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
 		public void onSensorChanged(SensorEvent se) {
-			
+
 			// Case1
 			// case2
 			// case3
-			
-			
+
 			float x = se.values[0];
 			float y = se.values[1];
 			float z = se.values[2];
@@ -43,31 +43,27 @@ public class MovementsActivity extends Activity {
 			mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
 			float delta = mAccelCurrent - mAccelLast;
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
-			
-			
-			 if (mAccel > 10) {
-				 nbrOfShakes = nbrOfShakes + 1;
-				 if(nbrOfShakes == requiredAmountOfShakes) {
-					 nbrOfShakes = 0;
-					 shakeSuccess();
-				 }
-			 }		
+
+			if (mAccel > 10) {
+				nbrOfShakes = nbrOfShakes + 1;
+				if (nbrOfShakes == requiredAmountOfShakes) {
+					nbrOfShakes = 0;
+					shakeSuccess();
+				}
+			}
 		}
 
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-			
-			
-			
-			
-			
+
 		}
 	};
-	
+
 	private void shakeSuccess() {
 		mSensorManager.unregisterListener(mSensorListener);
 		Intent intent = new Intent(this, SendDattActivity.class);
 		startActivity(intent);
 	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,12 +73,14 @@ public class MovementsActivity extends Activity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
+
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-	    mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-	    mAccel = 0.00f;
-	    mAccelCurrent = SensorManager.GRAVITY_EARTH;
-	    mAccelLast = SensorManager.GRAVITY_EARTH;
+		mSensorManager.registerListener(mSensorListener,
+				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+				SensorManager.SENSOR_DELAY_NORMAL);
+		mAccel = 0.00f;
+		mAccelCurrent = SensorManager.GRAVITY_EARTH;
+		mAccelLast = SensorManager.GRAVITY_EARTH;
 	}
 
 	@Override
@@ -90,7 +88,7 @@ public class MovementsActivity extends Activity {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.movements, menu);
-		
+
 		return true;
 	}
 
@@ -111,14 +109,34 @@ public class MovementsActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		private boolean hasAntidote;
+
 		public PlaceholderFragment() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_movements,
-					container, false);
+
+			MovementsActivity activity = (MovementsActivity) getActivity();
+
+			SharedPreferences settings = activity.getSharedPreferences(
+					FirstActivity.prefName, 0);
+
+			hasAntidote = settings.getBoolean("hasAntidote", false);
+
+			View rootView = null;
+
+			if (hasAntidote) {
+				rootView = inflater.inflate(R.layout.fragment_movements,
+						container, false);
+			} else {
+
+				rootView = inflater.inflate(R.layout.fragment_movements2,
+						container, false);
+
+			}
+
 			return rootView;
 		}
 	}
