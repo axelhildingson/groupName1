@@ -26,7 +26,10 @@ public class FirstActivity extends Activity {
 				FirstActivity.prefName, 0);
 
 		gameStarted = settings.getBoolean("gameStarted", false);
-
+		
+		
+		virusTime = (long) 0;
+		
 		gameNormal = settings.getBoolean("gameNormal", false);
 		gameVirus = settings.getBoolean("gameVirus", false);
 		hasAntidote = settings.getBoolean("hasAntidote", false);
@@ -51,6 +54,7 @@ public class FirstActivity extends Activity {
 				gameStarted = false; 
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putBoolean("gameStarted", gameStarted);
+				
 			}else{
 				intent = new Intent(this, HaveVirusActivity.class);
 				startActivity(intent);
