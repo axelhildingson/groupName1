@@ -30,6 +30,8 @@ import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
+	
+	MusicHandler m;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +71,10 @@ public class MainActivity extends ActionBarActivity {
 
 	public void datt_sound() {
 	
-//			MusicHandler m = new MusicHandler(this);
-//			m.load("Virodote-theme_loop.mp3", true);
-//			m.play(3);
-//			
+			m = new MusicHandler(this);
+			m.load("Virodote-theme_loop.mp3", true);
+			m.play(6000);
+			
 	}
 
 	@Override
@@ -85,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void BeginGame(View view) {
+		m.pause(6000);
 		Intent intent = new Intent(this, BeginActivity.class);
 		startActivity(intent);
 	}
@@ -117,17 +120,39 @@ public class MainActivity extends ActionBarActivity {
 			Button beginButton = (Button) rootView.findViewById(R.id.button1);
 			beginButton.startAnimation(fadeIn3);
 
-//			Button scoreButton = (Button) rootView.findViewById(R.id.button2);
-//			scoreButton.startAnimation(fadeIn2);
-//
-//			Button aboutButton = (Button) rootView.findViewById(R.id.button3);
-//			aboutButton.startAnimation(fadeIn4);
-
 			 MainActivity activity = (MainActivity) getActivity();			 
 			 activity.datt_sound();
 
 			return rootView;
 		}
+		
+		
 	}
+	
+	
+	@Override
+	public void onPause(){
+		m.pause(6000);
+		super.onPause();
+	}
+	
+	@Override
+	public void onResume(){
+		m.play(6000);
+		super.onPause();
+	}
+	
+    @Override
+    public void onStop() {
+		m.pause(6000);
+        super.onStop();
 
+    }
+
+   @Override
+    public void onDestroy() {
+		m.pause(6000);
+        super.onDestroy();
+
+    }
 }
