@@ -69,10 +69,10 @@ public class MainActivity extends ActionBarActivity {
 
 	public void datt_sound() {
 	
-			MusicHandler m = new MusicHandler(this);
-			m.load("Virodote-theme_loop.mp3", true);
-			m.play(3);
-			
+//			MusicHandler m = new MusicHandler(this);
+//			m.load("Virodote-theme_loop.mp3", true);
+//			m.play(3);
+//			
 	}
 
 	@Override
