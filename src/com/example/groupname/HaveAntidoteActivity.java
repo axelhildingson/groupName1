@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -85,7 +86,7 @@ public class HaveAntidoteActivity extends Activity {
 		mAccel = 0.00f;
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
-		
+
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
 	}
@@ -140,10 +141,17 @@ public class HaveAntidoteActivity extends Activity {
 			
 			// Add points 
 			String imgName = "tally_" + point;
-			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
+			ImageView img2= (ImageView) rootView.findViewById(R.id.imageView2);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
-			img.setImageResource(imageresource);
+			img2.setImageResource(imageresource);
 			
+			// tube animation
+			ImageView img1 = (ImageView) rootView.findViewById(R.id.imageView1);
+			img1.setBackgroundResource(R.animator.tubeanimation);
+			AnimationDrawable frameAnimation = (AnimationDrawable) img1
+					.getBackground();
+			frameAnimation.start();
+
 			return rootView;
 		}
 	}
