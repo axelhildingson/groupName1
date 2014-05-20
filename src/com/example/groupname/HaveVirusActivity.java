@@ -30,6 +30,7 @@ public class HaveVirusActivity extends Activity {
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
 	public static long virusTime;
+	public static int point;
 	
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -74,14 +75,11 @@ public class HaveVirusActivity extends Activity {
 		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
 		
 		//point counter
-		int point = settings.getInt("point" , point);
-		
-		String imgName = "R.drawable.tally_" + point +".png";
-		
-		ImageView img= (ImageView) findViewById(R.id.image);
-		img.setImageResource(imgName);
+		int point = 0;
+		this.point=point;
+		point = settings.getInt("point" , point);
 
-		// movment shit
+		// movement shit
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -137,8 +135,13 @@ public class HaveVirusActivity extends Activity {
 			View rootView = inflater.inflate(
 					R.layout.fragment_have_virus, container, false);
 			
+			// Add points 
+			String imgName = "tally_" + point;
+			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
+			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
+		    img.setImageResource(imageresource);
 			
-			
+		    //time counter 
 			mTextField = (TextView) rootView.findViewById(R.id.timer1);
 			
 			new CountDownTimer(virusTime, 1000) {
@@ -194,5 +197,4 @@ public class HaveVirusActivity extends Activity {
 		mSensorManager.unregisterListener(mSensorListener);
 		super.onPause();
 	}
-
 }

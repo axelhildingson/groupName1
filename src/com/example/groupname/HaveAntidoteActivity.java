@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -26,6 +27,7 @@ public class HaveAntidoteActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
+	private static int point;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -64,7 +66,14 @@ public class HaveAntidoteActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_antidote);
-
+		
+		//point counter
+		int point = 0;
+		this.point=point;
+		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
+		point = settings.getInt("point" , point);
+		
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -128,6 +137,13 @@ public class HaveAntidoteActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_have_antidote,
 					container, false);
+			
+			// Add points 
+			String imgName = "tally_" + point;
+			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
+			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
+			img.setImageResource(imageresource);
+			
 			return rootView;
 		}
 	}
