@@ -78,6 +78,7 @@
         </activity>
         <activity
             android:name="com.example.groupname.HaveVirusActivity"
+
             android:label=""
             android:screenOrientation="portrait" >
         </activity>
