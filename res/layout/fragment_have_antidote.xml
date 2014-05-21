@@ -28,13 +28,6 @@
         android:text=" ? " />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,5 +56,12 @@
         android:minHeight="200dip"
         android:minWidth="200dip"
         android:src="@drawable/dote_icon" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignRight="@+id/imageView4" />
 
 </RelativeLayout>

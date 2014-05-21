@@ -159,7 +159,7 @@ public class HaveVirusActivity extends Activity {
 					R.layout.fragment_have_virus, container, false);
 
 			// Add points 
-			String imgName = "tally_" + point;
+			String imgName = "tally_" + String.valueOf(point);
 			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
 			img.setImageResource(imageresource);
