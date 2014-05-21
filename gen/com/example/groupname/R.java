@@ -1261,7 +1261,6 @@ containing a value of this type.
         public static final int abc_popup_menu_item_layout=0x7f030014;
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
-<<<<<<< HEAD
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_begin=0x7f030018;
         public static final int activity_datt=0x7f030019;
@@ -1286,31 +1285,6 @@ containing a value of this type.
         public static final int fragment_movements2=0x7f03002c;
         public static final int fragment_receive_datt=0x7f03002d;
         public static final int support_simple_spinner_dropdown_item=0x7f03002e;
-=======
-        public static final int activity_begin=0x7f030017;
-        public static final int activity_datt=0x7f030018;
-        public static final int activity_first=0x7f030019;
-        public static final int activity_have_antidote=0x7f03001a;
-        public static final int activity_have_normal=0x7f03001b;
-        public static final int activity_have_virus=0x7f03001c;
-        public static final int activity_main=0x7f03001d;
-        public static final int activity_movements=0x7f03001e;
-        public static final int activity_playerlist=0x7f03001f;
-        public static final int activity_receive_datt=0x7f030020;
-        public static final int fragment_begin=0x7f030021;
-        public static final int fragment_datt=0x7f030022;
-        public static final int fragment_datt2=0x7f030023;
-        public static final int fragment_first=0x7f030024;
-        public static final int fragment_have_antidote=0x7f030025;
-        public static final int fragment_have_normal=0x7f030026;
-        public static final int fragment_have_virus=0x7f030027;
-        public static final int fragment_help=0x7f030028;
-        public static final int fragment_main=0x7f030029;
-        public static final int fragment_movements=0x7f03002a;
-        public static final int fragment_movements2=0x7f03002b;
-        public static final int fragment_receive_datt=0x7f03002c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002d;
->>>>>>> 22c8e970f832239bd8bd9f0b978e8cd920c50c7e
     }
     public static final class menu {
         public static final int begin=0x7f0e0000;
