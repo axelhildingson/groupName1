@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
@@ -114,7 +115,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			gameStarted = settings.getBoolean("gameStarted", false);
 			hasAntidote = settings.getBoolean("hasAntidote", false);
 			gameVirus = settings.getBoolean("gameVirus", false);
-
+			
+			
 			if (!gameStarted) {
 				Toast.makeText(getApplicationContext(),
 						"Begin the game first..", Toast.LENGTH_LONG).show();
@@ -123,6 +125,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			} else if (gameVirus) {
 				Toast.makeText(getApplicationContext(), "You still feel very ill..",
 						Toast.LENGTH_LONG).show();
+				MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.virus_recieved);
+				mediaPlayer.start();
 				intent = new Intent(this, HaveVirusActivity.class);
 
 			} else if (hasAntidote) {
@@ -130,11 +134,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 						getApplicationContext(),
 						"You start coughing blood.. luckliy you have the antidote *SLURP*",
 						Toast.LENGTH_LONG).show();
-				
-				editor.putBoolean("hasAntidote", true);
-				editor.commit();
-
-				intent = new Intent(this, HaveNormalActivity.class);
+				intent = new Intent(this, HaveAntidoteActivity.class);
+			
 			} else {
 				
 				long virusTime= System.currentTimeMillis();
@@ -142,7 +143,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 				editor.putBoolean("gameVirus", true); 
 				editor.putLong("virusTime" , virusTime);
 				editor.commit();
-
+				MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.virus_recieved);
+				mediaPlayer.start();
 				intent = new Intent(this, HaveVirusActivity.class);
 				Toast.makeText(
 						getApplicationContext(),
@@ -159,7 +161,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			gameStarted = settings.getBoolean("gameStarted", false);
 			hasAntidote = settings.getBoolean("hasAntidote", false);
 			gameVirus = settings.getBoolean("gameVirus", false);
-
+			
+			
 			if (!gameStarted) {
 				Toast.makeText(getApplicationContext(),
 						"Begin the game first..", Toast.LENGTH_LONG).show();
@@ -169,22 +172,30 @@ public class ReceiveDattActivity extends ActionBarActivity {
 				Toast.makeText(getApplicationContext(),
 						"You start to feel much better!", Toast.LENGTH_LONG)
 						.show();
-
-				intent = new Intent(this, HaveNormalActivity.class);
+				MediaPlayer mediaPlayer1 = MediaPlayer.create(this, R.raw.antidote_recieved);
+				mediaPlayer1.start();
+				editor.putBoolean("hasAntidote", true); 
+				editor.commit();
+				
+				intent = new Intent(this, HaveAntidoteActivity.class);
 
 			} else if (hasAntidote) {
 				Toast.makeText(getApplicationContext(),
 						"You already have one of these.. so you throw it away",
 						Toast.LENGTH_LONG).show();
-
+				MediaPlayer mediaPlayer1 = MediaPlayer.create(this, R.raw.antidote_recieved);
+				mediaPlayer1.start();
+				editor.putBoolean("hasAntidote", true);
+				editor.commit();
+				
 				intent = new Intent(this, HaveAntidoteActivity.class);
 			} else {
 
 				hasAntidote = true;
-
-				editor.putBoolean("hasAntidote", hasAntidote);
+				editor.putBoolean("hasAntidote", true);
 				editor.commit();
-
+				MediaPlayer mediaPlayer1 = MediaPlayer.create(this, R.raw.antidote_recieved);
+				mediaPlayer1.start();
 				intent = new Intent(this, HaveAntidoteActivity.class);
 				Toast.makeText(
 						getApplicationContext(),
