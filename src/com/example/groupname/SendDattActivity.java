@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.format.Time;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -52,7 +53,17 @@ public class SendDattActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_datt);
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// Check for available NFC Adapter
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		
@@ -72,9 +83,6 @@ public class SendDattActivity extends ActionBarActivity implements
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
-		if (mNfcAdapter == null) {
-
 		}
 		// Register callback to set NDEF message
 		mNfcAdapter.setNdefPushMessageCallback(this, this);
@@ -164,9 +172,49 @@ public class SendDattActivity extends ActionBarActivity implements
 			return rootView;
 		}
 	}
+	
+
+	public static class PlaceholderFragmentTest extends Fragment {
+
+		public PlaceholderFragmentTest() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_movements2,
+					container, false);
+			return rootView;
+		}
+	}
+	
+	@Override
+	public void onNewIntent(Intent intent) {
+		  if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
+
+				Fragment newFragment = new PlaceholderFragmentTest();
+				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+				// Replace whatever is in the fragment_container view with this fragment,
+				// and add the transaction to the back stack
+				transaction.replace(R.id.container, newFragment);
+
+				// Commit the transaction
+				transaction.commit();
+			  
+		  }
+		  super.onNewIntent(intent);
+		}
 
 	@Override
 	public NdefMessage createNdefMessage(NfcEvent event) {
+		
+		
+
+		
+		
+		
+		
 		Time time = new Time();
 		time.setToNow();
 

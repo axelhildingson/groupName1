@@ -69,7 +69,7 @@ public class HaveVirusActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_virus);
 
-		//remove statusbar
+
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -79,15 +79,19 @@ public class HaveVirusActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
 
-		//virus timer 
-		this.virusTime=virusTime;
-		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
-		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
 
-		//point counter
+		// virus timer
+		this.virusTime = virusTime;
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+		virusTime = settings.getLong("virusTime", virusTime)
+				- System.currentTimeMillis();
+
+		// point counter
+
 		int point = 0;
-		this.point=point;
-		point = settings.getInt("point" , point);
+		this.point = point;
+		point = settings.getInt("point", point);
 
 		// movement shit
 
@@ -105,7 +109,6 @@ public class HaveVirusActivity extends Activity {
 
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
-
 
 	}
 
@@ -134,6 +137,7 @@ public class HaveVirusActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+
 		private TextView mTextField1;
 		private TextView mTextField2;
 		private TextView mTextField3;
@@ -146,6 +150,7 @@ public class HaveVirusActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+
 			View rootView = inflater.inflate(
 					R.layout.fragment_have_virus, container, false);
 
@@ -162,9 +167,11 @@ public class HaveVirusActivity extends Activity {
 			mTextField4 = (TextView) rootView.findViewById(R.id.timer4);
 			mTextField5 = (TextView) rootView.findViewById(R.id.timer5);
 
+
 			new CountDownTimer(virusTime, 1000) {
 
 				public void onTick(long millisUntilFinished) {
+
 
 					if((Object) millisUntilFinished == null){
 
@@ -181,14 +188,15 @@ public class HaveVirusActivity extends Activity {
 						mTextField3.setText(minutes + "\t" + "minute(s)");
 						mTextField4.setText(hours + "\t" + "hour(s)");
 						mTextField5.setText(days + "\t" + "day(s)");
+
 					}
 				}
 
 				public void onFinish() {
+
 					mTextField1.setText("done!");
 				}
 			}.start();
-
 
 			return rootView;
 		}
