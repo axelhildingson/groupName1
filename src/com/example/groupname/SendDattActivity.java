@@ -220,7 +220,9 @@ public class SendDattActivity extends ActionBarActivity implements
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MESSAGE_SENT:
-
+				Toast.makeText(getApplicationContext(),
+						"Handler is Working!!", Toast.LENGTH_LONG)
+						.show();
 				goBack();
 				break;
 			}
