@@ -17,6 +17,15 @@
         android:onClick="abortGame"
         android:text="Abort Game"
         android:alpha="0.0" />
+    
+     <Button
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:onClick="getHelp"
+        android:text=" ? " />
 
     <ImageView
         android:id="@+id/imageView1"

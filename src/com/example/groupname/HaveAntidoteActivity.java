@@ -13,6 +13,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +47,7 @@ public class HaveAntidoteActivity extends Activity {
 			float delta = mAccelCurrent - mAccelLast;
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
-			if (mAccel > 13) {
+			if (mAccel > 9) {
 				mSensorManager.unregisterListener(this);
 				doMovements();
 			}
@@ -183,6 +184,34 @@ public class HaveAntidoteActivity extends Activity {
 
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+	}
+	
+	public void getHelp(View view) {
+		// Create new fragment and transaction
+		Fragment newFragment = new HelpFragment();
+		android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+		// Replace whatever is in the fragment_container view with this fragment,
+		// and add the transaction to the back stack
+		transaction.add(R.id.container, newFragment);
+		transaction.addToBackStack(null);
+
+		// Commit the transaction
+		transaction.commit();
+	}
+	
+	public static class HelpFragment extends Fragment {
+
+		public HelpFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_help,
+					container, false);
+			return rootView;
+		}
 	}
 
 	// @Override

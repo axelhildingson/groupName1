@@ -1121,13 +1121,15 @@ containing a value of this type.
         public static final int testtube5=0x7f020079;
         public static final int testtube6=0x7f02007a;
         public static final int testtube7=0x7f02007b;
-        public static final int testtubestart=0x7f02007c;
-        public static final int tube2=0x7f02007d;
-        public static final int tube22=0x7f02007e;
-        public static final int tube3=0x7f02007f;
-        public static final int tube33=0x7f020080;
-        public static final int viro=0x7f020081;
-        public static final int viro_icon=0x7f020082;
+        public static final int testtubefadein=0x7f02007c;
+        public static final int testtubefinnished=0x7f02007d;
+        public static final int testtubestart=0x7f02007e;
+        public static final int tube2=0x7f02007f;
+        public static final int tube22=0x7f020080;
+        public static final int tube3=0x7f020081;
+        public static final int tube33=0x7f020082;
+        public static final int viro=0x7f020083;
+        public static final int viro_icon=0x7f020084;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -1141,7 +1143,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f070016;
         public static final int action_menu_presenter=0x7f070017;
         public static final int action_mode_close_button=0x7f070024;
-        public static final int action_settings=0x7f07004a;
+        public static final int action_settings=0x7f07004b;
         public static final int activity_chooser_view_content=0x7f070025;
         public static final int always=0x7f07000b;
         public static final int beginning=0x7f070011;
@@ -1151,7 +1153,7 @@ containing a value of this type.
         public static final int checkbox=0x7f07002d;
         public static final int collapseActionView=0x7f07000d;
         public static final int container=0x7f07003c;
-        public static final int counter=0x7f070044;
+        public static final int counter=0x7f070045;
         public static final int default_activity_button=0x7f070028;
         public static final int dialog=0x7f07000e;
         public static final int disableHome=0x7f070008;
@@ -1161,13 +1163,14 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f070026;
         public static final int expanded_menu=0x7f07002c;
         public static final int gameType=0x7f07003d;
+        public static final int helpButton=0x7f070043;
         public static final int home=0x7f070014;
         public static final int homeAsUp=0x7f070005;
         public static final int icon=0x7f07002a;
         public static final int ifRoom=0x7f07000a;
         public static final int image=0x7f070027;
         public static final int imageView1=0x7f070041;
-        public static final int imageView2=0x7f070043;
+        public static final int imageView2=0x7f070044;
         public static final int imageView3=0x7f070042;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070029;
@@ -1195,11 +1198,11 @@ containing a value of this type.
         public static final int split_action_bar=0x7f07001e;
         public static final int submit_area=0x7f070039;
         public static final int tabMode=0x7f070002;
-        public static final int timer1=0x7f070046;
-        public static final int timer2=0x7f070045;
-        public static final int timer3=0x7f070047;
-        public static final int timer4=0x7f070048;
-        public static final int timer5=0x7f070049;
+        public static final int timer1=0x7f070047;
+        public static final int timer2=0x7f070046;
+        public static final int timer3=0x7f070048;
+        public static final int timer4=0x7f070049;
+        public static final int timer5=0x7f07004a;
         public static final int title=0x7f07002b;
         public static final int top_action_bar=0x7f070020;
         public static final int up=0x7f070021;
@@ -1273,11 +1276,12 @@ containing a value of this type.
         public static final int fragment_have_antidote=0x7f030026;
         public static final int fragment_have_normal=0x7f030027;
         public static final int fragment_have_virus=0x7f030028;
-        public static final int fragment_main=0x7f030029;
-        public static final int fragment_movements=0x7f03002a;
-        public static final int fragment_movements2=0x7f03002b;
-        public static final int fragment_receive_datt=0x7f03002c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002d;
+        public static final int fragment_help=0x7f030029;
+        public static final int fragment_main=0x7f03002a;
+        public static final int fragment_movements=0x7f03002b;
+        public static final int fragment_movements2=0x7f03002c;
+        public static final int fragment_receive_datt=0x7f03002d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002e;
     }
     public static final class menu {
         public static final int begin=0x7f0e0000;

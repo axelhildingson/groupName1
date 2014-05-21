@@ -3,9 +3,9 @@ package com.example.groupname;
 import java.nio.charset.Charset;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+
 import android.text.format.Time;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,24 +18,20 @@ import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import android.widget.Toast;
-import android.os.Build;
-import android.nfc.NdefMessage;
+
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-import android.nfc.NfcAdapter.CreateNdefMessageCallback;
-import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
-import android.nfc.NfcEvent;
+
 
 public class SendDattActivity extends ActionBarActivity implements
 		CreateNdefMessageCallback, OnNdefPushCompleteCallback {
@@ -160,51 +156,8 @@ public class SendDattActivity extends ActionBarActivity implements
 		}
 	}
 
-	public static class PlaceholderFragmentTest extends Fragment {
-
-		public PlaceholderFragmentTest() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_movements2,
-					container, false);
-			return rootView;
-		}
-	}
-
-	// @Override
-	// public void onNewIntent(Intent intent) {
-	// if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
-	//
-	// Fragment newFragment = new PlaceholderFragmentTest();
-	// FragmentTransaction transaction =
-	// getSupportFragmentManager().beginTransaction();
-	//
-	// // Replace whatever is in the fragment_container view with this fragment,
-	// // and add the transaction to the back stack
-	// transaction.replace(R.id.container, newFragment);
-	//
-	// // Commit the transaction
-	// transaction.commit();
-	//
-	// }
-	// super.onNewIntent(intent);
-	// }
-
 	@Override
 	public NdefMessage createNdefMessage(NfcEvent event) {
-
-		ImageView fullAntidote = (ImageView) findViewById(R.id.imageView1);
-
-		if (fullAntidote == null) {
-			Toast.makeText(getApplicationContext(),
-					"fullantidote == null, something is wrong", Toast.LENGTH_LONG)
-					.show();
-		} else {
-			fullAntidote.setVisibility(View.INVISIBLE);
-		}
 
 		Time time = new Time();
 		time.setToNow();

@@ -8,20 +8,48 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.groupname.DattActivity$PlaceholderFragment" >
 
+    
+    
+    
+    
+    
+    
+    
+<!--     <ImageView -->
+<!--         android:id="@+id/imageView1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_centerHorizontal="true" -->
+<!--         android:layout_centerVertical="true" -->
+<!--         android:src="@drawable/tube3" /> -->
+
+<!--     <ImageView -->
+<!--         android:id="@+id/imageView3" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_centerHorizontal="true" -->
+<!--         android:layout_centerVertical="true" -->
+<!--         android:src="@drawable/tube2" /> -->
+
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/tube3" />
+        android:layout_marginBottom="71dp"
+        android:src="@drawable/testtubefadein" />
 
-    <ImageView
+        <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/tube2" />
+        android:layout_marginBottom="71dp"
+        android:src="@drawable/testtubestart" />
+    
+
 
 </RelativeLayout>

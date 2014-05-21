@@ -44,7 +44,7 @@ public class MovementsActivity extends Activity {
 			float delta = mAccelCurrent - mAccelLast;
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
-			if (mAccel > 10) {
+			if (mAccel > 9) {
 				nbrOfShakes = nbrOfShakes + 1;
 				if (nbrOfShakes == requiredAmountOfShakes) {
 					nbrOfShakes = 0;
