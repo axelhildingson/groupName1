@@ -84,7 +84,7 @@ public class HaveNormalActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_have_normal,
 					container, false);
 			
-			final long timecounter = 3155760000L;
+			long timecounter = 3155760000L;
 			
 			mTextField = (TextView) rootView.findViewById(R.id.counter);
 			
@@ -95,8 +95,9 @@ public class HaveNormalActivity extends Activity {
 			    	 if((Object) millisUntilFinished == null){
 			    		 			    		 
 			    	 } else {
-			    	 long timegone = (long) timecounter/1000 - (long) millisUntilFinished/1000;
-			         String _millis=String.valueOf( virusTime + timegone);
+			    	 long timecounter = 3155760000L;
+			    	 long timegone =  timecounter - millisUntilFinished;
+			         String _millis=String.valueOf( virusTime/1000 + timegone/1000);
 			         mTextField.setText("Seconds uneffected: " + _millis);
 			    	 }
 			     }
