@@ -244,7 +244,7 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putLong("virusTime", virusTime);
-			editor.putLong("point", point);
+			editor.putInt("point", point);
 			editor.commit();
 
 			Intent intent = new Intent(this, HaveVirusActivity.class);
@@ -257,7 +257,7 @@ public class SendDattActivity extends ActionBarActivity implements
 			point = settings.getInt("point", point);
 			point = point + 1;
 			SharedPreferences.Editor editor = settings.edit();
-			editor.putLong("point", point);
+			editor.putInt("point", point);
 			editor.commit();
 
 			Intent intent = new Intent(this, HaveAntidoteActivity.class);
