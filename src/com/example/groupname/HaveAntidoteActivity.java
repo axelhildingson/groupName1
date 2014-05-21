@@ -193,7 +193,7 @@ public class HaveAntidoteActivity extends Activity {
 
 		// Replace whatever is in the fragment_container view with this fragment,
 		// and add the transaction to the back stack
-		transaction.add(R.id.container, newFragment);
+		transaction.replace(R.id.container, newFragment);
 		transaction.addToBackStack(null);
 
 		// Commit the transaction

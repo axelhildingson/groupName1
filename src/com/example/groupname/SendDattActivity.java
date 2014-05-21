@@ -220,7 +220,9 @@ public class SendDattActivity extends ActionBarActivity implements
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MESSAGE_SENT:
-
+				Toast.makeText(getApplicationContext(),
+						"Handler is Working!!", Toast.LENGTH_LONG)
+						.show();
 				goBack();
 				break;
 			}
@@ -244,7 +246,7 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putLong("virusTime", virusTime);
-			editor.putLong("point", point);
+			editor.putInt("point", point);
 			editor.commit();
 
 			Intent intent = new Intent(this, HaveVirusActivity.class);
