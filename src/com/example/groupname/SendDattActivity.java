@@ -53,21 +53,11 @@ public class SendDattActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_datt);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		// Check for available NFC Adapter
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-		
-		//remove statusbar
+
+		// remove statusbar
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -76,10 +66,7 @@ public class SendDattActivity extends ActionBarActivity implements
 		// status bar is hidden, so hide that too if necessary.
 		android.app.ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
-		
-		
-		
+
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -135,12 +122,12 @@ public class SendDattActivity extends ActionBarActivity implements
 			View rootView = null;
 
 			if (hasAntidote) {
-				rootView = inflater.inflate(R.layout.fragment_datt,
-						container, false);
+				rootView = inflater.inflate(R.layout.fragment_datt, container,
+						false);
 			} else {
 
-				rootView = inflater.inflate(R.layout.fragment_datt2,
-						container, false);
+				rootView = inflater.inflate(R.layout.fragment_datt2, container,
+						false);
 
 			}
 
@@ -148,7 +135,7 @@ public class SendDattActivity extends ActionBarActivity implements
 					.findViewById(R.id.imageView1);
 
 			final ImageView halfAntidote = (ImageView) rootView
-					.findViewById(R.id.imageView2);
+					.findViewById(R.id.imageView3);
 
 			fullAntidote.setVisibility(View.GONE);
 
@@ -172,7 +159,6 @@ public class SendDattActivity extends ActionBarActivity implements
 			return rootView;
 		}
 	}
-	
 
 	public static class PlaceholderFragmentTest extends Fragment {
 
@@ -187,34 +173,39 @@ public class SendDattActivity extends ActionBarActivity implements
 			return rootView;
 		}
 	}
-	
-	@Override
-	public void onNewIntent(Intent intent) {
-		  if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
 
-				Fragment newFragment = new PlaceholderFragmentTest();
-				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-				// Replace whatever is in the fragment_container view with this fragment,
-				// and add the transaction to the back stack
-				transaction.replace(R.id.container, newFragment);
-
-				// Commit the transaction
-				transaction.commit();
-			  
-		  }
-		  super.onNewIntent(intent);
-		}
+	// @Override
+	// public void onNewIntent(Intent intent) {
+	// if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
+	//
+	// Fragment newFragment = new PlaceholderFragmentTest();
+	// FragmentTransaction transaction =
+	// getSupportFragmentManager().beginTransaction();
+	//
+	// // Replace whatever is in the fragment_container view with this fragment,
+	// // and add the transaction to the back stack
+	// transaction.replace(R.id.container, newFragment);
+	//
+	// // Commit the transaction
+	// transaction.commit();
+	//
+	// }
+	// super.onNewIntent(intent);
+	// }
 
 	@Override
 	public NdefMessage createNdefMessage(NfcEvent event) {
-		
-		
 
-		
-		
-		
-		
+		ImageView fullAntidote = (ImageView) findViewById(R.id.imageView1);
+
+		if (fullAntidote == null) {
+			Toast.makeText(getApplicationContext(),
+					"fullantidote == null, something is wrong", Toast.LENGTH_LONG)
+					.show();
+		} else {
+			fullAntidote.setVisibility(View.INVISIBLE);
+		}
+
 		Time time = new Time();
 		time.setToNow();
 
@@ -286,34 +277,33 @@ public class SendDattActivity extends ActionBarActivity implements
 	private void goBack() {
 
 		if (gameVirus) {
-			//adding two hours to the countdown
-			Long virusTime = (long) 0 ;
+			// adding two hours to the countdown
+			Long virusTime = (long) 0;
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
-			virusTime = settings.getLong("virusTime" , virusTime);
+			virusTime = settings.getLong("virusTime", virusTime);
 			virusTime = virusTime + 7200000;
-			
-			//adding point to user
-			int point = 0; 
-			point = settings.getInt("point" , point);
-			point = point +1;
-			
-			
+
+			// adding point to user
+			int point = 0;
+			point = settings.getInt("point", point);
+			point = point + 1;
+
 			SharedPreferences.Editor editor = settings.edit();
-			editor.putLong("virusTime" , virusTime);
-			editor.putLong("point" , point);
+			editor.putLong("virusTime", virusTime);
+			editor.putLong("point", point);
 			editor.commit();
-			
+
 			Intent intent = new Intent(this, HaveVirusActivity.class);
 			startActivity(intent);
 		} else {
 
 			SharedPreferences settings = getSharedPreferences(
-			FirstActivity.prefName, 0);
-			int point = 0; 
-			point = settings.getInt("point" , point);
-			point = point +1;
-			 
+					FirstActivity.prefName, 0);
+			int point = 0;
+			point = settings.getInt("point", point);
+			point = point + 1;
+
 			Intent intent = new Intent(this, HaveAntidoteActivity.class);
 			startActivity(intent);
 		}
