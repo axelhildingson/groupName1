@@ -32,7 +32,6 @@ import android.widget.Toast;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 
-
 public class SendDattActivity extends ActionBarActivity implements
 		CreateNdefMessageCallback, OnNdefPushCompleteCallback {
 
@@ -127,13 +126,15 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			}
 
-			ImageView fullAntidote = (ImageView) rootView
-					.findViewById(R.id.imageView1);
-
 			final ImageView halfAntidote = (ImageView) rootView
+					.findViewById(R.id.imageView1);
+			final ImageView fullAntidote = (ImageView) rootView
+					.findViewById(R.id.imageView2);
+			final ImageView popAntidote = (ImageView) rootView
 					.findViewById(R.id.imageView3);
 
 			fullAntidote.setVisibility(View.GONE);
+			popAntidote.setVisibility(View.GONE);
 
 			int mShortAnimationDuration = 3000;
 
@@ -148,12 +149,44 @@ public class SendDattActivity extends ActionBarActivity implements
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
 						public void onAnimationEnd(Animator animation) {
+							
 							halfAntidote.setVisibility(View.GONE);
+
+							
+							
+							
+							int mShortAnimationDuration = 4000;
+
+							popAntidote.setAlpha(0f);
+							popAntidote.setVisibility(View.VISIBLE);
+
+							popAntidote.animate().alpha(1f)
+									.setDuration(mShortAnimationDuration)
+									.setListener(null);
+
+							fullAntidote.animate().alpha(0f)
+									.setDuration(mShortAnimationDuration)
+									.setListener(new AnimatorListenerAdapter() {
+										@Override
+										public void onAnimationEnd(
+												Animator animation) {
+											fullAntidote
+													.setVisibility(View.GONE);
+
+										}
+									});
+
 						}
 					});
+			
+			
 
 			return rootView;
 		}
+	}
+
+	public void startNextFinishAnitmation() {
+
 	}
 
 	@Override
@@ -220,9 +253,8 @@ public class SendDattActivity extends ActionBarActivity implements
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MESSAGE_SENT:
-				Toast.makeText(getApplicationContext(),
-						"Handler is Working!!", Toast.LENGTH_LONG)
-						.show();
+				Toast.makeText(getApplicationContext(), "Handler is Working!!",
+						Toast.LENGTH_LONG).show();
 				goBack();
 				break;
 			}

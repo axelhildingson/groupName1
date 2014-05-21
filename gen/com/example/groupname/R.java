@@ -1034,8 +1034,9 @@ containing a value of this type.
         public static final int tube22=0x7f020082;
         public static final int tube3=0x7f020083;
         public static final int tube33=0x7f020084;
-        public static final int viro=0x7f020085;
-        public static final int viro_icon=0x7f020086;
+        public static final int tubescaler=0x7f020085;
+        public static final int viro=0x7f020086;
+        public static final int viro_icon=0x7f020087;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -1068,16 +1069,16 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f070026;
         public static final int expanded_menu=0x7f07002c;
         public static final int gameType=0x7f07003d;
-        public static final int helpButton=0x7f070043;
+        public static final int helpButton=0x7f070044;
         public static final int home=0x7f070014;
         public static final int homeAsUp=0x7f070005;
         public static final int icon=0x7f07002a;
         public static final int ifRoom=0x7f07000a;
         public static final int image=0x7f070027;
         public static final int imageView1=0x7f070041;
-        public static final int imageView2=0x7f070045;
-        public static final int imageView3=0x7f070042;
-        public static final int imageView4=0x7f070044;
+        public static final int imageView2=0x7f070042;
+        public static final int imageView3=0x7f070043;
+        public static final int imageView4=0x7f070045;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070029;
         public static final int middle=0x7f070012;
