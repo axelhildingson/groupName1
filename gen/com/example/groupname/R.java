@@ -1270,7 +1270,6 @@ containing a value of this type.
         public static final int fragment_movements2=0x7f03002b;
         public static final int fragment_receive_datt=0x7f03002c;
         public static final int support_simple_spinner_dropdown_item=0x7f03002d;
-        public static final int testfrag=0x7f03002e;
     }
     public static final class menu {
         public static final int begin=0x7f0e0000;

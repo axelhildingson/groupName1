@@ -20,13 +20,12 @@ public class BeginActivity extends ActionBarActivity {
 	public boolean msgDATT = true;
 	public String gameType = "normal";
 
-	// Hej hälsar Mean-Ergodic
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_begin);
 
-		//remove statusbar
+		// remove statusbar
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -35,8 +34,7 @@ public class BeginActivity extends ActionBarActivity {
 		// status bar is hidden, so hide that too if necessary.
 		android.app.ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
-		
+
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -65,6 +63,7 @@ public class BeginActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 	public static class PlaceholderFragment extends Fragment {
 
 		public PlaceholderFragment() {
@@ -81,23 +80,23 @@ public class BeginActivity extends ActionBarActivity {
 
 	public void startGameNormal(View view) {
 		// USER HAS DATT
-			boolean gameStarted = true;
-			boolean gameNormal = true;
-			boolean gameVirus = false;
-			boolean hasAntidote = false;
+		boolean gameStarted = true;
+		boolean gameNormal = true;
+		boolean gameVirus = false;
+		boolean hasAntidote = false;
 
-			SharedPreferences settings = getSharedPreferences(
-					FirstActivity.prefName, 0);
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean("gameStarted", gameStarted);
-			editor.putBoolean("gameNormal", gameNormal);
-			editor.putBoolean("gameVirus", gameVirus);
-			editor.putBoolean("hasAntidote", hasAntidote);
-			editor.commit();
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("gameStarted", gameStarted);
+		editor.putBoolean("gameNormal", gameNormal);
+		editor.putBoolean("gameVirus", gameVirus);
+		editor.putBoolean("hasAntidote", hasAntidote);
+		editor.commit();
 
-			Intent intent = new Intent(this, HaveNormalActivity.class);
-			startActivity(intent);
-		
+		Intent intent = new Intent(this, HaveNormalActivity.class);
+		startActivity(intent);
+
 	}
 
 	public void startGameVirus(View view) {
@@ -109,10 +108,10 @@ public class BeginActivity extends ActionBarActivity {
 		boolean hasAntidote = false;
 		int point = 0;
 
-		// get the time and adds the time for 48 h 
-		long virusTime= System.currentTimeMillis();
+		// get the time and adds the time for 48 h
+		long virusTime = System.currentTimeMillis();
 		virusTime = virusTime + 172800000;
-		
+
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
 		SharedPreferences.Editor editor = settings.edit();
@@ -120,14 +119,14 @@ public class BeginActivity extends ActionBarActivity {
 		editor.putBoolean("gameNormal", gameNormal);
 		editor.putBoolean("gameVirus", gameVirus);
 		editor.putBoolean("hasAntidote", hasAntidote);
-		editor.putLong("virusTime" , virusTime);
-		editor.putInt("point" , point);
+		editor.putLong("virusTime", virusTime);
+		editor.putInt("point", point);
 		editor.commit();
 
 		Intent intent = new Intent(this, HaveVirusActivity.class);
 		startActivity(intent);
 	}
-	
+
 	public void startGameAntidote(View view) {
 		// USER HAS NOT THE DATT
 
