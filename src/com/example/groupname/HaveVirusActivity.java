@@ -151,7 +151,7 @@ public class HaveVirusActivity extends Activity {
 
 			// Add points 
 			String imgName = "tally_" + point;
-			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
+			ImageView img= (ImageView) rootView.findViewById(R.id.imageView3);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
 			img.setImageResource(imageresource);
 

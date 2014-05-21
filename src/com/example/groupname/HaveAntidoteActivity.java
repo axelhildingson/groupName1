@@ -151,7 +151,7 @@ public class HaveAntidoteActivity extends Activity {
 			
 			// Add points 
 			String imgName = "tally_" + point;
-			ImageView img2= (ImageView) rootView.findViewById(R.id.imageView2);
+			ImageView img2= (ImageView) rootView.findViewById(R.id.imageView3);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
 			img2.setImageResource(imageresource);
 			

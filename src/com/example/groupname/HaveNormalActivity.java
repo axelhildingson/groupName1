@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -19,11 +20,15 @@ import android.os.Build;
 public class HaveNormalActivity extends Activity {
 	
 	public static long virusTime;
+	public static Typeface tf;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_normal);
+		
+		// add font
+		tf = Typeface.createFromAsset(getAssets(),"fonts/Molot.otf");
 		
 		//remove statusbar
 		View decorView = getWindow().getDecorView();
@@ -87,7 +92,7 @@ public class HaveNormalActivity extends Activity {
 			long timecounter = 3155760000L;
 			
 			mTextField = (TextView) rootView.findViewById(R.id.counter);
-			
+	        mTextField.setTypeface(tf);
 			new CountDownTimer(timecounter, 1000) {
 
 			     public void onTick(long millisUntilFinished) {

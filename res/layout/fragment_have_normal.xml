@@ -18,22 +18,26 @@
         android:text="Abort Game" 
         android:alpha="0.0"/>
 
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="55dp"
+        android:minHeight="200dip"
+        android:minWidth="200dip"
         android:src="@drawable/neutral_icon" />
-
-    <TextView
-        android:id="@+id/counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="48dp"
-        android:layout_toLeftOf="@+id/button1"
-        android:text="TextView" />
 
 </RelativeLayout>

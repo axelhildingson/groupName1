@@ -140,7 +140,7 @@ public class SendDattActivity extends ActionBarActivity implements
 					.findViewById(R.id.imageView1);
 
 			final ImageView halfAntidote = (ImageView) rootView
-					.findViewById(R.id.imageView2);
+					.findViewById(R.id.imageView3);
 
 			fullAntidote.setVisibility(View.GONE);
 
