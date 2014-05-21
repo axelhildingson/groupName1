@@ -35,20 +35,33 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageView3"
-        android:minHeight="200dip"
-        android:minWidth="200dip"
-        android:src="@drawable/dote_icon" />
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/imageView3"
+        android:src="@drawable/tally_score" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/imageView2"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@+id/imageView1"
         android:src="@drawable/tally_0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:minHeight="200dip"
+        android:minWidth="200dip"
+        android:src="@drawable/dote_icon" />
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -31,6 +32,7 @@ public class HaveVirusActivity extends Activity {
 	private float mAccelLast; // last acceleration including gravity
 	public static long virusTime;
 	public static int point;
+	public static Typeface tf;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -69,6 +71,8 @@ public class HaveVirusActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_virus);
 
+		// add font
+		tf = Typeface.createFromAsset(getAssets(),"fonts/Molot.otf");
 
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
@@ -156,7 +160,7 @@ public class HaveVirusActivity extends Activity {
 
 			// Add points 
 			String imgName = "tally_" + point;
-			ImageView img= (ImageView) rootView.findViewById(R.id.imageView3);
+			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
 			img.setImageResource(imageresource);
 
@@ -188,6 +192,12 @@ public class HaveVirusActivity extends Activity {
 						mTextField3.setText(minutes + "\t" + "minute(s)");
 						mTextField4.setText(hours + "\t" + "hour(s)");
 						mTextField5.setText(days + "\t" + "day(s)");
+						
+						mTextField1.setTypeface(tf);
+						mTextField2.setTypeface(tf);
+						mTextField3.setTypeface(tf);
+						mTextField4.setTypeface(tf);
+						mTextField5.setTypeface(tf);
 
 					}
 				}
