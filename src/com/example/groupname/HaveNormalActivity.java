@@ -78,7 +78,13 @@ public class HaveNormalActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 		
-		private TextView mTextField;
+//		private TextView mTextField;
+		
+		private TextView mTextField1;
+		private TextView mTextField2;
+		private TextView mTextField3;
+		private TextView mTextField4;
+		private TextView mTextField5;
 
 		public PlaceholderFragment() {
 		}
@@ -91,8 +97,15 @@ public class HaveNormalActivity extends Activity {
 			
 			long timecounter = 3155760000L;
 			
-			mTextField = (TextView) rootView.findViewById(R.id.counter);
-	        mTextField.setTypeface(tf);
+			// mTextField = (TextView) rootView.findViewById(R.id.counter);
+	       // mTextField.setTypeface(tf);
+	        
+	        mTextField1 = (TextView) rootView.findViewById(R.id.timer1);
+			mTextField2 = (TextView) rootView.findViewById(R.id.timer2);
+			mTextField3 = (TextView) rootView.findViewById(R.id.timer3);
+			mTextField4 = (TextView) rootView.findViewById(R.id.timer4);
+			mTextField5 = (TextView) rootView.findViewById(R.id.timer5);
+			
 			new CountDownTimer(timecounter, 1000) {
 
 			     public void onTick(long millisUntilFinished) {
@@ -102,13 +115,36 @@ public class HaveNormalActivity extends Activity {
 			    	 } else {
 			    	 long timecounter = 3155760000L;
 			    	 long timegone =  timecounter - millisUntilFinished;
-			         String _millis=String.valueOf( virusTime/1000 + timegone/1000);
-			         mTextField.setText("Seconds uneffected: " + _millis);
+			        // String _millis=String.valueOf( virusTime/1000 + timegone/1000);
+			        // mTextField.setText("Seconds uneffected: " + _millis);
+			         long timetot = virusTime + timegone;
+			         long seconds, minutes, hours, days;
+			         days = timetot / (1000*60*60*24);
+					 hours = (timetot - 1000*60*60*24*days) / (1000*60*60);
+					 minutes = (timetot - 1000*60*60*24*days - 1000*60*60*hours) / (1000*60);
+					 seconds = (timetot - 1000*60*60*24*days - 1000*60*60*hours - 1000*60*minutes) / 1000;
+					 
+					 mTextField1.setText("Time left until you're dead:");
+					 mTextField2.setText(seconds + "\t" + "second(s)");
+					 mTextField3.setText(minutes + "\t" + "minute(s)");
+					 mTextField4.setText(hours + "\t" + "hour(s)");
+					 mTextField5.setText(days + "\t" + "day(s)");
+						
+					 mTextField1.setTypeface(tf);
+					 mTextField2.setTypeface(tf);
+					 mTextField3.setTypeface(tf);
+					 mTextField4.setTypeface(tf);
+					 mTextField5.setTypeface(tf);
+			    	 
 			    	 }
 			     }
 
 			     public void onFinish() {
-			         mTextField.setText("done!");
+			         mTextField1.setText("done!");
+			         mTextField2.setText("done!");
+			         mTextField3.setText("done!");
+			         mTextField4.setText("done!");
+			         mTextField5.setText("done!");
 			     }
 			  }.start();
 			  

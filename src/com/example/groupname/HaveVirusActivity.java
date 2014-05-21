@@ -204,6 +204,10 @@ public class HaveVirusActivity extends Activity {
 				public void onFinish() {
 
 					mTextField1.setText("done!");
+					mTextField2.setText("done!");
+					mTextField3.setText("done!");
+					mTextField4.setText("done!");
+					mTextField5.setText("done!");
 				}
 			}.start();
 
