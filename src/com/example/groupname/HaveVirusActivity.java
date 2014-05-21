@@ -31,7 +31,7 @@ public class HaveVirusActivity extends Activity {
 	private float mAccelLast; // last acceleration including gravity
 	public static long virusTime;
 	public static int point;
-	
+
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
 		public void onSensorChanged(SensorEvent se) {
@@ -68,7 +68,7 @@ public class HaveVirusActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_virus);
-		
+
 		//remove statusbar
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
@@ -78,22 +78,22 @@ public class HaveVirusActivity extends Activity {
 		// status bar is hidden, so hide that too if necessary.
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
 		//virus timer 
 		this.virusTime=virusTime;
 		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
 		virusTime = settings.getLong("virusTime" , virusTime) - System.currentTimeMillis();
-		
+
 		//point counter
 		int point = 0;
 		this.point=point;
 		point = settings.getInt("point" , point);
 
 		// movement shit
-		
+
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+			.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		mSensorManager.registerListener(mSensorListener,
@@ -102,11 +102,11 @@ public class HaveVirusActivity extends Activity {
 		mAccel = 0.00f;
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
-		
+
 		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
 		adapter.setNdefPushMessage(null, this, this);
-		
-		
+
+
 	}
 
 	@Override
@@ -133,9 +133,13 @@ public class HaveVirusActivity extends Activity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
-		
-		private TextView mTextField;
-		
+
+		private TextView mTextField1;
+		private TextView mTextField2;
+		private TextView mTextField3;
+		private TextView mTextField4;
+		private TextView mTextField5;
+
 		public PlaceholderFragment() {
 		}
 
@@ -144,37 +148,52 @@ public class HaveVirusActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(
 					R.layout.fragment_have_virus, container, false);
-			
+
 			// Add points 
 			String imgName = "tally_" + point;
 			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
-		    img.setImageResource(imageresource);
-			
-		    //time counter 
-			mTextField = (TextView) rootView.findViewById(R.id.timer1);
-			
+			img.setImageResource(imageresource);
+
+			//time counter 
+			mTextField1 = (TextView) rootView.findViewById(R.id.timer1);
+			mTextField2 = (TextView) rootView.findViewById(R.id.timer2);
+			mTextField3 = (TextView) rootView.findViewById(R.id.timer3);
+			mTextField4 = (TextView) rootView.findViewById(R.id.timer4);
+			mTextField5 = (TextView) rootView.findViewById(R.id.timer5);
+
 			new CountDownTimer(virusTime, 1000) {
 
-			     public void onTick(long millisUntilFinished) {
-			    	 
-			    	 if((Object) millisUntilFinished == null){
-			    		 			    		 
-			    	 } else {
-			         mTextField.setText("seconds until you are Dead: " + millisUntilFinished / 1000);
-			    	 }
-			     }
+				public void onTick(long millisUntilFinished) {
 
-			     public void onFinish() {
-			         mTextField.setText("done!");
-			     }
-			  }.start();
-			
-			
+					if((Object) millisUntilFinished == null){
+
+					} else {
+						long seconds, minutes, hours, days;
+						
+						days = millisUntilFinished / (1000*60*60*24);
+						hours = (millisUntilFinished - 1000*60*60*24*days) / (1000*60*60);
+						minutes = (millisUntilFinished - 1000*60*60*24*days - 1000*60*60*hours) / (1000*60);
+						seconds = (millisUntilFinished - 1000*60*60*24*days - 1000*60*60*hours - 1000*60*minutes) / 1000;
+						
+						mTextField1.setText("Time left until you're dead:");
+						mTextField2.setText(seconds + "\t" + "second(s)");
+						mTextField3.setText(minutes + "\t" + "minute(s)");
+						mTextField4.setText(hours + "\t" + "hour(s)");
+						mTextField5.setText(days + "\t" + "day(s)");
+					}
+				}
+
+				public void onFinish() {
+					mTextField1.setText("done!");
+				}
+			}.start();
+
+
 			return rootView;
 		}
 	}
-	
+
 	public void abortGame(View view) {
 		boolean gameStarted = false;
 		boolean gameVirus = false;
@@ -193,7 +212,7 @@ public class HaveVirusActivity extends Activity {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
