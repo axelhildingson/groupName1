@@ -80,22 +80,25 @@ public class BeginActivity extends ActionBarActivity {
 
 	public void startGameNormal(View view) {
 		// USER HAS DATT
-		boolean gameStarted = true;
-		boolean gameNormal = true;
-		boolean gameVirus = false;
-		boolean hasAntidote = false;
 
-		SharedPreferences settings = getSharedPreferences(
-				FirstActivity.prefName, 0);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putBoolean("gameStarted", gameStarted);
-		editor.putBoolean("gameNormal", gameNormal);
-		editor.putBoolean("gameVirus", gameVirus);
-		editor.putBoolean("hasAntidote", hasAntidote);
-		editor.commit();
+			boolean gameStarted = true;
+			boolean gameNormal = true;
+			boolean gameVirus = false;
+			boolean hasAntidote = false;
+			long virusTime= System.currentTimeMillis();
 
-		Intent intent = new Intent(this, HaveNormalActivity.class);
-		startActivity(intent);
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("gameStarted", gameStarted);
+			editor.putBoolean("gameNormal", gameNormal);
+			editor.putBoolean("gameVirus", gameVirus);
+			editor.putBoolean("hasAntidote", hasAntidote);
+			editor.putLong("virusTime" , virusTime);
+			editor.commit();
+
+			Intent intent = new Intent(this, HaveNormalActivity.class);
+			startActivity(intent);
 
 	}
 

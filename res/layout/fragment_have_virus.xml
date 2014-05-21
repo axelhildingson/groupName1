@@ -19,6 +19,15 @@
         android:alpha="0.0" />
 
     <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:minHeight="200dip"
+        android:minWidth="200dip"
+        android:src="@drawable/viro_icon" />
+	<ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,24 +35,50 @@
         android:layout_centerVertical="true"
         android:src="@drawable/tally_1" />
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <TextView
+        android:id="@+id/timer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/viro_icon" />
+        android:layout_alignLeft="@+id/timer1"
+        android:layout_below="@+id/timer1"
+        android:layout_marginTop="17dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/timer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/timer2"
+        android:layout_below="@+id/timer2"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/timer4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/timer3"
+        android:layout_below="@+id/timer3"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/timer5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/timer4"
+        android:layout_below="@+id/timer4"
+        android:text="TextView" />
 
     <TextView
         android:id="@+id/timer1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_marginBottom="58dp"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
         android:text="TextView"
         android:textSize="15dp"
         android:typeface="monospace" />
+
+
 
 </RelativeLayout>

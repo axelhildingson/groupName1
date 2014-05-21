@@ -7,14 +7,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.os.Build;
 
 public class HaveNormalActivity extends Activity {
+	
+	public static long virusTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,10 @@ public class HaveNormalActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
 
+		this.virusTime=virusTime;
+		SharedPreferences settings = getSharedPreferences(FirstActivity.prefName, 0);
+		virusTime = System.currentTimeMillis() - settings.getLong("virusTime" , virusTime);
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -64,6 +72,8 @@ public class HaveNormalActivity extends Activity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
+		
+		private TextView mTextField;
 
 		public PlaceholderFragment() {
 		}
@@ -73,6 +83,30 @@ public class HaveNormalActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_have_normal,
 					container, false);
+			
+			long timecounter = 3155760000L;
+			
+			mTextField = (TextView) rootView.findViewById(R.id.counter);
+			
+			new CountDownTimer(timecounter, 1000) {
+
+			     public void onTick(long millisUntilFinished) {
+			    	 
+			    	 if((Object) millisUntilFinished == null){
+			    		 			    		 
+			    	 } else {
+			    	 long timecounter = 3155760000L;
+			    	 long timegone =  timecounter - millisUntilFinished;
+			         String _millis=String.valueOf( virusTime/1000 + timegone/1000);
+			         mTextField.setText("Seconds uneffected: " + _millis);
+			    	 }
+			     }
+
+			     public void onFinish() {
+			         mTextField.setText("done!");
+			     }
+			  }.start();
+			  
 			return rootView;
 		}
 	}
