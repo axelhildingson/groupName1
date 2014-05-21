@@ -303,6 +303,9 @@ public class SendDattActivity extends ActionBarActivity implements
 			int point = 0;
 			point = settings.getInt("point", point);
 			point = point + 1;
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putLong("point", point);
+			editor.commit();
 
 			Intent intent = new Intent(this, HaveAntidoteActivity.class);
 			startActivity(intent);

@@ -79,6 +79,7 @@ public class BeginActivity extends ActionBarActivity {
 	}
 
 	public void startGameNormal(View view) {
+		
 		// USER HAS DATT
 
 			boolean gameStarted = true;
