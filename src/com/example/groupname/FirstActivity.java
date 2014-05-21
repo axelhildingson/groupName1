@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
+import android.view.View;
 
 public class FirstActivity extends Activity {
 
@@ -15,7 +15,7 @@ public class FirstActivity extends Activity {
 	private boolean gameVirus;
 	private boolean hasAntidote;
 	private long virusTime;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,15 +26,14 @@ public class FirstActivity extends Activity {
 				FirstActivity.prefName, 0);
 		virusTime = 0;
 		gameStarted = settings.getBoolean("gameStarted", false);
-		
-		
+
 		virusTime = (long) 0;
-		
+
 		gameNormal = settings.getBoolean("gameNormal", false);
 		gameVirus = settings.getBoolean("gameVirus", false);
 		hasAntidote = settings.getBoolean("hasAntidote", false);
-		virusTime = settings.getLong("virusTime" , virusTime);
-		long time= System.currentTimeMillis();
+		virusTime = settings.getLong("virusTime", virusTime);
+		long time = System.currentTimeMillis();
 
 		if (!gameStarted) {
 			intent = new Intent(this, MainActivity.class);
@@ -49,14 +48,14 @@ public class FirstActivity extends Activity {
 			startActivity(intent);
 			finish();
 		} else if (gameVirus) {
-			if(virusTime <= time){
-				//you are dead
-				gameStarted = false; 
+			if (virusTime <= time) {
+				// you are dead
+				gameStarted = false;
 				SharedPreferences.Editor editor = settings.edit();
 				editor.putBoolean("gameStarted", gameStarted);
 				intent = new Intent(this, MainActivity.class);
 				startActivity(intent);
-			}else{
+			} else {
 				intent = new Intent(this, HaveVirusActivity.class);
 				startActivity(intent);
 				finish();

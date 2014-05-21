@@ -10,7 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.widget.Toast;
 
-public class MusicHandler {
+public class ThemeMusicHandler {
 	private MediaPlayer mediaPlayer;
 	private Context context;
 	private int iVolume;
@@ -20,11 +20,11 @@ public class MusicHandler {
 	private final static float FLOAT_VOLUME_MAX = 1;
 	private final static float FLOAT_VOLUME_MIN = 0;
 
-	public MusicHandler(Context context) {
+	public ThemeMusicHandler(Context context) {
 		this.context = context;
 	}
 
-	public void load(String path, boolean looping) {
+	public void load(boolean looping) {
 		try {
 			mediaPlayer = MediaPlayer.create(context, R.raw.virodotetheme);
 			mediaPlayer.setLooping(looping);

@@ -31,7 +31,7 @@ import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
 	
-	MusicHandler m;
+	ThemeMusicHandler m;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +81,8 @@ public class MainActivity extends ActionBarActivity {
 
 	public void datt_sound() {
 	
-			m = new MusicHandler(this);
-			m.load("Virodote-theme_loop.mp3", true);
+			m = new ThemeMusicHandler(this);
+			m.load(true);
 			m.play(6000);
 			
 	}
@@ -97,7 +97,10 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void BeginGame(View view) {
-		m.pause(6000);
+		m.pause(1);
+		MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.iconclicked);
+		mediaPlayer.start();
+		
 		Intent intent = new Intent(this, BeginActivity.class);
 		startActivity(intent);
 	}
