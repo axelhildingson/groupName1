@@ -31,7 +31,7 @@ public class HaveVirusActivity extends Activity {
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
 	public static long virusTime;
-	public static int point;
+	public  int point;
 	public static Typeface tf;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
@@ -92,13 +92,9 @@ public class HaveVirusActivity extends Activity {
 				- System.currentTimeMillis();
 
 		// point counter
-
-		int point = 0;
-		this.point = point;
 		point = settings.getInt("point", point);
 
 		// movement shit
-
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 			.add(R.id.container, new PlaceholderFragment()).commit();
@@ -159,6 +155,9 @@ public class HaveVirusActivity extends Activity {
 					R.layout.fragment_have_virus, container, false);
 
 			// Add points 
+			HaveVirusActivity activity = (HaveVirusActivity) getActivity();
+			SharedPreferences settings = activity.getSharedPreferences(FirstActivity.prefName, 0);
+			int point = settings.getInt("point", 0);
 			String imgName = "tally_" + String.valueOf(point);
 			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        

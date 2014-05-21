@@ -237,11 +237,10 @@ public class SendDattActivity extends ActionBarActivity implements
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
 			virusTime = settings.getLong("virusTime", virusTime);
-			virusTime = virusTime + 7200000;
+			virusTime = virusTime + 21600000;
 
 			// adding point to user
-			int point = 0;
-			point = settings.getInt("point", point);
+			int point = settings.getInt("point", 0);
 			point = point + 1;
 
 			SharedPreferences.Editor editor = settings.edit();
@@ -255,8 +254,8 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
-			int point = 0;
-			point = settings.getInt("point", point);
+			
+			int point = settings.getInt("point", 0);
 			point = point + 1;
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putInt("point", point);
