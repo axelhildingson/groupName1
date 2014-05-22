@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -135,6 +136,18 @@ public class HaveNormalActivity extends Activity {
 					 mTextField3.setTypeface(tf);
 					 mTextField4.setTypeface(tf);
 					 mTextField5.setTypeface(tf);
+					 
+					 mTextField1.setTextSize(20);
+						mTextField2.setTextSize(17);
+						mTextField3.setTextSize(17);
+						mTextField4.setTextSize(17);
+						mTextField5.setTextSize(17);
+						
+						mTextField1.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField2.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField3.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField4.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField5.setGravity(Gravity.CENTER_HORIZONTAL);
 			    	 
 			    	 }
 			     }

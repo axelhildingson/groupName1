@@ -26,6 +26,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.text.format.Time;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -174,12 +175,24 @@ public class HaveVirusActivity extends Activity implements
 						mTextField3.setText(minutes + "\t" + "minute(s)");
 						mTextField4.setText(hours + "\t" + "hour(s)");
 						mTextField5.setText(days + "\t" + "day(s)");
-
+						
 						mTextField1.setTypeface(tf);
 						mTextField2.setTypeface(tf);
 						mTextField3.setTypeface(tf);
 						mTextField4.setTypeface(tf);
 						mTextField5.setTypeface(tf);
+						
+						mTextField1.setTextSize(20);
+						mTextField2.setTextSize(17);
+						mTextField3.setTextSize(17);
+						mTextField4.setTextSize(17);
+						mTextField5.setTextSize(17);
+						
+						mTextField1.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField2.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField3.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField4.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField5.setGravity(Gravity.CENTER_HORIZONTAL);
 
 					}
 				}
