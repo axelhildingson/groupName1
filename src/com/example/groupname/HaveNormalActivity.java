@@ -124,7 +124,7 @@ public class HaveNormalActivity extends Activity {
 					 minutes = (timetot - 1000*60*60*24*days - 1000*60*60*hours) / (1000*60);
 					 seconds = (timetot - 1000*60*60*24*days - 1000*60*60*hours - 1000*60*minutes) / 1000;
 					 
-					 mTextField1.setText("Time left until you're dead:");
+					 mTextField1.setText("You have survived the infection for:");
 					 mTextField2.setText(seconds + "\t" + "second(s)");
 					 mTextField3.setText(minutes + "\t" + "minute(s)");
 					 mTextField4.setText(hours + "\t" + "hour(s)");

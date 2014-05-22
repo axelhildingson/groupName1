@@ -55,22 +55,22 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/timer1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="15dp"
-        android:text="TextView"
-        android:textSize="15dp"
-        android:typeface="monospace" />
-
-    <TextView
         android:id="@+id/timer5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/timer4"
         android:layout_below="@+id/timer4"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/timer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="TextView"
+        android:textSize="15dp"
+        android:typeface="monospace" />
 
 </RelativeLayout>

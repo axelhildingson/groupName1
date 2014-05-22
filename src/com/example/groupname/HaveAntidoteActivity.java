@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -205,6 +206,8 @@ public class HaveAntidoteActivity extends Activity {
 	
 	public static class HelpFragment extends Fragment {
 
+		private TextView mTextFieldhelp;
+		
 		public HelpFragment() {
 		}
 
@@ -213,6 +216,9 @@ public class HaveAntidoteActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
+			mTextFieldhelp = (TextView) rootView.findViewById(R.id.timer1);
+			
+			
 			return rootView;
 		}
 	}
