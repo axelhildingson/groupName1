@@ -11,7 +11,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +32,7 @@ public class MovementsActivity extends Activity {
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
 	private int nbrOfShakes = 0;
-	private static int requiredAmountOfShakes = 7;
+	private static int requiredAmountOfShakes = 15;
 	private MediaPlayer mediaPlayer1;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
@@ -51,7 +53,6 @@ public class MovementsActivity extends Activity {
 
 			if (mAccel > 9) {
 				nbrOfShakes = nbrOfShakes + 1;
-				mediaPlayer1.start();
 
 				playBubbleSound();
 
@@ -69,14 +70,15 @@ public class MovementsActivity extends Activity {
 
 	private void shakeSuccess() {
 		mSensorManager.unregisterListener(mSensorListener);
+		Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+		v.vibrate(500);
 		Intent intent = new Intent(this, SendDattActivity.class);
 		startActivity(intent);
 	}
 
 	private void playBubbleSound() {
-
+		
 		mediaPlayer1.stop();
-
 		mediaPlayer1 = MediaPlayer.create(this, R.raw.testtubeshake);
 		mediaPlayer1.start();
 
@@ -111,6 +113,10 @@ public class MovementsActivity extends Activity {
 		mAccel = 0.00f;
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
+		
+		
+		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+		adapter.setNdefPushMessage(null, this, this);
 	}
 
 	@Override

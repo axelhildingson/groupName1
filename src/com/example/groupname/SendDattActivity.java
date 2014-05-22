@@ -9,6 +9,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter.CreateNdefMessageCallback;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -40,6 +42,7 @@ public class SendDattActivity extends ActionBarActivity implements
 	private boolean hasAntidote;
 	private MediaPlayer mediaPlayer1;
 	private MediaPlayer mediaPlayer2;
+	public static Typeface tf;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class SendDattActivity extends ActionBarActivity implements
 
 		// Check for available NFC Adapter
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Molot.otf");
 
 		// remove statusbar
 		View decorView = getWindow().getDecorView();
@@ -151,8 +155,11 @@ public class SendDattActivity extends ActionBarActivity implements
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
 						public void onAnimationEnd(Animator animation) {
-
+							
+							
+							SendDattActivity activity = (SendDattActivity) getActivity();
 							halfAntidote.setVisibility(View.GONE);
+							activity.playPoppingSound();
 
 							int mShortAnimationDuration = 2000;
 
@@ -163,8 +170,8 @@ public class SendDattActivity extends ActionBarActivity implements
 									.setDuration(mShortAnimationDuration)
 									.setListener(null);
 							
-							SendDattActivity activity = (SendDattActivity) getActivity();
-							activity.playPoppingSound();
+
+							
 
 
 							fullAntidote.animate().alpha(0f)
@@ -177,6 +184,12 @@ public class SendDattActivity extends ActionBarActivity implements
 													.setVisibility(View.GONE);
 											SendDattActivity activity = (SendDattActivity) getActivity();
 											activity.playBubblingSound();
+											
+											TextView mTextFieldhelp = (TextView) activity.findViewById(R.id.textView1);
+											mTextFieldhelp.setText("Your antidote is finished! Give it to someone with NFC!");
+											mTextFieldhelp.setTypeface(tf);
+											mTextFieldhelp.setTextSize(20);
+											mTextFieldhelp.setEms(12);
 
 
 										}
@@ -261,26 +274,9 @@ public class SendDattActivity extends ActionBarActivity implements
 
 	private void goBack() {
 
-		if (gameVirus) {
-			// adding two hours to the countdown
-			Long virusTime = (long) 0;
-			SharedPreferences settings = getSharedPreferences(
-					FirstActivity.prefName, 0);
-			virusTime = settings.getLong("virusTime", virusTime);
-			virusTime = virusTime + 21600000;
 
-			// adding point to user
-			int point = settings.getInt("point", 0);
-			point = point + 1;
-
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putLong("virusTime", virusTime);
-			editor.putInt("point", point);
-			editor.commit();
-
-			Intent intent = new Intent(this, HaveVirusActivity.class);
-			startActivity(intent);
-		} else {
+			mediaPlayer1.stop();
+			mediaPlayer2.stop();
 
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
@@ -293,7 +289,7 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			Intent intent = new Intent(this, HaveAntidoteActivity.class);
 			startActivity(intent);
-		}
+		
 
 	}
 	
