@@ -32,7 +32,7 @@ public class HaveAntidoteActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
-	private static int point;
+	private int point;
 	public static Typeface tf;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
@@ -51,7 +51,7 @@ public class HaveAntidoteActivity extends Activity {
 			float delta = mAccelCurrent - mAccelLast;
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
-			if (mAccel > 9) {
+			if (mAccel > 12) {
 				mSensorManager.unregisterListener(this);
 				doMovements();
 			}
@@ -193,7 +193,7 @@ public class HaveAntidoteActivity extends Activity {
 		editor.putBoolean("gameNormal", gameNormal);
 		editor.putBoolean("hasAntidote", hasAntidote);	
 		editor.putLong("virusTime", virusTime);
-		editor.putLong("point", point);
+		editor.putInt("point", point);
 		
 		editor.commit();
 
@@ -228,7 +228,7 @@ public class HaveAntidoteActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
 			mTextFieldhelp = (TextView) rootView.findViewById(R.id.textView1);
-			mTextFieldhelp.setText("To send a virus or a antidote to another player put your phone close to the target, wait for the sound and then click on the screen to send. The targe phone needs to be unlocked. Good Luck!");
+			mTextFieldhelp.setText("To send an antidote to another player first shake your antiodote, put your phone close to the target, wait for the sound and then click on the screen to send. The target phone needs to be unlocked. Good Luck!");
 			mTextFieldhelp.setTypeface(tf);
 			mTextFieldhelp.setTextSize(20);
 			mTextFieldhelp.setEms(12);

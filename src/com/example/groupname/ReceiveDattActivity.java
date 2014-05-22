@@ -119,7 +119,7 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			gameVirus = settings.getBoolean("gameVirus", false);
 			
 			Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-			v.vibrate(3500);
+			v.vibrate(500);
 			
 			if (!gameStarted) {
 				Toast.makeText(getApplicationContext(),

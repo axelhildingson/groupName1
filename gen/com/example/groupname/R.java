@@ -1185,7 +1185,7 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f070026;
         public static final int expanded_menu=0x7f07002c;
         public static final int gameType=0x7f07003d;
-        public static final int helpButton=0x7f070044;
+        public static final int helpButton=0x7f070045;
         public static final int home=0x7f070014;
         public static final int homeAsUp=0x7f070005;
         public static final int icon=0x7f07002a;
@@ -1194,7 +1194,7 @@ containing a value of this type.
         public static final int imageView1=0x7f070041;
         public static final int imageView2=0x7f070042;
         public static final int imageView3=0x7f070043;
-        public static final int imageView4=0x7f070045;
+        public static final int imageView4=0x7f070046;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070029;
         public static final int middle=0x7f070012;
@@ -1221,12 +1221,12 @@ containing a value of this type.
         public static final int split_action_bar=0x7f07001e;
         public static final int submit_area=0x7f070039;
         public static final int tabMode=0x7f070002;
-        public static final int textView1=0x7f07004b;
-        public static final int timer1=0x7f070047;
-        public static final int timer2=0x7f070046;
-        public static final int timer3=0x7f070048;
-        public static final int timer4=0x7f070049;
-        public static final int timer5=0x7f07004a;
+        public static final int textView1=0x7f070044;
+        public static final int timer1=0x7f070048;
+        public static final int timer2=0x7f070047;
+        public static final int timer3=0x7f070049;
+        public static final int timer4=0x7f07004a;
+        public static final int timer5=0x7f07004b;
         public static final int title=0x7f07002b;
         public static final int top_action_bar=0x7f070020;
         public static final int up=0x7f070021;
