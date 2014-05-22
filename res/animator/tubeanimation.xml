@@ -4,42 +4,53 @@
 
     <item
         android:drawable="@drawable/testtube0"
-        android:duration="250"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/testtube1"
         android:duration="50"/>
     <item
         android:drawable="@drawable/testtube3"
         android:duration="50"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
+        android:duration="50"/>
     <item
         android:drawable="@drawable/testtube4"
-        android:duration="50"/>
-    <item
-        android:drawable="@drawable/testtube5"
-        android:duration="50"/>
-    <item
-        android:drawable="@drawable/testtube6"
         android:duration="50"/>
     <item
         android:drawable="@drawable/testtube7"
-        android:duration="500"/>
+        android:duration="50"/>
+    
     <item
-        android:drawable="@drawable/testtube6"
+        android:drawable="@drawable/testtube0"
         android:duration="50"/>
     <item
         android:drawable="@drawable/testtube5"
         android:duration="50"/>
     <item
-        android:drawable="@drawable/testtube4"
+        android:drawable="@drawable/testtube6"
+        android:duration="50"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
         android:duration="50"/>
     <item
-        android:drawable="@drawable/testtube3"
+        android:drawable="@drawable/testtube7"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube4"
+        android:duration="50"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
         android:duration="50"/>
     <item
         android:drawable="@drawable/testtube1"
         android:duration="50"/>
     <item
-        android:drawable="@drawable/testtube0"
-        android:duration="250"/>
+        android:drawable="@drawable/testtube6"
+        android:duration="50"/>
+    
 
 </animation-list>
