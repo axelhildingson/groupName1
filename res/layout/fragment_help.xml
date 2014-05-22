@@ -10,8 +10,9 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="164dp"
+        android:background="@drawable/back_icon"
         android:onClick="goBack"
-        android:text="Button" />
+        android:text="" />
 
     <TextView
         android:id="@+id/textView1"
