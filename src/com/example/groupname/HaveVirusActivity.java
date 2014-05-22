@@ -1,5 +1,7 @@
 package com.example.groupname;
 
+import java.nio.charset.Charset;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -11,9 +13,17 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.nfc.NfcAdapter.CreateNdefMessageCallback;
+import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
+import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,55 +34,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class HaveVirusActivity extends Activity {
+public class HaveVirusActivity extends Activity implements
+		CreateNdefMessageCallback, OnNdefPushCompleteCallback {
 
-	private SensorManager mSensorManager;
-	private float mAccel; // acceleration apart from gravity
-	private float mAccelCurrent; // current acceleration including gravity
-	private float mAccelLast; // last acceleration including gravity
+	private NfcAdapter mNfcAdapter;
+	private static final int MESSAGE_SENT = 1;
 	public static long virusTime;
-	public  int point;
+	private boolean gameStarted;
+	private boolean gameVirus;
+	private boolean hasAntidote;
+	public int point;
 	public static Typeface tf;
-
-	private final SensorEventListener mSensorListener = new SensorEventListener() {
-
-		public void onSensorChanged(SensorEvent se) {
-
-			// Case1
-			// case2
-			// case3
-
-			float x = se.values[0];
-			float y = se.values[1];
-			float z = se.values[2];
-			mAccelLast = mAccelCurrent;
-			mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
-			float delta = mAccelCurrent - mAccelLast;
-			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
-
-			if (mAccel > 13) {
-				mSensorManager.unregisterListener(this);
-				goToSend();
-			}
-		}
-
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-		}
-	};
-
-	public void goToSend() {
-		Intent intent = new Intent(this, MovementsActivity.class);
-		startActivity(intent);
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_virus);
 
+		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
 		// add font
-		tf = Typeface.createFromAsset(getAssets(),"fonts/Molot.otf");
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Molot.otf");
 
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
@@ -82,7 +64,6 @@ public class HaveVirusActivity extends Activity {
 		// status bar is hidden, so hide that too if necessary.
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-
 
 		// virus timer
 		this.virusTime = virusTime;
@@ -97,18 +78,13 @@ public class HaveVirusActivity extends Activity {
 		// movement shit
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
-			.add(R.id.container, new PlaceholderFragment()).commit();
+					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		mSensorManager.registerListener(mSensorListener,
-				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
-		mAccel = 0.00f;
-		mAccelCurrent = SensorManager.GRAVITY_EARTH;
-		mAccelLast = SensorManager.GRAVITY_EARTH;
 
-		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
-		adapter.setNdefPushMessage(null, this, this);
+		// Register callback to set NDEF message
+		mNfcAdapter.setNdefPushMessageCallback(this, this);
+		// Register callback to listen for message-sent success
+		mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
 
 	}
 
@@ -137,7 +113,6 @@ public class HaveVirusActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
-
 		private TextView mTextField1;
 		private TextView mTextField2;
 		private TextView mTextField3;
@@ -151,47 +126,53 @@ public class HaveVirusActivity extends Activity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
-			View rootView = inflater.inflate(
-					R.layout.fragment_have_virus, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_have_virus,
+					container, false);
 
-			// Add points 
+			// Add points
 			HaveVirusActivity activity = (HaveVirusActivity) getActivity();
-			SharedPreferences settings = activity.getSharedPreferences(FirstActivity.prefName, 0);
+			SharedPreferences settings = activity.getSharedPreferences(
+					FirstActivity.prefName, 0);
 			int point = settings.getInt("point", 0);
 			String imgName = "tally_" + String.valueOf(point);
-			ImageView img= (ImageView) rootView.findViewById(R.id.imageView2);
-			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
+			ImageView img = (ImageView) rootView.findViewById(R.id.imageView2);
+			int imageresource = getResources().getIdentifier(
+					"@drawable/" + imgName, "drawable",
+					getActivity().getPackageName());
 			img.setImageResource(imageresource);
 
-			//time counter 
+			// time counter
 			mTextField1 = (TextView) rootView.findViewById(R.id.timer1);
 			mTextField2 = (TextView) rootView.findViewById(R.id.timer2);
 			mTextField3 = (TextView) rootView.findViewById(R.id.timer3);
 			mTextField4 = (TextView) rootView.findViewById(R.id.timer4);
 			mTextField5 = (TextView) rootView.findViewById(R.id.timer5);
 
-
 			new CountDownTimer(virusTime, 1000) {
 
 				public void onTick(long millisUntilFinished) {
 
-
-					if((Object) millisUntilFinished == null){
+					if ((Object) millisUntilFinished == null) {
 
 					} else {
 						long seconds, minutes, hours, days;
-						
-						days = millisUntilFinished / (1000*60*60*24);
-						hours = (millisUntilFinished - 1000*60*60*24*days) / (1000*60*60);
-						minutes = (millisUntilFinished - 1000*60*60*24*days - 1000*60*60*hours) / (1000*60);
-						seconds = (millisUntilFinished - 1000*60*60*24*days - 1000*60*60*hours - 1000*60*minutes) / 1000;
-						
+
+						days = millisUntilFinished / (1000 * 60 * 60 * 24);
+						hours = (millisUntilFinished - 1000 * 60 * 60 * 24
+								* days)
+								/ (1000 * 60 * 60);
+						minutes = (millisUntilFinished - 1000 * 60 * 60 * 24
+								* days - 1000 * 60 * 60 * hours)
+								/ (1000 * 60);
+						seconds = (millisUntilFinished - 1000 * 60 * 60 * 24
+								* days - 1000 * 60 * 60 * hours - 1000 * 60 * minutes) / 1000;
+
 						mTextField1.setText("Time left until you're dead:");
 						mTextField2.setText(seconds + "\t" + "second(s)");
 						mTextField3.setText(minutes + "\t" + "minute(s)");
 						mTextField4.setText(hours + "\t" + "hour(s)");
 						mTextField5.setText(days + "\t" + "day(s)");
-						
+
 						mTextField1.setTypeface(tf);
 						mTextField2.setTypeface(tf);
 						mTextField3.setTypeface(tf);
@@ -234,17 +215,100 @@ public class HaveVirusActivity extends Activity {
 		startActivity(intent);
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		mSensorManager.registerListener(mSensorListener,
-				mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
+	private NdefRecord createMimeRecord(String mimeType, byte[] payload) {
+		byte[] mimeBytes = mimeType.getBytes(Charset.forName("US-ASCII"));
+		NdefRecord mimeRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA,
+				mimeBytes, new byte[0], payload);
+		return mimeRecord;
 	}
 
 	@Override
-	protected void onPause() {
-		mSensorManager.unregisterListener(mSensorListener);
-		super.onPause();
+	public NdefMessage createNdefMessage(NfcEvent event) {
+
+		Time time = new Time();
+		time.setToNow();
+
+		SharedPreferences settings = getSharedPreferences(
+				FirstActivity.prefName, 0);
+
+		gameStarted = settings.getBoolean("gameStarted", false);
+		gameVirus = settings.getBoolean("gameVirus", false);
+		hasAntidote = settings.getBoolean("hasAntidote", false);
+
+		String msgContent = "0";
+
+		if (!gameStarted) {
+			Toast.makeText(getApplicationContext(),
+					"Game not started, something is wrong", Toast.LENGTH_LONG)
+					.show();
+			return null;
+		}
+
+		if (gameVirus) {
+			msgContent = "gameVirus";
+		} else {
+			Toast.makeText(getApplicationContext(),
+					"You don't have the virus, something is wrong",
+					Toast.LENGTH_LONG).show();
+			return null;
+
+		}
+
+		NdefMessage msg = new NdefMessage(
+				new NdefRecord[] { createMimeRecord(
+						"application/com.example.groupname.datt",
+						msgContent.getBytes())
+
+				});
+		return msg;
+	}
+
+	@Override
+	public void onNdefPushComplete(NfcEvent event) {
+		// A handler is needed to send messages to the activity when this
+		// callback occurs, because it happens from a binder thread
+		mHandler.obtainMessage(MESSAGE_SENT).sendToTarget();
+	}
+
+	/** This handler receives a message from onNdefPushComplete */
+	private final Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case MESSAGE_SENT:
+				goBack();
+				break;
+			}
+		}
+	};
+
+	private void goBack() {
+
+		if (gameVirus) {
+			// adding two hours to the countdown
+			Long virusTime = (long) 0;
+			SharedPreferences settings = getSharedPreferences(
+					FirstActivity.prefName, 0);
+			virusTime = settings.getLong("virusTime", virusTime);
+			virusTime = virusTime + 21600000;
+
+			// adding point to user
+			int point = settings.getInt("point", 0);
+			point = point + 1;
+
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putLong("virusTime", virusTime);
+			editor.putInt("point", point);
+			editor.commit();
+
+			Intent intent = new Intent(this, HaveVirusActivity.class);
+			startActivity(intent);
+			
+		} else {
+			Toast.makeText(getApplicationContext(),
+					"Something is wrong with goBack() in haveVirus !!",
+					Toast.LENGTH_LONG).show();
+		}
+
 	}
 }
