@@ -10,15 +10,15 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="164dp"
+        android:onClick="goBack"
         android:text="Button" />
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="59dp"
-        android:text="To send a virus or a antidote to another player put your phone close to the target and wait for the sound and then click on the screen to send. The targed phone need to be unlocked. GLHF" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
 
 </RelativeLayout>
