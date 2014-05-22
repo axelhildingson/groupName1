@@ -99,4 +99,14 @@
         android:layout_alignLeft="@+id/imageView1"
         android:src="@drawable/tally_score" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/pulse_to_animation" 
+        android:layout_marginBottom="340dp" />
+
 </RelativeLayout>

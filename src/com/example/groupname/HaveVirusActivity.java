@@ -33,6 +33,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -145,6 +147,11 @@ public class HaveVirusActivity extends Activity implements
 					"@drawable/" + imgName, "drawable",
 					getActivity().getPackageName());
 			img.setImageResource(imageresource);
+			
+			ImageView myImageView = (ImageView) rootView.findViewById(R.id.imageView4);
+			Animation myFadeInAnimation = AnimationUtils.loadAnimation(
+					getActivity(), R.animator.tween2);
+			myImageView.startAnimation(myFadeInAnimation);
 
 			// time counter
 			mTextField1 = (TextView) rootView.findViewById(R.id.timer1);
@@ -359,7 +366,7 @@ public class HaveVirusActivity extends Activity implements
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
 			mTextFieldhelp = (TextView) rootView.findViewById(R.id.textView1);
-			mTextFieldhelp.setText("To send a virus to another player put your phone close to the target and wait for the sound and then click on the screen to send. The target phone need to be unlocked. Good Luck!");
+			mTextFieldhelp.setText("To send a virus to another player put your phone close to the target, wait for the sound and then click on the screen to send. The target phone need to be unlocked. Good Luck!");
 			mTextFieldhelp.setTypeface(tf);
 			mTextFieldhelp.setTextSize(20);
 			mTextFieldhelp.setEms(12);
