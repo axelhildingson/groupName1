@@ -310,6 +310,7 @@ public class SendDattActivity extends ActionBarActivity implements
 	
 	
 	public void playPoppingSound(){
+		
 		mediaPlayer2.stop();
 		mediaPlayer2 = MediaPlayer
 				.create(this,
