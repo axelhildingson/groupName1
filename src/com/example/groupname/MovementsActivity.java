@@ -82,7 +82,7 @@ public class MovementsActivity extends Activity {
 		
 		mediaPlayer1 = MediaPlayer
 				.create(this,
-						R.raw.antidote_bubbling);
+						R.raw.testtubeshake);
 		mediaPlayer1.start();
 		
 	}

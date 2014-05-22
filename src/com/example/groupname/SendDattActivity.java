@@ -311,9 +311,10 @@ public class SendDattActivity extends ActionBarActivity implements
 	
 	public void playPoppingSound(){
 		
+		mediaPlayer2.stop();
 		mediaPlayer2 = MediaPlayer
 				.create(this,
-						R.raw.antidote_finnished_brew);
+						R.raw.antidotebottlepop);
 		mediaPlayer2.setLooping(false);
 		mediaPlayer2.start();
 		
@@ -330,6 +331,8 @@ public class SendDattActivity extends ActionBarActivity implements
 	
 	@Override
 	public void onResume(){
+		mediaPlayer1.stop();
+		mediaPlayer2.stop();
 		mediaPlayer1.start();
 		super.onResume();
 	}

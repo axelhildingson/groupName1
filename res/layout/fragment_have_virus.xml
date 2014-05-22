@@ -18,6 +18,15 @@
         android:alpha="0.0"
         android:onClick="abortGame"
         android:text="Abort Game" />
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/questionmark"
+        android:onClick="getHelp"
+        android:text=" ? " />
 
     <TextView
         android:id="@+id/timer2"

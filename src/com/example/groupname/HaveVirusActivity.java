@@ -2,6 +2,8 @@ package com.example.groupname;
 
 import java.nio.charset.Charset;
 
+import com.example.groupname.HaveAntidoteActivity.HelpFragment;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -311,4 +313,45 @@ public class HaveVirusActivity extends Activity implements
 		}
 
 	}
+	public void getHelp(View view) {
+		// Create new fragment and transaction
+		Fragment newFragment = new HelpFragment();
+		android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+		// Replace whatever is in the fragment_container view with this fragment,
+		// and add the transaction to the back stack
+		transaction.replace(R.id.container, newFragment);
+		transaction.addToBackStack(null);
+
+		// Commit the transaction
+		transaction.commit();
+	}
+	
+	public static class HelpFragment extends Fragment {
+
+		private TextView mTextFieldhelp;
+		
+		public HelpFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_help,
+					container, false);
+			mTextFieldhelp = (TextView) rootView.findViewById(R.id.textView1);
+			mTextFieldhelp.setText("To send a virus or a antidote to another player put your phone close to the target and wait for the sound and then click on the screen to send. The targed phone need to be unlocked. GLHF");
+			mTextFieldhelp.setTypeface(tf);
+			mTextFieldhelp.setTextSize(20);
+			mTextFieldhelp.setEms(12);
+			
+			return rootView;
+		}	
+	}
+
+	public void goBack(View view){
+		Intent intent = new Intent(this, FirstActivity.class);
+		startActivity(intent);
+	}
 }
+

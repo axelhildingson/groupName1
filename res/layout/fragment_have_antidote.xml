@@ -14,38 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:alpha="0.0"
         android:onClick="abortGame"
-        android:text="Abort Game"
-        android:alpha="0.0" />
-    
-     <Button
-        android:id="@+id/helpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/questionmark"
-        android:onClick="getHelp"
-        android:text=" ? " />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/imageView3"
-        android:src="@drawable/tally_score" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="17dp"
-        android:layout_toRightOf="@+id/imageView1"
-        android:src="@drawable/tally_0" />
+        android:text="Abort Game" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -58,11 +29,40 @@
         android:minWidth="200dip"
         android:src="@drawable/dote_icon" />
 
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button1"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/questionmark"
+        android:onClick="getHelp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginRight="77dp"
+        android:layout_marginTop="57dp"
+        android:src="@drawable/tally_score" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignRight="@+id/button1"
+        android:src="@drawable/tally_0" />
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_alignRight="@+id/imageView4" />
+        android:layout_alignBottom="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
 
 </RelativeLayout>
