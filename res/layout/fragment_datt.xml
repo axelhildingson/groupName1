@@ -8,29 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.groupname.DattActivity$PlaceholderFragment" >
 
-    
-    
-    
-    
-    
-    
-    
-<!--     <ImageView -->
-<!--         android:id="@+id/imageView1" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_centerHorizontal="true" -->
-<!--         android:layout_centerVertical="true" -->
-<!--         android:src="@drawable/tube3" /> -->
+    <!-- <ImageView -->
+    <!-- android:id="@+id/imageView1" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_centerHorizontal="true" -->
+    <!-- android:layout_centerVertical="true" -->
+    <!-- android:src="@drawable/tube3" /> -->
 
-<!--     <ImageView -->
-<!--         android:id="@+id/imageView3" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_centerHorizontal="true" -->
-<!--         android:layout_centerVertical="true" -->
-<!--         android:src="@drawable/tube2" /> -->
 
+    <!-- <ImageView -->
+    <!-- android:id="@+id/imageView3" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_centerHorizontal="true" -->
+    <!-- android:layout_centerVertical="true" -->
+    <!-- android:src="@drawable/tube2" /> -->
 
     <ImageView
         android:id="@+id/imageView1"
@@ -38,18 +31,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp"
+        android:layout_marginBottom="120dp"
+        android:src="@drawable/testtubestart" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="120dp"
         android:src="@drawable/testtubefadein" />
 
-        <ImageView
+    <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp"
-        android:src="@drawable/testtubestart" />
-    
-
+        android:layout_marginBottom="120dp"
+        android:src="@drawable/testtubefinnished" />
 
 </RelativeLayout>

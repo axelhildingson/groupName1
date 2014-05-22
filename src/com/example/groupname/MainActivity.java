@@ -152,7 +152,7 @@ public class MainActivity extends ActionBarActivity {
 	@Override
 	public void onResume(){
 		m.play(6000);
-		super.onPause();
+		super.onResume();
 	}
 	
     @Override

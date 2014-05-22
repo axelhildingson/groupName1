@@ -3,14 +3,13 @@ package com.example.groupname;
 import java.nio.charset.Charset;
 
 import android.support.v7.app.ActionBarActivity;
-
 import android.support.v4.app.Fragment;
-
 import android.text.format.Time;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
@@ -18,20 +17,15 @@ import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ImageView;
-
 import android.widget.Toast;
-
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-
 
 public class SendDattActivity extends ActionBarActivity implements
 		CreateNdefMessageCallback, OnNdefPushCompleteCallback {
@@ -44,6 +38,8 @@ public class SendDattActivity extends ActionBarActivity implements
 	private boolean gameStarted;
 	private boolean gameVirus;
 	private boolean hasAntidote;
+	private MediaPlayer mediaPlayer1;
+	private MediaPlayer mediaPlayer2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +67,11 @@ public class SendDattActivity extends ActionBarActivity implements
 		mNfcAdapter.setNdefPushMessageCallback(this, this);
 		// Register callback to listen for message-sent success
 		mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
+		
+		mediaPlayer1 = new MediaPlayer();
+		mediaPlayer2 = new MediaPlayer();
+		
+
 
 	}
 
@@ -127,13 +128,15 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			}
 
-			ImageView fullAntidote = (ImageView) rootView
-					.findViewById(R.id.imageView1);
-
 			final ImageView halfAntidote = (ImageView) rootView
+					.findViewById(R.id.imageView1);
+			final ImageView fullAntidote = (ImageView) rootView
+					.findViewById(R.id.imageView2);
+			final ImageView popAntidote = (ImageView) rootView
 					.findViewById(R.id.imageView3);
 
 			fullAntidote.setVisibility(View.GONE);
+			popAntidote.setVisibility(View.GONE);
 
 			int mShortAnimationDuration = 3000;
 
@@ -148,7 +151,37 @@ public class SendDattActivity extends ActionBarActivity implements
 					.setListener(new AnimatorListenerAdapter() {
 						@Override
 						public void onAnimationEnd(Animator animation) {
+
 							halfAntidote.setVisibility(View.GONE);
+
+							int mShortAnimationDuration = 2000;
+
+							popAntidote.setAlpha(0f);
+							popAntidote.setVisibility(View.VISIBLE);
+
+							popAntidote.animate().alpha(1f)
+									.setDuration(mShortAnimationDuration)
+									.setListener(null);
+							
+							SendDattActivity activity = (SendDattActivity) getActivity();
+							activity.playPoppingSound();
+
+
+							fullAntidote.animate().alpha(0f)
+									.setDuration(mShortAnimationDuration)
+									.setListener(new AnimatorListenerAdapter() {
+										@Override
+										public void onAnimationEnd(
+												Animator animation) {
+											fullAntidote
+													.setVisibility(View.GONE);
+											SendDattActivity activity = (SendDattActivity) getActivity();
+											activity.playBubblingSound();
+
+
+										}
+									});
+
 						}
 					});
 
@@ -220,9 +253,6 @@ public class SendDattActivity extends ActionBarActivity implements
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MESSAGE_SENT:
-				Toast.makeText(getApplicationContext(),
-						"Handler is Working!!", Toast.LENGTH_LONG)
-						.show();
 				goBack();
 				break;
 			}
@@ -237,11 +267,10 @@ public class SendDattActivity extends ActionBarActivity implements
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
 			virusTime = settings.getLong("virusTime", virusTime);
-			virusTime = virusTime + 7200000;
+			virusTime = virusTime + 21600000;
 
 			// adding point to user
-			int point = 0;
-			point = settings.getInt("point", point);
+			int point = settings.getInt("point", 0);
 			point = point + 1;
 
 			SharedPreferences.Editor editor = settings.edit();
@@ -255,8 +284,8 @@ public class SendDattActivity extends ActionBarActivity implements
 
 			SharedPreferences settings = getSharedPreferences(
 					FirstActivity.prefName, 0);
-			int point = 0;
-			point = settings.getInt("point", point);
+
+			int point = settings.getInt("point", 0);
 			point = point + 1;
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putInt("point", point);
@@ -267,5 +296,58 @@ public class SendDattActivity extends ActionBarActivity implements
 		}
 
 	}
+	
+	
+	public void playBubblingSound(){
+		
+		mediaPlayer1 = MediaPlayer
+				.create(this,
+						R.raw.antidote_bubbling);
+		mediaPlayer1.setLooping(true);
+		mediaPlayer1.start();
+		
+	}
+	
+	
+	public void playPoppingSound(){
+		
+		mediaPlayer2 = MediaPlayer
+				.create(this,
+						R.raw.antidote_finnished_brew);
+		mediaPlayer2.setLooping(false);
+		mediaPlayer2.start();
+		
+	}
+	
+	
+	
+	@Override
+	public void onPause(){
+		mediaPlayer1.stop();
+		mediaPlayer2.stop();
+		super.onPause();
+	}
+	
+	@Override
+	public void onResume(){
+		mediaPlayer1.start();
+		super.onResume();
+	}
+	
+    @Override
+    public void onStop() {
+		mediaPlayer1.stop();
+		mediaPlayer2.stop();
+        super.onStop();
+
+    }
+
+   @Override
+    public void onDestroy() {
+		mediaPlayer1.stop();
+		mediaPlayer2.stop();
+        super.onDestroy();
+
+    }
 
 }

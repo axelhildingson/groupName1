@@ -10,6 +10,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,11 +27,16 @@ public class MovementsActivity extends Activity {
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
 	private int nbrOfShakes = 0;
-	private static int requiredAmountOfShakes = 5;
+	private static int requiredAmountOfShakes = 7;
+	private MediaPlayer mediaPlayer1;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
+		
+		
 
 		public void onSensorChanged(SensorEvent se) {
+
+
 
 			// Case1
 			// case2
@@ -46,6 +52,11 @@ public class MovementsActivity extends Activity {
 
 			if (mAccel > 9) {
 				nbrOfShakes = nbrOfShakes + 1;
+				mediaPlayer1.start();
+				
+				playBubbleSound();
+				
+				
 				if (nbrOfShakes == requiredAmountOfShakes) {
 					nbrOfShakes = 0;
 					shakeSuccess();
@@ -63,12 +74,25 @@ public class MovementsActivity extends Activity {
 		Intent intent = new Intent(this, SendDattActivity.class);
 		startActivity(intent);
 	}
+	
+	
+	private void playBubbleSound(){
+		
+		mediaPlayer1.stop();
+		
+		mediaPlayer1 = MediaPlayer
+				.create(this,
+						R.raw.antidote_bubbling);
+		mediaPlayer1.start();
+		
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_movements);
 
+		mediaPlayer1 = new MediaPlayer();
 		
 		//remove statusbar
 		View decorView = getWindow().getDecorView();

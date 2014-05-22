@@ -139,7 +139,7 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			} else {
 				
 				long virusTime= System.currentTimeMillis();
-				virusTime = virusTime + 21600000;
+				virusTime = virusTime + 172800000;
 				editor.putBoolean("gameVirus", true); 
 				editor.putLong("virusTime" , virusTime);
 				editor.commit();

@@ -1010,32 +1010,33 @@ containing a value of this type.
         public static final int neutral_icon=0x7f02006a;
         public static final int question_mark=0x7f02006b;
         public static final int question_mark_pressed=0x7f02006c;
-        public static final int score_button=0x7f02006d;
-        public static final int tally_0=0x7f02006e;
-        public static final int tally_1=0x7f02006f;
-        public static final int tally_2=0x7f020070;
-        public static final int tally_3=0x7f020071;
-        public static final int tally_4=0x7f020072;
-        public static final int tally_5=0x7f020073;
-        public static final int tally_score=0x7f020074;
-        public static final int test_tube_hi_1=0x7f020075;
-        public static final int testtube=0x7f020076;
-        public static final int testtube0=0x7f020077;
-        public static final int testtube1=0x7f020078;
-        public static final int testtube3=0x7f020079;
-        public static final int testtube4=0x7f02007a;
-        public static final int testtube5=0x7f02007b;
-        public static final int testtube6=0x7f02007c;
-        public static final int testtube7=0x7f02007d;
-        public static final int testtubefadein=0x7f02007e;
-        public static final int testtubefinnished=0x7f02007f;
-        public static final int testtubestart=0x7f020080;
-        public static final int tube2=0x7f020081;
-        public static final int tube22=0x7f020082;
-        public static final int tube3=0x7f020083;
-        public static final int tube33=0x7f020084;
-        public static final int viro=0x7f020085;
-        public static final int viro_icon=0x7f020086;
+        public static final int questionmark=0x7f02006d;
+        public static final int score_button=0x7f02006e;
+        public static final int tally_0=0x7f02006f;
+        public static final int tally_1=0x7f020070;
+        public static final int tally_2=0x7f020071;
+        public static final int tally_3=0x7f020072;
+        public static final int tally_4=0x7f020073;
+        public static final int tally_5=0x7f020074;
+        public static final int tally_score=0x7f020075;
+        public static final int test_tube_hi_1=0x7f020076;
+        public static final int testtube=0x7f020077;
+        public static final int testtube0=0x7f020078;
+        public static final int testtube1=0x7f020079;
+        public static final int testtube3=0x7f02007a;
+        public static final int testtube4=0x7f02007b;
+        public static final int testtube5=0x7f02007c;
+        public static final int testtube6=0x7f02007d;
+        public static final int testtube7=0x7f02007e;
+        public static final int testtubefadein=0x7f02007f;
+        public static final int testtubefinnished=0x7f020080;
+        public static final int testtubestart=0x7f020081;
+        public static final int tube2=0x7f020082;
+        public static final int tube22=0x7f020083;
+        public static final int tube3=0x7f020084;
+        public static final int tube33=0x7f020085;
+        public static final int viro=0x7f020086;
+        public static final int viro_icon=0x7f020087;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
@@ -1059,7 +1060,6 @@ containing a value of this type.
         public static final int checkbox=0x7f07002d;
         public static final int collapseActionView=0x7f07000d;
         public static final int container=0x7f07003c;
-        public static final int counter=0x7f070046;
         public static final int default_activity_button=0x7f070028;
         public static final int dialog=0x7f07000e;
         public static final int disableHome=0x7f070008;
@@ -1069,16 +1069,16 @@ containing a value of this type.
         public static final int expand_activities_button=0x7f070026;
         public static final int expanded_menu=0x7f07002c;
         public static final int gameType=0x7f07003d;
-        public static final int helpButton=0x7f070043;
+        public static final int helpButton=0x7f070044;
         public static final int home=0x7f070014;
         public static final int homeAsUp=0x7f070005;
         public static final int icon=0x7f07002a;
         public static final int ifRoom=0x7f07000a;
         public static final int image=0x7f070027;
         public static final int imageView1=0x7f070041;
-        public static final int imageView2=0x7f070045;
-        public static final int imageView3=0x7f070042;
-        public static final int imageView4=0x7f070044;
+        public static final int imageView2=0x7f070042;
+        public static final int imageView3=0x7f070043;
+        public static final int imageView4=0x7f070045;
         public static final int listMode=0x7f070001;
         public static final int list_item=0x7f070029;
         public static final int middle=0x7f070012;
@@ -1105,11 +1105,12 @@ containing a value of this type.
         public static final int split_action_bar=0x7f07001e;
         public static final int submit_area=0x7f070039;
         public static final int tabMode=0x7f070002;
-        public static final int timer1=0x7f070048;
-        public static final int timer2=0x7f070047;
-        public static final int timer3=0x7f070049;
-        public static final int timer4=0x7f07004a;
-        public static final int timer5=0x7f07004b;
+        public static final int textView1=0x7f07004b;
+        public static final int timer1=0x7f070047;
+        public static final int timer2=0x7f070046;
+        public static final int timer3=0x7f070048;
+        public static final int timer4=0x7f070049;
+        public static final int timer5=0x7f07004a;
         public static final int title=0x7f07002b;
         public static final int top_action_bar=0x7f070020;
         public static final int up=0x7f070021;
@@ -1203,10 +1204,17 @@ containing a value of this type.
         public static final int receive_datt=0x7f0e000a;
     }
     public static final class raw {
+<<<<<<< HEAD
         public static final int antidote_recieved=0x7f060000;
         public static final int antidotebottlepop=0x7f060001;
         public static final int iconclicked=0x7f060002;
         public static final int testtubeshake=0x7f060003;
+=======
+        public static final int antidote_bubbling=0x7f060000;
+        public static final int antidote_finnished_brew=0x7f060001;
+        public static final int antidote_recieved=0x7f060002;
+        public static final int iconclicked=0x7f060003;
+>>>>>>> FETCH_HEAD
         public static final int virodotetheme=0x7f060004;
         public static final int virus_recieved=0x7f060005;
     }

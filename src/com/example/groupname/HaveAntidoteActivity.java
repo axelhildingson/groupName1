@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -150,7 +151,10 @@ public class HaveAntidoteActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_have_antidote,
 					container, false);
 			
-			// Add points 
+			// Add points
+			HaveAntidoteActivity activity = (HaveAntidoteActivity) getActivity();
+			SharedPreferences settings = activity.getSharedPreferences(FirstActivity.prefName, 0);
+			int point = settings.getInt("point", 0);
 			String imgName = "tally_" + String.valueOf(point);
 			ImageView img2= (ImageView) rootView.findViewById(R.id.imageView3);
 			int imageresource = getResources().getIdentifier("@drawable/" + imgName, "drawable", getActivity().getPackageName());        
@@ -202,6 +206,8 @@ public class HaveAntidoteActivity extends Activity {
 	
 	public static class HelpFragment extends Fragment {
 
+		private TextView mTextFieldhelp;
+		
 		public HelpFragment() {
 		}
 
@@ -210,6 +216,9 @@ public class HaveAntidoteActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
+			mTextFieldhelp = (TextView) rootView.findViewById(R.id.timer1);
+			
+			
 			return rootView;
 		}
 	}
