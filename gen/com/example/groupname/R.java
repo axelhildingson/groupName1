@@ -1204,19 +1204,14 @@ containing a value of this type.
         public static final int receive_datt=0x7f0e000a;
     }
     public static final class raw {
-<<<<<<< HEAD
-        public static final int antidote_recieved=0x7f060000;
-        public static final int antidotebottlepop=0x7f060001;
-        public static final int iconclicked=0x7f060002;
-        public static final int testtubeshake=0x7f060003;
-=======
         public static final int antidote_bubbling=0x7f060000;
         public static final int antidote_finnished_brew=0x7f060001;
         public static final int antidote_recieved=0x7f060002;
-        public static final int iconclicked=0x7f060003;
->>>>>>> FETCH_HEAD
-        public static final int virodotetheme=0x7f060004;
-        public static final int virus_recieved=0x7f060005;
+        public static final int antidotebottlepop=0x7f060003;
+        public static final int iconclicked=0x7f060004;
+        public static final int testtubeshake=0x7f060005;
+        public static final int virodotetheme=0x7f060006;
+        public static final int virus_recieved=0x7f060007;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
