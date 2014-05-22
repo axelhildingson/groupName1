@@ -4,42 +4,73 @@
 
     <item
         android:drawable="@drawable/testtube0"
-        android:duration="100"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/testtube1"
-        android:duration="20"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/testtube3"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube4"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube5"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube6"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube7"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube6"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube5"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube4"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube3"
-        android:duration="20"/>
-    <item
-        android:drawable="@drawable/testtube1"
-        android:duration="20"/>
+        android:duration="50"/>
+    
     <item
         android:drawable="@drawable/testtube0"
-        android:duration="200"/>
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube4"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube7"
+        android:duration="50"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube5"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube6"
+        android:duration="50"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube7"
+        android:duration="50"/>
+    <item
+        android:drawable="@drawable/testtube4"
+        android:duration="50"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
+        android:duration="50"/>
+	<item
+        android:drawable="@drawable/testtube5"
+        android:duration="20"/>
+    <item
+        android:drawable="@drawable/testtube6"
+        android:duration="20"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
+        android:duration="20"/>
+    <item
+        android:drawable="@drawable/testtube6"
+        android:duration="20"/>
+    <item
+        android:drawable="@drawable/testtube5"
+        android:duration="20"/>
+    
+    <item
+        android:drawable="@drawable/testtube0"
+        android:duration="20"/>
+    <item
+        android:drawable="@drawable/testtube3"
+        android:duration="20"/>
+    <item
+        android:drawable="@drawable/testtube4"
+        android:duration="50"/>
+
 
 </animation-list>
