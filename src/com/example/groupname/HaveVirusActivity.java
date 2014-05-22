@@ -11,7 +11,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
+import android.nfc.NfcAdapter.CreateNdefMessageCallback;
+import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
+import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -24,8 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class HaveVirusActivity extends Activity {
-
+public class HaveVirusActivity extends Activity implements
+CreateNdefMessageCallback, OnNdefPushCompleteCallback  {
+	
+	private NfcAdapter mNfcAdapter;
 	private SensorManager mSensorManager;
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
@@ -70,6 +76,8 @@ public class HaveVirusActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_have_virus);
+		
+		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
 		// add font
 		tf = Typeface.createFromAsset(getAssets(),"fonts/Molot.otf");
@@ -107,8 +115,10 @@ public class HaveVirusActivity extends Activity {
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
 
-		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
-		adapter.setNdefPushMessage(null, this, this);
+		// Register callback to set NDEF message
+		mNfcAdapter.setNdefPushMessageCallback(this, this);
+		// Register callback to listen for message-sent success
+		mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
 
 	}
 
@@ -246,5 +256,17 @@ public class HaveVirusActivity extends Activity {
 	protected void onPause() {
 		mSensorManager.unregisterListener(mSensorListener);
 		super.onPause();
+	}
+
+	@Override
+	public void onNdefPushComplete(NfcEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public NdefMessage createNdefMessage(NfcEvent event) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
