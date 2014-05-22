@@ -330,6 +330,8 @@ public class SendDattActivity extends ActionBarActivity implements
 	
 	@Override
 	public void onResume(){
+		mediaPlayer1.stop();
+		mediaPlayer2.stop();
 		mediaPlayer1.start();
 		super.onResume();
 	}
