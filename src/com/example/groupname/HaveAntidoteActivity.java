@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 import android.os.Build;
 
 public class HaveAntidoteActivity extends Activity {
@@ -227,10 +228,17 @@ public class HaveAntidoteActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
 			mTextFieldhelp = (TextView) rootView.findViewById(R.id.textView1);
-			mTextFieldhelp.setText("To send a virus or a antidote to another player put your phone close to the target and wait for the sound and then click on the screen to send. The targed phone need to be unlocked. GLHF");
+			mTextFieldhelp.setText("To send a virus or a antidote to another player put your phone close to the target, wait for the sound and then click on the screen to send. The targe phone needs to be unlocked. Good Luck!");
 			mTextFieldhelp.setTypeface(tf);
 			mTextFieldhelp.setTextSize(20);
 			mTextFieldhelp.setEms(12);
+			
+			// tube animation
+			ViewAnimator img1 = (ViewAnimator) rootView.findViewById(R.id.viewAnimator1);
+			img1.setBackgroundResource(R.animator.clutchanimation);
+			AnimationDrawable frameAnimation = (AnimationDrawable) img1
+					.getBackground();
+			frameAnimation.start();
 			
 			return rootView;
 		}	

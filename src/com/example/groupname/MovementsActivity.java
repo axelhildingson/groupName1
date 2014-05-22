@@ -17,6 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -31,12 +34,8 @@ public class MovementsActivity extends Activity {
 	private MediaPlayer mediaPlayer1;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
-		
-		
 
 		public void onSensorChanged(SensorEvent se) {
-
-
 
 			// Case1
 			// case2
@@ -53,10 +52,9 @@ public class MovementsActivity extends Activity {
 			if (mAccel > 9) {
 				nbrOfShakes = nbrOfShakes + 1;
 				mediaPlayer1.start();
-				
+
 				playBubbleSound();
-				
-				
+
 				if (nbrOfShakes == requiredAmountOfShakes) {
 					nbrOfShakes = 0;
 					shakeSuccess();
@@ -74,17 +72,14 @@ public class MovementsActivity extends Activity {
 		Intent intent = new Intent(this, SendDattActivity.class);
 		startActivity(intent);
 	}
-	
-	
-	private void playBubbleSound(){
-		
+
+	private void playBubbleSound() {
+
 		mediaPlayer1.stop();
-		
-		mediaPlayer1 = MediaPlayer
-				.create(this,
-						R.raw.testtubeshake);
+
+		mediaPlayer1 = MediaPlayer.create(this, R.raw.testtubeshake);
 		mediaPlayer1.start();
-		
+
 	}
 
 	@Override
@@ -93,8 +88,8 @@ public class MovementsActivity extends Activity {
 		setContentView(R.layout.activity_movements);
 
 		mediaPlayer1 = new MediaPlayer();
-		
-		//remove statusbar
+
+		// remove statusbar
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -103,7 +98,7 @@ public class MovementsActivity extends Activity {
 		// status bar is hidden, so hide that too if necessary.
 		android.app.ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -153,6 +148,9 @@ public class MovementsActivity extends Activity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
+			View rootView = inflater.inflate(
+					R.layout.fragment_movements, container, false);
+
 			MovementsActivity activity = (MovementsActivity) getActivity();
 
 			SharedPreferences settings = activity.getSharedPreferences(
@@ -160,17 +158,10 @@ public class MovementsActivity extends Activity {
 
 			hasAntidote = settings.getBoolean("hasAntidote", false);
 
-			View rootView = null;
-
-			if (hasAntidote) {
-				rootView = inflater.inflate(R.layout.fragment_movements,
-						container, false);
-			} else {
-
-				rootView = inflater.inflate(R.layout.fragment_movements2,
-						container, false);
-
-			}
+			ImageView myImageView = (ImageView) rootView.findViewById(R.id.imageView2);
+			Animation myFadeInAnimation = AnimationUtils.loadAnimation(
+					getActivity(), R.animator.tween);
+			myImageView.startAnimation(myFadeInAnimation);
 
 			return rootView;
 		}

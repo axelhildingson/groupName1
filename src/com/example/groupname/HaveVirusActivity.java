@@ -362,6 +362,8 @@ public class HaveVirusActivity extends Activity implements
 			mTextFieldhelp.setTextSize(20);
 			mTextFieldhelp.setEms(12);
 			
+			
+			
 			return rootView;
 		}	
 	}
