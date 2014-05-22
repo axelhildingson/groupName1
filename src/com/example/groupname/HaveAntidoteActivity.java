@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,6 +32,7 @@ public class HaveAntidoteActivity extends Activity {
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
 	private static int point;
+	public static Typeface tf;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -79,6 +81,9 @@ public class HaveAntidoteActivity extends Activity {
 		// status bar is hidden, so hide that too if necessary.
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
+		
+		//fonts
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Molot.otf");
 		
 		//point counter
 		int point = 0;
@@ -216,19 +221,18 @@ public class HaveAntidoteActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
-			mTextFieldhelp = (TextView) rootView.findViewById(R.id.timer1);
-			
+			mTextFieldhelp = (TextView) rootView.findViewById(R.id.textView1);
+			mTextFieldhelp.setText("To send a virus or a antidote to another player put your phone close to the target and wait for the sound and then click on the screen to send. The targed phone need to be unlocked. GLHF");
+			mTextFieldhelp.setTypeface(tf);
+			mTextFieldhelp.setTextSize(20);
+			mTextFieldhelp.setEms(12);
 			
 			return rootView;
-		}
+		}	
 	}
 
-	// @Override
-	// public void onBackPressed()
-	// {
-	//
-	// // super.onBackPressed(); // Comment this super call to avoid calling
-	// finish()
-	// }
-
+	public void goBack(View view){
+		Intent intent = new Intent(this, FirstActivity.class);
+		startActivity(intent);
+	}
 }
