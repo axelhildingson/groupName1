@@ -24,6 +24,7 @@ public final class R {
         public static final int clutchanimation=0x7f050004;
         public static final int tubeanimation=0x7f050005;
         public static final int tween=0x7f050006;
+        public static final int tween2=0x7f050007;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1123,36 +1124,37 @@ containing a value of this type.
         public static final int logo_virodote=0x7f020079;
         public static final int my_icon=0x7f02007a;
         public static final int neutral_icon=0x7f02007b;
-        public static final int question_mark=0x7f02007c;
-        public static final int question_mark_pressed=0x7f02007d;
-        public static final int questionmark=0x7f02007e;
-        public static final int score_button=0x7f02007f;
-        public static final int shake=0x7f020080;
-        public static final int tally_0=0x7f020081;
-        public static final int tally_1=0x7f020082;
-        public static final int tally_2=0x7f020083;
-        public static final int tally_3=0x7f020084;
-        public static final int tally_4=0x7f020085;
-        public static final int tally_5=0x7f020086;
-        public static final int tally_score=0x7f020087;
-        public static final int test_tube_hi_1=0x7f020088;
-        public static final int testtube=0x7f020089;
-        public static final int testtube0=0x7f02008a;
-        public static final int testtube1=0x7f02008b;
-        public static final int testtube3=0x7f02008c;
-        public static final int testtube4=0x7f02008d;
-        public static final int testtube5=0x7f02008e;
-        public static final int testtube6=0x7f02008f;
-        public static final int testtube7=0x7f020090;
-        public static final int testtubefadein=0x7f020091;
-        public static final int testtubefinnished=0x7f020092;
-        public static final int testtubestart=0x7f020093;
-        public static final int tube2=0x7f020094;
-        public static final int tube22=0x7f020095;
-        public static final int tube3=0x7f020096;
-        public static final int tube33=0x7f020097;
-        public static final int viro=0x7f020098;
-        public static final int viro_icon=0x7f020099;
+        public static final int pulse_to_animation=0x7f02007c;
+        public static final int question_mark=0x7f02007d;
+        public static final int question_mark_pressed=0x7f02007e;
+        public static final int questionmark=0x7f02007f;
+        public static final int score_button=0x7f020080;
+        public static final int shake=0x7f020081;
+        public static final int tally_0=0x7f020082;
+        public static final int tally_1=0x7f020083;
+        public static final int tally_2=0x7f020084;
+        public static final int tally_3=0x7f020085;
+        public static final int tally_4=0x7f020086;
+        public static final int tally_5=0x7f020087;
+        public static final int tally_score=0x7f020088;
+        public static final int test_tube_hi_1=0x7f020089;
+        public static final int testtube=0x7f02008a;
+        public static final int testtube0=0x7f02008b;
+        public static final int testtube1=0x7f02008c;
+        public static final int testtube3=0x7f02008d;
+        public static final int testtube4=0x7f02008e;
+        public static final int testtube5=0x7f02008f;
+        public static final int testtube6=0x7f020090;
+        public static final int testtube7=0x7f020091;
+        public static final int testtubefadein=0x7f020092;
+        public static final int testtubefinnished=0x7f020093;
+        public static final int testtubestart=0x7f020094;
+        public static final int tube2=0x7f020095;
+        public static final int tube22=0x7f020096;
+        public static final int tube3=0x7f020097;
+        public static final int tube33=0x7f020098;
+        public static final int viro=0x7f020099;
+        public static final int viro_icon=0x7f02009a;
     }
     public static final class id {
         public static final int action_bar=0x7f07001c;
