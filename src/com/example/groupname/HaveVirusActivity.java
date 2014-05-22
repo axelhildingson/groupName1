@@ -216,6 +216,8 @@ public class HaveVirusActivity extends Activity implements
 		boolean gameVirus = false;
 		boolean gameNormal = false;
 		boolean hasAntidote = false;
+		long virusTime = 0L;
+		int point = 0;
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
@@ -224,6 +226,8 @@ public class HaveVirusActivity extends Activity implements
 		editor.putBoolean("gameVirus", gameVirus);
 		editor.putBoolean("gameNormal", gameNormal);
 		editor.putBoolean("hasAntidote", hasAntidote);
+		editor.putLong("virusTime", virusTime);
+		editor.putLong("point", point);
 		editor.commit();
 
 		Intent intent = new Intent(this, MainActivity.class);
