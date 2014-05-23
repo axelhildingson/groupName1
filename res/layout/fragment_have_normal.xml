@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:alpha="0.0"
         android:onClick="abortGame"
-        android:text="Abort Game" 
-        android:alpha="0.0"/>
+        android:text="Abort Game" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -28,10 +28,10 @@
         android:minHeight="200dip"
         android:minWidth="200dip"
         android:src="@drawable/neutral_icon" />
-    
+
     <TextView
         android:id="@+id/timer2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/timer1"
         android:layout_below="@+id/timer1"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/timer3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/timer2"
         android:layout_below="@+id/timer2"
@@ -48,29 +48,29 @@
 
     <TextView
         android:id="@+id/timer4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/timer3"
         android:layout_below="@+id/timer3"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/timer1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="15dp"
-        android:text="TextView"
-        android:textSize="15dp"
-        android:typeface="monospace" />
-
-    <TextView
         android:id="@+id/timer5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/timer4"
         android:layout_below="@+id/timer4"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/timer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="TextView"
+        android:textSize="15dp"
+        android:typeface="monospace" />
 
 </RelativeLayout>

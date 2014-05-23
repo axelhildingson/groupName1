@@ -3,6 +3,7 @@ package com.example.groupname;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -10,6 +11,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -116,6 +118,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			hasAntidote = settings.getBoolean("hasAntidote", false);
 			gameVirus = settings.getBoolean("gameVirus", false);
 			
+			Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+			v.vibrate(500);
 			
 			if (!gameStarted) {
 				Toast.makeText(getApplicationContext(),
@@ -161,7 +165,8 @@ public class ReceiveDattActivity extends ActionBarActivity {
 			gameStarted = settings.getBoolean("gameStarted", false);
 			hasAntidote = settings.getBoolean("hasAntidote", false);
 			gameVirus = settings.getBoolean("gameVirus", false);
-			
+			Vibrator v1 = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+			v1.vibrate(3500);
 			
 			if (!gameStarted) {
 				Toast.makeText(getApplicationContext(),

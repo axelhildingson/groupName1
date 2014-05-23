@@ -10,12 +10,18 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -26,7 +32,8 @@ public class MovementsActivity extends Activity {
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
 	private int nbrOfShakes = 0;
-	private static int requiredAmountOfShakes = 5;
+	private static int requiredAmountOfShakes = 15;
+	private MediaPlayer mediaPlayer1;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -46,6 +53,9 @@ public class MovementsActivity extends Activity {
 
 			if (mAccel > 9) {
 				nbrOfShakes = nbrOfShakes + 1;
+
+				playBubbleSound();
+
 				if (nbrOfShakes == requiredAmountOfShakes) {
 					nbrOfShakes = 0;
 					shakeSuccess();
@@ -60,8 +70,18 @@ public class MovementsActivity extends Activity {
 
 	private void shakeSuccess() {
 		mSensorManager.unregisterListener(mSensorListener);
+		Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+		v.vibrate(500);
 		Intent intent = new Intent(this, SendDattActivity.class);
 		startActivity(intent);
+	}
+
+	private void playBubbleSound() {
+		
+		mediaPlayer1.stop();
+		mediaPlayer1 = MediaPlayer.create(this, R.raw.testtubeshake);
+		mediaPlayer1.start();
+
 	}
 
 	@Override
@@ -69,8 +89,9 @@ public class MovementsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_movements);
 
-		
-		//remove statusbar
+		mediaPlayer1 = new MediaPlayer();
+
+		// remove statusbar
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -79,7 +100,7 @@ public class MovementsActivity extends Activity {
 		// status bar is hidden, so hide that too if necessary.
 		android.app.ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -92,6 +113,10 @@ public class MovementsActivity extends Activity {
 		mAccel = 0.00f;
 		mAccelCurrent = SensorManager.GRAVITY_EARTH;
 		mAccelLast = SensorManager.GRAVITY_EARTH;
+		
+		
+		NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+		adapter.setNdefPushMessage(null, this, this);
 	}
 
 	@Override
@@ -129,6 +154,9 @@ public class MovementsActivity extends Activity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
+			View rootView = inflater.inflate(
+					R.layout.fragment_movements, container, false);
+
 			MovementsActivity activity = (MovementsActivity) getActivity();
 
 			SharedPreferences settings = activity.getSharedPreferences(
@@ -136,17 +164,10 @@ public class MovementsActivity extends Activity {
 
 			hasAntidote = settings.getBoolean("hasAntidote", false);
 
-			View rootView = null;
-
-			if (hasAntidote) {
-				rootView = inflater.inflate(R.layout.fragment_movements,
-						container, false);
-			} else {
-
-				rootView = inflater.inflate(R.layout.fragment_movements2,
-						container, false);
-
-			}
+			ImageView myImageView = (ImageView) rootView.findViewById(R.id.imageView2);
+			Animation myFadeInAnimation = AnimationUtils.loadAnimation(
+					getActivity(), R.animator.tween);
+			myImageView.startAnimation(myFadeInAnimation);
 
 			return rootView;
 		}

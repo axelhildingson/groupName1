@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -97,6 +98,9 @@ public class BeginActivity extends ActionBarActivity {
 			editor.putBoolean("hasAntidote", hasAntidote);
 			editor.putLong("virusTime" , virusTime);
 			editor.commit();
+			
+			MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.iconclicked);
+			mediaPlayer.start();
 
 			Intent intent = new Intent(this, HaveNormalActivity.class);
 			startActivity(intent);
@@ -126,6 +130,9 @@ public class BeginActivity extends ActionBarActivity {
 		editor.putLong("virusTime", virusTime);
 		editor.putInt("point", point);
 		editor.commit();
+		
+		MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.iconclicked);
+		mediaPlayer.start();
 
 		Intent intent = new Intent(this, HaveVirusActivity.class);
 		startActivity(intent);
@@ -147,6 +154,9 @@ public class BeginActivity extends ActionBarActivity {
 		editor.putBoolean("gameVirus", gameVirus);
 		editor.putBoolean("hasAntidote", hasAntidote);
 		editor.commit();
+		
+		MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.iconclicked);
+		mediaPlayer.start();
 
 		Intent intent = new Intent(this, HaveAntidoteActivity.class);
 		startActivity(intent);

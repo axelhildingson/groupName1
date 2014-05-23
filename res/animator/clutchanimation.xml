@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false" >
+
+    <item
+        android:drawable="@drawable/clutchanimation0"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation1"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation2"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation3"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation5"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation6"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation7"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation8"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation9"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation10"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation11"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation12"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation13"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation14"
+        android:duration="100"/>
+    <item
+        android:drawable="@drawable/clutchanimation15"
+        android:duration="600"/>
+
+
+
+</animation-list>

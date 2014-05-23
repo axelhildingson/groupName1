@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -20,7 +21,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 import android.os.Build;
 
 public class HaveAntidoteActivity extends Activity {
@@ -29,7 +32,8 @@ public class HaveAntidoteActivity extends Activity {
 	private float mAccel; // acceleration apart from gravity
 	private float mAccelCurrent; // current acceleration including gravity
 	private float mAccelLast; // last acceleration including gravity
-	private static int point;
+	private int point;
+	public static Typeface tf;
 
 	private final SensorEventListener mSensorListener = new SensorEventListener() {
 
@@ -47,7 +51,7 @@ public class HaveAntidoteActivity extends Activity {
 			float delta = mAccelCurrent - mAccelLast;
 			mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
-			if (mAccel > 9) {
+			if (mAccel > 12) {
 				mSensorManager.unregisterListener(this);
 				doMovements();
 			}
@@ -78,6 +82,9 @@ public class HaveAntidoteActivity extends Activity {
 		// status bar is hidden, so hide that too if necessary.
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
+		
+		//fonts
+		tf = Typeface.createFromAsset(getAssets(), "fonts/Molot.otf");
 		
 		//point counter
 		int point = 0;
@@ -172,17 +179,22 @@ public class HaveAntidoteActivity extends Activity {
 
 	public void abortGame(View view) {
 		boolean gameStarted = false;
-		boolean gameModeNormal = false;
-		boolean gameModeChallenge = false;
-		boolean hasDatt = false;
+		boolean gameVirus = false;
+		boolean gameNormal = false;
+		boolean hasAntidote = false;
+		long virusTime = 0L;
+		int point = 0;
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean("gameStarted", gameStarted);
-		editor.putBoolean("gameModeNormal", gameModeNormal);
-		editor.putBoolean("gameModeChallenge", gameModeChallenge);
-		editor.putBoolean("hasDatt", hasDatt);
+		editor.putBoolean("gameVirus", gameVirus);
+		editor.putBoolean("gameNormal", gameNormal);
+		editor.putBoolean("hasAntidote", hasAntidote);	
+		editor.putLong("virusTime", virusTime);
+		editor.putInt("point", point);
+		
 		editor.commit();
 
 		Intent intent = new Intent(this, MainActivity.class);
@@ -205,6 +217,8 @@ public class HaveAntidoteActivity extends Activity {
 	
 	public static class HelpFragment extends Fragment {
 
+		private TextView mTextFieldhelp;
+		
 		public HelpFragment() {
 		}
 
@@ -213,16 +227,25 @@ public class HaveAntidoteActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_help,
 					container, false);
+			mTextFieldhelp = (TextView) rootView.findViewById(R.id.textView1);
+			mTextFieldhelp.setText("To send an antidote to another player first shake your antiodote, put your phone close to the target, wait for the sound and then click on the screen to send. The target phone needs to be unlocked. Good Luck!");
+			mTextFieldhelp.setTypeface(tf);
+			mTextFieldhelp.setTextSize(20);
+			mTextFieldhelp.setEms(12);
+			
+			// tube animation
+			ViewAnimator img1 = (ViewAnimator) rootView.findViewById(R.id.viewAnimator1);
+			img1.setBackgroundResource(R.animator.clutchanimation);
+			AnimationDrawable frameAnimation = (AnimationDrawable) img1
+					.getBackground();
+			frameAnimation.start();
+			
 			return rootView;
-		}
+		}	
 	}
 
-	// @Override
-	// public void onBackPressed()
-	// {
-	//
-	// // super.onBackPressed(); // Comment this super call to avoid calling
-	// finish()
-	// }
-
+	public void goBack(View view){
+		Intent intent = new Intent(this, FirstActivity.class);
+		startActivity(intent);
+	}
 }

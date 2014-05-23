@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -124,7 +125,7 @@ public class HaveNormalActivity extends Activity {
 					 minutes = (timetot - 1000*60*60*24*days - 1000*60*60*hours) / (1000*60);
 					 seconds = (timetot - 1000*60*60*24*days - 1000*60*60*hours - 1000*60*minutes) / 1000;
 					 
-					 mTextField1.setText("Time left until you're dead:");
+					 mTextField1.setText("You have survived the infection for:");
 					 mTextField2.setText(seconds + "\t" + "second(s)");
 					 mTextField3.setText(minutes + "\t" + "minute(s)");
 					 mTextField4.setText(hours + "\t" + "hour(s)");
@@ -135,6 +136,18 @@ public class HaveNormalActivity extends Activity {
 					 mTextField3.setTypeface(tf);
 					 mTextField4.setTypeface(tf);
 					 mTextField5.setTypeface(tf);
+					 
+					 mTextField1.setTextSize(20);
+						mTextField2.setTextSize(17);
+						mTextField3.setTextSize(17);
+						mTextField4.setTextSize(17);
+						mTextField5.setTextSize(17);
+						
+						mTextField1.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField2.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField3.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField4.setGravity(Gravity.CENTER_HORIZONTAL);
+						mTextField5.setGravity(Gravity.CENTER_HORIZONTAL);
 			    	 
 			    	 }
 			     }
@@ -157,6 +170,8 @@ public class HaveNormalActivity extends Activity {
 		boolean gameVirus = false;
 		boolean gameNormal = false;
 		boolean hasAntidote = false;
+		long virusTime = 0L;
+		int point = 0;
 
 		SharedPreferences settings = getSharedPreferences(
 				FirstActivity.prefName, 0);
@@ -164,7 +179,10 @@ public class HaveNormalActivity extends Activity {
 		editor.putBoolean("gameStarted", gameStarted);
 		editor.putBoolean("gameVirus", gameVirus);
 		editor.putBoolean("gameNormal", gameNormal);
-		editor.putBoolean("hasAntidote", hasAntidote);
+		editor.putBoolean("hasAntidote", hasAntidote);	
+		editor.putLong("virusTime", virusTime);
+		editor.putLong("point", point);
+		
 		editor.commit();
 
 		Intent intent = new Intent(this, MainActivity.class);
